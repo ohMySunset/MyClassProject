@@ -95,7 +95,7 @@ public class UseVariable {
 	System.out.println((byte)age);
 	// -56이 출력됨. 큰 사이즈 -> 작은 사이즈로 변환할 경우 우리가 원하는 값이 아닌 다른 값이 나오게 됨.
 	
-	/* 마지막 정리
+	/* 마지막 정리!!
 	   1. 변수의 타입(자료형)을 미리 정의
 	     int - 정수
 	     float - 실수
@@ -110,12 +110,12 @@ public class UseVariable {
 	   6.  자료형의 형변환                                      
 	     byte -> short -> int -> long -> float -> double
 	              char -> 
-	              
+	   
+	    
 	   - 다루어야 할 데이터에 맞는 변수선언 필요
 	   - 연산에 맞는 변수선언 필요
 	              
 	*/     
-	     
 	}
 
 }
