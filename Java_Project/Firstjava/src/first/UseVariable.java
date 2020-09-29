@@ -68,7 +68,7 @@ public class UseVariable {
 	
 	/* 
 	 자동형변환
-	byte,short -> int
+	byte,short -> int (int의 크기가 더 크기 때문에)
 	byte + int -> int + int -> int(결과 또한 큰 자료형의 형태로 나오게됨)
 	int + long -> long + long -> long
 	int  < float  정수보다 실수의 범위가 더 크다고 판단하기 때문에 
@@ -97,9 +97,9 @@ public class UseVariable {
 	
 	/* 마지막 정리!!
 	   1. 변수의 타입(자료형)을 미리 정의
-	     int - 정수
-	     float - 실수
-	     char -  문자
+	     byte,short,int,long - 정수
+	     float,double - 실수
+	     char,.String -  문자
 	   2. 변수 사용 목적 -> 나중에 데이터를 다시 사용,변경,참조 하기 위해서 
 	                                       메모리에 저장해놓고 꺼내쓴다.
 	   3. 변수선언
@@ -116,6 +116,10 @@ public class UseVariable {
 	   - 연산에 맞는 변수선언 필요
 	              
 	*/     
+	
+	
+	
+	
 	}
 
 }
