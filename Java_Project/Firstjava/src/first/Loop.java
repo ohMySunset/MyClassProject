@@ -1,167 +1,174 @@
 package first;
 
-import java.util.Scanner;
-
 public class Loop {
 
 	public static void main(String[] args) {
-	/*
-	 조건문, 반복문 => 프로그램의 흐름 (분기)
-	 
-	★ 배열   + 반복문	
-	배열의 특징 -> 집합개체, 묶음, 순차적이기 때문에 뒤에 반복문으로 일괄 처리해준다.
-	
-	
-	<조건문 if>
-	
-	     ┌─> true일 시 강제적으로 실행, false이면 실행X, 
-	     │   조건식에는 비교연산, 논리연산이 들어갈 수 있음. 
-	if(★조건식 true/false){      
-	            true시 실행되는 영역  
-	}else{      
-	            false시 실행되는 영역
-	}
+  /*
     
-    ex) 성인,여성만 참여 가능한 투표
-	boolean check = true;
-	if(age < 20){
-	       check = false;	---> false일 경우만 제시해줌
-	} 
-	if(gender = 'M'){
-	        check = false;
-	}
-	if(check){
-	 system.out.println("투표한다");
-	}
-	
-	
-	<if문의 세가지 형태>
-	if
-	if - else
-	if - else if(중복가능) - else(생략가능) --> 앞 if 문장에 따라 범위가 결정됨 
-	     
+     반복문!?
+   반복의 조건  + 탈출의 조건   (탈출의 조건이 주어지지 않는다면? -> 무한루프)
+  
+   조건식 + {반복 처리할 구문} 또는 문장으로 구성. 
+  
+   반복의 횟수가 중요한 경우 -> for문  그 외 while문 사용
+   
+   ★for
+   - 반복의 횟수가 정해졌을 때
+   for (int i = 0, i < 0, i++){
+        index    반복의 조건    증감식  
+   }
+   
+     배열(데이터의 묶음, 순서[index]) ---> for 반복문	
+  
+   ★While
+   - 반복의 횟수를 모를 때
+        데이터 베이스를 활용
+        
+   ★do ~ While
+   - 한 번은 반드시 처리
 
-	*/	
-		int i = 0;
-		if(i%2==0) {}  // 짝수     if(i%2!=0) {}  홀수		
-		if(i%3==0) {}  // 3의 배수
+  
+  While 반복문
+  While (condition) {   앞의 조건식이 true 일 때 실행되는 문장.
+        true/false
+  }
+  - while 문 안에 while문 중첩이 가능함.	
+*/	
 		
-		if(i <-1 || i >3 && i <5) {}
-		//    4   5  1   3   2  --->  &&먼저 ||나중에
-		
-		boolean powerOn = false;
-		   // ┌─>전원이 꺼져 있을 때이기 때문에 true값이 나와야 함
-		if(!powerOn) {
-			//전원이 꺼져 있으면 등을 켠다 
-		}
-	    // 위와 같음 ┐
-		if(powerOn) {}
-	    else { //전원이 꺼져 있으면 등을 켠다 
-	    }
-		
-		
-	// 문자열 처리 -> String 클래스 이용 -> 객체 생성 -> 클래스가 가지는 변수와 메서드를 메모리에 로드 한다. 	
-	 String str = null; //참조변수가 객체의 주소값을 저장하고 있지 않는다.
-	 str = ""; //공백문자를 이용해서 객체를 생성, 주소값을 str에 반환 (객체의 메모리 주소값을 저장)
-	  //	"   "  -> 문자열을 저장하는 String 타입의 객체 생성
-	if(str.equals("c")||str.equals("C")) {}	
+ //ex)		
+ int i = 0;	 // 반복의 횟수를 체크하기 위한 인덱스
+ while (i < 5) {
+	System.out.println("자바 안녕~!!"+i);
+	i++;  //탈출을 위한 연산식
+}	
+   //위의 while문을 실행하고 나면 i => 5
+ 
+	System.out.println("===============================");
+  
+   //do while loop
+   //최소 한번 실행 후 조건에 맞게 반복 실행
 	
-    str = "abc";
-	str.toString(); 
- 	System.out.println(str.toString()); // 문자열을 그대로 다시 반환
- 	System.out.println(str.equals("abc")); //euqals -> 내가 비교하고자 하는 변수와 비교해줌
+ do {
+	System.out.println("안녕 자바!!"+i);
+	i++;
+} while (i<5);
+  // 위에서 i가 5였기 때문에 조건이 충족하지 않음에도 무조건 한번은 실행하여 결과를 출력함.
 
-   	
-	if(str != null && !str.equals("")) {
-		System.out.println(str.charAt(0)); //abc -> 0,1,2 
-		                                   //문자열을 인덱스 처리하여 해당 문자를 뽑아냄
-	}    
-	
-	int num = 10;
-	if(num>0) {
-		System.out.println("num은 0 보다 크다");
-	}if((num%2)==0) {
-		System.out.println("짝수이다");
-	}else {
-		System.out.println("홀수이다");
-	}
-	
-	//if문은 제한없이 중첩해서 쓸 수 있지만 여러개 중복해서 쓰는 것 보다 간단하게 쓰는 것이 가독성이 좋다. 
-	if(num > 0 && num%2==0) {
-		System.out.println("num은 0 보다 크고 짝수이다");
-	}
-	
-	/*
-	  <if~else와 유사한 조건 연산자(삼항연산자)>
-	 (true or false)? 숫자1(true) : 숫자2(false);	                	 	 
-	*/
-	int num1 = 20, num2 = 50;
-	
-	int big = 0; // 큰 수
-	int diff = 0; // 두 수의 차이
-	
-	//삼항연산자 이용   --> 간단한 비교구문은 삼항연산자 사용 가능! (if로 해도 무관)
-	//big = num1 > num2 ? num1 : num2;  //big = num2
-	//diff = num1 > num2 ? num1 - num2 : num2 - num1; // diff = num2
-	//   System.out.printf("큰수 : %d이고,큰 수와 작은 수의 차이는 %d입니다",big,diff);
-	//%d ->정수형식으로 출력
-	
-	 if(num1 > num2) {
-		 big = num1;
-		 diff = num1 - num2;
-	 }else {
-		 big = num2;
-		 diff = num2 - num1;
+
+  /*
+   for 반복문
+  for( (1)int i = 0; (2)i < 5; (4)i++ ){ (3)조건식이 true일 경우 수행되는 문장
+                           초기화                    조건식              증감식
+   }
+   - 곱하기에서는 초기화를 1로 해준다. 0은 어떤 수를 곱해도 0이 나오기 때문에 
+   */
+  
+  System.out.println("===============================");
+  
+  
+  // 1~10까지의 합계 구하기
+  int sum =0; //합을 구하기 위한 변수
+  for(int k=1; k<11; k++) {
+	  sum += k; //sum = sum + k;
+	            // 블럭 안을 벗어나면 for문의 변수인 k는 소멸하게 됨.
+	            // 블럭 안에서만 사용가능!
+  }
+  // System.out.println(k); //에러 괄호 밖에서는 변수k를 불러올 수 없음
+  System.out.println("1~10까지의 합:"+ sum);
+  
+  System.out.println("===============================");
+  
+ /* 
+   ★continue & break
+   
+  While(조건식){
+                처리1  
+       continue  (밑의 처리를 무시하고 다시 조건 검사로 이동)
+                 처리2
+  }
+  */
+  
+  // 0부터 몇까지 더해나갔을 때 그 합이 100이 넘어가는지 확인
+  sum = 0;
+  i = 0;
+  
+  //몇 번이나 반복해야 하는지 모르는 경우 -> 무한반복 처리
+  while(true) { // 무한 반복     
+    // 탈출의 조건
+	 if(sum > 100) {
+     break; //break를 감싸고 있는 블럭(while문)을 탈출!
 	 }
-	 System.out.printf("큰수 : %d이고, 큰 수와 작은 수의 차이는 %d입니다.\n",big,diff);
+      i++;  //더하는 수의 증가
+      sum += i; //합을 구하는 연산
+  }
+  System.out.println(i + "를 더했을 때 합이 100이 넘어갑니다. 100을 넘어가는 최초의 값은 "+sum +"입니다");
+
+  System.out.println("==================================================");
+  
+  //1~10까지의 수 중에서 3의 배수를 생략하고 출력하기 
+  for(i = 0; i < 11; i++) {
+	/*  if(!(i%3==0)) {
+		  System.out.println(i);
+	  }
+	*/	  
+	  if(i%3==0) { //3의 배수를 찾는 조건
+		  continue; //3의 배수일 시 밑에서 출력되지 않고 다시 조건문으로 올라감.
+	  }
+	  System.out.println(i);	  
 	  
-	 /*
-	 <Switch>
-	 조건식의 계산결과와 일치하는 case문으로 이동 - break(생략가능)를 만나면 탈출
-	 break를 생략할 경우, 일치하는 case 값부터 그 아래 작업까지 순차적으로 모두 수행
-         일치하는 case 값이 없을 경우 default값으로 처리됨(생략가능)
-     switch 중복가능, if와 함께 사용가능
-         
-           ★ case 값으로는 변수사용 불가, 리터럴 혹은 상수만 가능!   
-	  조건식에서 char,int,string 사용 가능 (int 자료형 이하의 값)
-	 
-	 */
-	 
-	 int n = 0;
-	 
-	 Scanner sc = new Scanner(System.in);	
-	 
-	 System.out.println("메뉴를 선택하세요\n 1.입력 2.보기 3.수정 4.삭제 ");
-	 	 	 
-	 n = sc.nextInt();
-	 
-	 switch (n) {
-        	case 1:
-        System.out.println("입력합니다.");
-	//	System.out.println("Simple JAVA");
-		    break;
-        	case 2:
-        System.out.println("데이터를 열람합니다.");		
-    //    System.out.println("Funny JAVA");
-            break;
-        	case 3:
-        System.out.println("정보를 수정합니다.");
-    //    System.out.println("Fantastic JAVA");   
-            break;
-        	case 4:
-        System.out.println("데이터를 삭제합니다.");
-            break;
-	   /*     default: 
-	        	
-	    System.out.println("Best JAVA");
-	  */ 
+  }
+  System.out.println("==================================================");
+  
+  //continue를 이용한 숫자 찾기!
+  //0~100까지의 숫자 중에 5의 배수 이면서 7의 배수인 숫자를 출력하고 총 몇개가 존재하는지 개수를 출력
+    int num = 0;
+    int count = 0;
+    while((num++)<100) {
+    	  //num++;
+    	if(num%5!=0||num%7!=0) { //=  !(num%5==0 && num%7==0)
+    		continue;    		    	
+    	}
+    	count++;
+    System.out.println(num);	  	
+    }
+    System.out.println("0~99사이의 숫자 중에 5의 배수이면서 7의 배수인 숫자는 모두" + count + "개가 있습니다");  
+  
+   System.out.println("==================================================");
+     
+    
+   //자연수 1부터 모든 홀수와 3의 배수이면서 짝수인 수를 모두 더해나간다.
+   
+   
+   
+   
+   
+   System.out.println("==================================================");
+   //이중 for문
+  outerLoop : for(i = 1; i < 10; i++) {
+	  
+	   for(int j = 1; j< 10; j++) {
+		   System.out.println("["+i+","+j+"]");  //[1,2] [1,3]
+		   if(i%2==0 && j%2==0) {  // i와 j가 모두 짝수일 경우는 break
+			   break;
+			 //  break outerLoop; // 위의 if문이 만족했을 때 아예 전체 블록을 탈출
+		   }
+	   }
+	   
+   }
+    
+	// random
+	int r;
+	r = (int)(Math.random() * 10);  // math.random -> 더블형이므로 앞에 인티저를 넣어줌
+	                               //*뒤의 숫자 범위 내에서 랜덤으로 출력
+	System.out.println("r="+r);
+   
+   //java.lang.system  -> system 클래스들을 가진다
+   //패키지 - 폴더 - 클래스 
+   //System.currentTimeMillis  -> 1970.1.1.00시00분00초부터 현재 까지 밀리초로 반환(long타입)
+ 
+   
+    
+    
 	}
-	 
-	 
-	 
-	 
-	 
-	 
-	}  
 
 }

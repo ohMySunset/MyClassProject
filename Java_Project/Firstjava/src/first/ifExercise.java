@@ -2,7 +2,7 @@ package first;
 
 import java.util.Scanner;
 
-public class LoopExercise {
+public class ifExercise {
 
 	public static void main(String[] args) {
 
