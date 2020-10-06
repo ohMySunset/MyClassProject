@@ -2,7 +2,7 @@ package first;
 
 //import java.lang.Math
 
-public class OperatorTest {
+public class Operator {
 
 	public static void main(String[] args) {
 
@@ -202,14 +202,17 @@ public class OperatorTest {
 		float sPi = (int) (pi * 100) / 100f; // (int * int)float -> float
 		System.out.println(sPi);
 
+		
 		int price = 11234;
-		// 뒤에 백단위 밑으로 제외하고 출력하고 싶다면
+		// 뒤에 백단위 밑으로 제외하고 출력하고 싶다면		
 		int price2 = price / 1000 * 1000;
 		System.out.println(price2);
 
+		
 		float sPi2 = Math.round(pi * 100) / 100f; //3.14까지 절사
 		System.out.println(sPi2);
 
+		
 		float pi1 = 3.141592f; // 3.141까지 절사
 		float longpi1 = Math.round(pi1 * 1000) / 1000f;
 		// Math.round(3.141592f * 1000)/1000f;
@@ -218,6 +221,7 @@ public class OperatorTest {
 		// 3142.0f/1000f; //결과 3.142f
 		System.out.println(longpi1);
 
+		
 		/*
 		 증가연산자(++) : 피연산자의 값을 1 증가시킴 
 		 감소연산자(--) : 피연산자의 값을 1 감소시킴 <----- 결합방향

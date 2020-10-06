@@ -14,9 +14,12 @@ public class MyMeth {
 	   return result;
 	}
 	
+	
 	void sayHello() { 
 		System.out.println("안녕하세요 여러분~!!");
 	}
+	
+	
 	
 	//정수 두개를 받아서 덧셈의 결과를 출력하는 메서드
 	void plus(int num1, int num2) {
@@ -29,6 +32,8 @@ public class MyMeth {
 		
 	  return result;	
 	}
+	
+	
 	
 	//정수 두개를 받아서 나눗셈한 결과를 출력하는 메서드 
 	void divide(int num1, int num2){
