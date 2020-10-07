@@ -1,4 +1,4 @@
-package first;
+package Triangle;
 
 public class TriangleMain {
 

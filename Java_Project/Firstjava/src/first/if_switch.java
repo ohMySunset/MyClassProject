@@ -2,7 +2,7 @@ package first;
 
 import java.util.Scanner;
 
-public class ifExercise {
+public class if_switch {
 
 	public static void main(String[] args) {
 
@@ -86,6 +86,8 @@ public class ifExercise {
              grade = "c";
              System.out.println("분발하세요"+grade+"입니다");
              break;
+             default:
+             System.out.println("시험에 통과하지 못했습니다"); 	 
    }
    
    
