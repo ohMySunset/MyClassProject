@@ -2,7 +2,7 @@ package first;
 
 import java.util.Scanner;
 
-public class IfStatement {
+public class If_switch {
 
 	public static void main(String[] args) {
 	/*
