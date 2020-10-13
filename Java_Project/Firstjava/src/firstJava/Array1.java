@@ -1,6 +1,6 @@
 package firstJava;
 
-public class Array {
+public class Array1 {
 	
 	public static void main(String[] arg) {
 
@@ -18,6 +18,8 @@ public class Array {
 	★배열을 이용하면 공통작업을 빠르게 할 수 있고, 코드도 줄일 수 있다. 
 	
 	<배열 변수의 선언>	
+	
+	int numArr[]
 	int[] numArr = null; 참조변수이기 때문에 초기값은 null을 가짐
 	                                          배열의 요소 또한 기본값으로 초기화
 	int[] numArr = new int[n];
@@ -35,7 +37,7 @@ public class Array {
 	★참조형변수를 다루는 배열                        
 	String[] -> 변수의 값을 저장하는 것이 아닌 String 타입의 주소값을 저장하는 참조변수들의 집합임!
 	                        배열의 인스턴스로 객체의 주소값을 생성하면 훨씬 더 많은 데이터를 활용할 수 있음. 
-	
+	           
 	
 */	
    //배열의 선언 : 자료형[] 배열이름
@@ -96,12 +98,16 @@ public class Array {
     for(int i=0;i<arr4.length;i++) {
     	System.out.println(arr4[i]);
     }
+ 
     System.out.println("=================================");
     for(int i=0;i<ref.length;i++) {
     	System.out.println(ref[i]);
     }
  
-     System.out.println("=================================");
+   
+    
+    
+    System.out.println("=================================");
     // ★예제 2
     // 로또 번호 축출 프로그램
      
@@ -130,21 +136,22 @@ public class Array {
      for(int i=0;i<6;i++) {
     	 System.out.print(ball[i]+"\t");
      }
-     
+        
+  
      
 }
-	//int타입의 배열을 받고, 증가시킬 정수값을 받아서
+	//int 타입의 배열을 받고, 증가시킬 정수값을 받아서
 	//각 배열의 요소에 받은 정수값 만큼 증가시키고
-	//전달 받은 배열을 반환하는 메서드
-			
+	//전달 받은 배열을 반환하는 메서드   
+	//1차원 배열을 매개변수로 받아올 수 있음.
+	
 	 static int[] addAllArray(int[] ar, int addValue) { //메인메서드에서 호출하려면  static메서드 
 		for(int i=0;i<ar.length;i++) {
 			ar[i] += addValue;
 		}		 
 		 return ar;
-	}
+	    }
 	
 	 
-	 
-	 
+	 	 
 }

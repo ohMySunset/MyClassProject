@@ -1,4 +1,4 @@
-package fruit;
+package fruit.ver01;
 
 public class FruitBuyer { //과일 구매자 입장
 

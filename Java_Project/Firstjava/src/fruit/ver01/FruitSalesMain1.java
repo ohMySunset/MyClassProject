@@ -1,4 +1,4 @@
-package fruit;
+package fruit.ver01;
 
 public class FruitSalesMain1 {
 

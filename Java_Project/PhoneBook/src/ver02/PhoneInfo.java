@@ -43,8 +43,7 @@ public class PhoneInfo {
 	void showInfo() {
 		System.out.println("이름 :"+ name );
 		System.out.println("전화번호 :"+ phoneNumber);
-	//	System.out.println("생일정보 :"+ birthday);		
-	
+	//	System.out.println("생일정보 :"+ birthday);			
 		
 	if(birthday == null) {
 		System.out.println("생일 : 데이터 없음");

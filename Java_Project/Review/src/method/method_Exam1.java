@@ -18,25 +18,36 @@ public class method_Exam1 {
 	}
 	
     //두 수의 사칙연산 결과를 출력하는 메서드
-    void operNum() {
+      void operNum() {
     	int plus = num1 + num2;
     	int minus = num1 - num2;
     	int multi = num1 * num2;
     	int divi1 = num1 / num2;
     	int divi2 = num1 % num2;
-    	
+   /*	
+   static void operNum(int num1, int num2) {	
+    	 System.out.println(num1+"+"+num2+"="+(num1+num2));
+    	 System.out.println(num1+"-"+num2+"="+(num1-num2));
+    	 System.out.println(num1+"*"+num2+"="+(num1*num2));
+    	 System.out.println(num1+"/"+num2+"="+(num1/num2));
+    	 System.out.println(num1+"%"+num2+"="+(num1%num2));
+    	// 출력문 안에서 더하기 연산 시 괄호必
+    	// 앞에서 변수선언 안하고 메서드에서 바로 변수선언하고 연산도 가능!
+    */	
     	System.out.println("두 수의 덧셈 결과 : "+ plus);
     	System.out.println("두 수의 뺄셈 결과 : "+ minus);
     	System.out.println("두 수의 곱셈 결과 : "+ multi);
-    	System.out.println("두 수의 나눗셈 결과 몫: "+ divi1 + "나머지 : "+ divi2);
+    	System.out.println("두 수의 나눗셈 결과 몫: "+ divi1 + " 나머지 : "+ divi2);
+    
     }
 	
     
 	public static void main(String[] args) {
 
-		method_Exam1 op1 = new method_Exam1(3, 8);
-        
-		op1.operNum();
+	 method_Exam1 op1 = new method_Exam1(3, 8);
+     //   operNum(4,6);
+		
+	op1.operNum();
 			
 	}
 
