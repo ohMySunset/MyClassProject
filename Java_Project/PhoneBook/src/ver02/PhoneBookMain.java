@@ -2,6 +2,8 @@ package ver02;
 
 import java.util.Scanner;
 
+import ver03.Util;
+
 public class PhoneBookMain {
 
 //private static PhoneInfo p;
@@ -9,7 +11,7 @@ public class PhoneBookMain {
 	public static void main(String[] args) {
 
       //사용자에게 데이터를 받는다.
-		 Scanner s = new Scanner(System.in);
+		// Scanner s = new Scanner(System.in);
 		
 	  while(true) {		  //아래 루틴을 반복
 	
@@ -17,11 +19,11 @@ public class PhoneBookMain {
 		 System.out.println("저장을 위한 데이터를 입력해주세요.");
 		 
 		 System.out.println("이름을 입력해 주세요.");
-		 String name = s.nextLine();
+		 String name = Util.sc.nextLine();
 		 System.out.println("전화번호를 입력해 주세요.");
-	     String phoneNumber = s.nextLine();
+	     String phoneNumber = Util.sc.nextLine();
 	     System.out.println("생년월일을 입력해 주세요.");
-	     String birthday = s.nextLine();
+	     String birthday = Util.sc.nextLine();
 		 
 	     
 	   PhoneInfo info= null; //인스턴스 생성

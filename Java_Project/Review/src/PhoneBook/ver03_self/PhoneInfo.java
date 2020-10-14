@@ -1,4 +1,4 @@
-package ver03;
+package PhoneBook.ver03_self;
 
 public class PhoneInfo {
 
