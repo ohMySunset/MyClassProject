@@ -1,8 +1,7 @@
 package ver02;
 
-import java.util.Scanner;
-
 import ver03.Util;
+
 
 public class PhoneBookMain {
 
@@ -11,7 +10,10 @@ public class PhoneBookMain {
 	public static void main(String[] args) {
 
       //사용자에게 데이터를 받는다.
-		// Scanner s = new Scanner(System.in);
+	  //Scanner s = new Scanner(System.in);
+		 ver03.Util.sc.nextLine();
+		 
+
 		
 	  while(true) {		  //아래 루틴을 반복
 	

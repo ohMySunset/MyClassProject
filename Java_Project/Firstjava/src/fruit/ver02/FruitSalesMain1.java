@@ -18,6 +18,18 @@ public class FruitSalesMain1 {
 	 //FruitBuyer 타입의 참조변수 선언과 초기화
 	 FruitBuyer buyer = new FruitBuyer(10000, 0);	
 	 
+
+	 
+//=========================================================	 
+// seller,buyer의 변수를 직접참조할 수 없도록 private처리 해주니 오류발생!
+//	아래와 같이 직접참조하는 코드는 좋지 않음.
+//  seller.myMoney += 500;
+//	buyer.myMoney -= 500;
+	 
+//    seller.numOfApple -= 20;	 
+//	buyer.numOfapple  += 20;
+//==========================================================	 
+	 
 		
 	 // 사과를 구매 : 2000 지불
 	 buyer.buyApple(seller, 3000);

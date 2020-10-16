@@ -1,3 +1,4 @@
+package Exam;
 import java.util.Scanner;
 
 public class Exam_if_loop {

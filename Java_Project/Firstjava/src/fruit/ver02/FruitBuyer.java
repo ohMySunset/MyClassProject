@@ -14,8 +14,8 @@ public class FruitBuyer { //과일 구매자 입장
 	
 	// 수정 : 2020.10.08   변수의 초기화 코드 생략
 	//구매자의 소유 금액, 소유한 사과의 개수
-	int myMoney;  // 구매자의 보유 금액
-	int numOfapple;  // 보유한 사과 개수
+	private int myMoney;  // 구매자의 보유 금액
+	private int numOfapple;  // 보유한 사과 개수
 	
 	//2020.10.08 : 생성자 정의, 변수의 초기화 목적
 //	public FruitBuyer() {

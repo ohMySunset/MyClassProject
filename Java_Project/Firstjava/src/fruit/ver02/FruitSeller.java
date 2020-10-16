@@ -20,8 +20,8 @@ public class FruitSeller { //과일 판매자 입장
 	//      변수의 초기화를 생성자에서 처리, 변수 선언시의 초기화 코드 삭제	
 	// int appleprice = 1000; // 사과의 가격
 	final int APPLE_PRICE; // 사과의 가격, 변경이 불가하도록 상수처리
-	int numOfApple; // 사과의 보유 개수
-	int myMoney; // 수익 금액
+	private int numOfApple; // 사과의 보유 개수
+	private int myMoney; // 수익 금액
 
 	//2020.10.08 생성자 추가
 //	FruitSeller(){
