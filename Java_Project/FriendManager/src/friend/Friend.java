@@ -1,6 +1,6 @@
 package friend;
 
-public class Friend {
+public abstract class Friend {
 
 	// 변수 선언
 	private String name;              // 친구의 이름
@@ -33,10 +33,10 @@ public class Friend {
 	}
 	 
 	// 오버라이딩 : 비어있는 처리부에 기능을 추가
-	public void showBasicInfo() {
-		
-	}
+//	public void showBasicInfo() {  //상속의 목적으로만 사용하는 추상클래스의 역할
+//		                           
+//	}
 	
-	
+	public abstract void showBasicInfo();  // 추상클래스
 	
 }

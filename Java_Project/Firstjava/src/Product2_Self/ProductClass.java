@@ -1,4 +1,4 @@
-package Product2;
+package Product2_Self;
 
 public class ProductClass {
 	// 변수설정

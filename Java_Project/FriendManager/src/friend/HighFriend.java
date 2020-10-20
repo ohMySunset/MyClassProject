@@ -21,7 +21,7 @@ public class HighFriend extends Friend{
 
 	@Override
 	public void showBasicInfo() {
-		super.showBasicInfo();
+	//	super.showBasicInfo();
 		System.out.println("이름 : "+ getName());
 		System.out.println("전화번호 : "+getphoneNumber());		
 	}

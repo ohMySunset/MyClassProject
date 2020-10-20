@@ -1,4 +1,4 @@
-package FriendManager_ver04;
+package friendManager_ver04;
 
 import java.util.Scanner;
 
