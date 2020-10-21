@@ -1,4 +1,6 @@
-package ver05;
+package ver06;
+
+import java.util.InputMismatchException;
 
 import ver03.Util;
 
@@ -29,32 +31,35 @@ public class PhoneBookManager {
     // 1) 정보 저장
     // 1. 배열에 정보를 저장하는 메서드, 다형성을 이용하여 하나의 메서드로 정의!!! 
     // void addInfor(상위클래스 타입의 매개변수){}
-   private void addInfor(PhoneInfor info) {
-    	pBook[cnt++] = info ;
+   private void addInfor(PhoneInfor Infor) {
+    	pBook[cnt++] = Infor ;
     }
  
     // 2. 사용자에게 받은 데이터를 인스턴스로 생성하는 메서드
     //   입력의 구분 -> 구분에 따라 인스턴스 생성도 구분 -> addInfor()메서드를 이용해서 정보를 저장한다. 
-    public void insertInfo() {
+ 	  
+   public void insertInfo() {
     	if(pBook.length==cnt) {
     		System.out.println("데이터의 저장공간이 부족하여 정보를 저장할 수 없습니다.");
     		System.out.println("일부 데이터를 삭제하고 저장공간을 확보해주세요.");
     	}
+    	
+    	while(true) {
     	System.out.println("어떤 정보를 입력하시겠습니까?");
     //	System.out.println(PhoneInfor.INSERT_BASIC +". 기본"); //-> 추상클래스는 인스턴스 생성 불가. 
     	System.out.println(Menu.UNIV+". 대학");
     	System.out.println(Menu.COM +". 회사");
     	System.out.println(Menu.CAFE +". 동호회");
     	
-    	int select = Util.sc.nextInt();
-    	Util.sc.nextLine();  // 다음 String 변수에 엔터값이 들어가지 않도록 방지
-    	
-    	if(!(select>0 && select<4)) { 	
+    	String select = Util.sc.nextLine();
+    	     	
+    	// 메뉴에 없는 숫자 예외처리
+    	if(!(Integer.parseInt(select)>0 && Integer.parseInt(select)<4)) { 	
 		  System.out.println("메뉴 선택이 올바르지 않습니다.");
-		  System.out.println("초기메뉴로 이동합니다.");
-		  return;
+		  System.out.println("초기메뉴로 이동합니다.");		  
+		  continue;
     	}
-    	 
+    	   
     	System.out.println("정보 입력을 시작합니다.");
     	System.out.println("이름 >> ");
     	String name = Util.sc.nextLine();
@@ -64,9 +69,8 @@ public class PhoneBookManager {
     	String addr = Util.sc.nextLine();
     	System.out.println("이메일 >>");
     	String email = Util.sc.nextLine();
-    	
-   	
-    	
+    	 
+   	  	
     	switch (select) {     
     	case Menu.UNIV : // 추가정보를 받고 -> 인스턴스 생성 -> 배열에 저장
     		//전공, 학년 
@@ -89,11 +93,13 @@ public class PhoneBookManager {
     		System.out.println("닉네임>>");
     		String nickName = Util.sc.nextLine();
     		addInfor(new CafePhoneInfor(name, phoneNum, addr, email, cafeName, nickName));
-    		break;    	
-    	}
-    	
-    System.out.println("입력하신 정보가 저장되었습니다. (저장개수 :"+cnt+")");
-  }
+    		break;
+    	}    	   	  
+    	 break;
+    	}   	
+     System.out.println("입력하신 정보가 저장되었습니다. (저장개수 :"+cnt+")");
+  
+   }
     
     
     

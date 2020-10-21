@@ -36,7 +36,7 @@ public class Interface {
 		Fighter < Fightable		
 		}
 		
-		마킹 -> instanceof와 함께 사용
+		Marking -> instanceof와 함께 사용
 		
 		
 		 */

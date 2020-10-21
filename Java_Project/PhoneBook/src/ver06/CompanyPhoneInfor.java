@@ -1,4 +1,4 @@
-package ver05;
+package ver06;
 
 public class CompanyPhoneInfor extends PhoneInfor {
 

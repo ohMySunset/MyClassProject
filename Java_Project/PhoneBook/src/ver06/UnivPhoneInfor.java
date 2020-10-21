@@ -1,4 +1,4 @@
-package ver05;
+package ver06;
 
 public class UnivPhoneInfor extends PhoneInfor {
 
@@ -8,7 +8,7 @@ public class UnivPhoneInfor extends PhoneInfor {
 	
 	
 	// 생성자 : 상위 클래스의 생성자 호출, 추가된 변수의 초기화	
-	public UnivPhoneInfor(String name, String phoneNum, String addr, String email,String major ,int grade) {
+	 UnivPhoneInfor(String name, String phoneNum, String addr, String email, String major ,int grade) {
 	// 상위클래스의 생성자 호출 : 상위클래스의 멤버 변수 초기화	
 		super(name, phoneNum, addr, email);
 	// 새로 추가된 멤버 변수 초기화
@@ -16,8 +16,6 @@ public class UnivPhoneInfor extends PhoneInfor {
 		this.grade = grade;		
 	}
 
-	
-	
 	// getter / setter 생성
 	public String getMajor() {
 		return major;
@@ -48,6 +46,6 @@ public class UnivPhoneInfor extends PhoneInfor {
 	   super.showInfor();		
 	}
 
-	
+
 	
 }
