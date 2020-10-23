@@ -1,19 +1,24 @@
 package ver06_Self;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 import ver03.Util;
 
 public class PhoneBookManager  {
 
+	
 	// 정보를 저장할 배열 선언
-	private PhoneInfor[] infor;    // 배열 초기화는 생성자에서
-	private int cnt;               // 배열에 저장된 정보의 개수 및 반복의 표현으로 사용.
+	private ArrayList<PhoneInfor> list;
 	
-	// 생성자 초기화
-	public PhoneBookManager(int num) {	
-		infor = new PhoneInfor[num];
-		cnt = 0;
+	
+	// 생성자를 통한 초기화
+	private PhoneBookManager(int num) {
+		list = new ArrayList<PhoneInfor>();	
+		num = 0;
 	}
-	
+
+
     // PhoneBookManager타입의 인스턴스 싱글톤 처리
 	// 인스턴스 생성 -> 미리 생성되어 있어야 하므로 static
 	private static PhoneBookManager manager = new PhoneBookManager(100); 
@@ -22,49 +27,53 @@ public class PhoneBookManager  {
 		return manager;
 	}
 	
-	
-	// 1. 정보 저장 메서드
-	// 1) 배열에 정보를 저장하는 메서드
+		
+	// 정보 저장 메서드
+	// 1) 배열에 정보를 추가하는 메서드
 	void inputArray(PhoneInfor p) {
-		infor[cnt++] = p;
+	   list.add(p);
 	}
 	
-	// 2) 사용자로부터 입력받은 정보를 분류하여 인스턴스 생성.
-	// 1.기본 2.대학 3.회사 4.동호회
 	
+	// 2) 사용자로부터 입력받은 정보를 분류하여 인스턴스 생성.
+	// 인터페이스 기반의 상수처리를 하여 메뉴 구성
 	public void insertInfor() {
-		
-		if(infor.length==cnt) {
-		System.out.println("더 이상의 정보를 저장할 수 없습니다."+"\n 일부 데이터를 삭제 후 다시 시도해주세요.");
-		   return;
-		}			
+						
 			System.out.println("어떤 정보를 입력하시겠습니까?");
 			System.out.println(Menu.STANDARD+". 일반");
 			System.out.println(Menu.UNIV+". 대학");
 	    	System.out.println(Menu.COM +". 회사");
 	    	System.out.println(Menu.CAFE +". 동호회");	    		
-	    		
-	    	int select = Util.sc.nextInt();
-	    	Util.sc.nextLine();
 	    	
-	    	if(!(select>0 && select<4)) { 	
-	  		  System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
-	  		  return;
-	      	}
-	        	   
+	    	int select = 0;
+	    	
+	    	// 예외가 발생할 수 있는 부분
+	    	try {
+	    	select = Util.sc.nextInt();
+	    	Util.sc.nextLine();	   
+	    	
+	    	if(!(select>=Menu.STANDARD && select<=Menu.CAFE)) { 	
+	    		MenuMisMatch e = new MenuMisMatch("메뉴의 선택 오류");
+	    		throw e;
+	  	    }
+	    	// 주어진 메뉴를 제외한 숫자 혹은 특수문자를 입력했을 때 예외처리
+	    	} catch(InputMismatchException | MenuMisMatch e){
+	    		System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+	    	} catch (Exception e) {
+				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+			}
+	    	
 	    	System.out.println("정보 입력을 시작합니다.");
 	    	System.out.println("이름 >> ");	
 	    	String name = Util.sc.nextLine();		    	
 	    	System.out.println("전화번호 >> ");
-	    	String phoneNum = Util.sc.nextLine();
-	    	
+	    	String phoneNum = Util.sc.nextLine();	    	
 	    	System.out.println("주소 >>");
 	    	String addr = Util.sc.nextLine();
 	    	System.out.println("이메일 >>");
 	    	String email = Util.sc.nextLine();
 	    	
-	    	
-	    	
+	    		    	
 	    	switch (select) {   
 	    	case Menu.STANDARD :
 	    		inputArray(new PhoneInfor(name, phoneNum, addr, email));	    	
@@ -91,30 +100,18 @@ public class PhoneBookManager  {
 	    		System.out.println("닉네임>>");
 	    		String nickName = Util.sc.nextLine();
 	    		inputArray(new CafePhoneInfor(name, phoneNum, addr, email, cafeName, nickName));
-	    		break;
-	    	 
-	  //  	try {
-	   // 		for(int i=0;i<cnt;i++) {
-	   // 		if(infor[i].getName().contains(" ")) {
-	  //  			System.out.println("공백을 포함되지 않도록 입력해주세요 ");
-	   // 		}	    		
-	  //  		}
-	  //  	} catch (InputBlankException e) {
-	    		
-	  //  	}
-	    		
-	    	}
-	    	
-	    	System.out.println("입력하신 정보가 저장되었습니다.[저장개수 :"+cnt+"]");	        
+	    		break;	    		
+	    	}   		    	
+	    	System.out.println("입력하신 정보가 저장되었습니다.[저장개수 :"+list.size()+"]");	 	    		
 		}
-	 	
+	
 
 	// 2) 정보 검색 메서드
 	// 입력한 이름과 비교해서 인덱스를 반환해주는 메서드
 	public int searchIndex(String name) {
 		int index = -1;
-		for(int i=0;i<cnt;i++) {
-			if(infor[i].getName().equals(name))
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i).getName().equals(name))
 				index = i;
 		}				
 		return index;
@@ -125,7 +122,7 @@ public class PhoneBookManager  {
 	// 입력된 이름에 부합하는 정보를 출력하는 메서드
 	void searchInfor() {	
 		Util.sc.nextLine();
-		if(cnt==0) {
+		if(list.size()==0) {
 		   System.out.println("메모리에 저장된 정보가 없습니다.");
 		   System.out.println("정보를 저장하신 후 다시 시도해주세요");
 		   return;
@@ -139,7 +136,7 @@ public class PhoneBookManager  {
 			return;
 		} else {
 			System.out.println("검색 결과 >>");
-			infor[index].showInfor();
+			list.get(index).showInfor();
 		}
 	}
 		
@@ -147,7 +144,7 @@ public class PhoneBookManager  {
 	// 3) 삭제 메서드
     // 사용자에게 이름을 입력받고 이름으로 검색한 후 정보 삭제
     public void deleteInfor() {    	
-    	if(cnt==0) {
+    	if(list.size()==0) {
  		   System.out.println("메모리에 저장된 정보가 없습니다."+"\n 정보를 저장하신 후 다시 시도해주세요.");
  		   return;
  	   }
@@ -159,52 +156,42 @@ public class PhoneBookManager  {
     		System.out.println("찾으시는 "+name+" 와(과) 일치하는 정보가 없습니다.");
     		System.out.println("초기화면으로 이동합니다.");
     	} else {
-    		for(int i=index;i<cnt-1;i++) {
-    			infor[i] = infor[i+1];    	
-    		}
-    		cnt--;
+    		list.remove(index);
+    		}    		
     		System.out.println("요청하신 이름의 정보를 삭제하였습니다.");
     	}	
-    }
     
-    
-    
+   
     
     // 4) 기본 정보 출력 메서드
     public void showShortInfo() {
-    	if(cnt==0) {
+    	if(list.size()==0) {
   		   System.out.println("메모리에 저장된 정보가 없습니다."+"\n 정보를 저장하신 후 다시 시도해주세요.");
   		   return;
   	   }
     	System.out.println("기본 정보 출력 결과 >>");
-    	for(int i=0;i<cnt;i++) {
-     		infor[i].showBasicInfor();
+    	for(int i=0;i<list.size();i++){
+    		list.get(i).showBasicInfor();
      		System.out.println("----------------------");
-       }
+       }   	
     }
     
     
-    
-    
+  
     // 5) 전체 정보 출력 메서드
     public void showAllInfor() {
- 	   if(cnt==0) {
+ 	   if(list.size()==0) {
  		   System.out.println("메모리에 저장된 정보가 없습니다."+"\n 정보를 저장하신 후 다시 시도해주세요.");
  		   return;
  	   }
      	System.out.println("전체 정보 출력 결과 >>");
-     	for(int i=0;i<cnt;i++) {
-     		infor[i].showInfor();
+     	for(int i=0;i<list.size();i++) {
+     		list.get(i).showInfor();
      		System.out.println("----------------------");
      	}
      }
     
-	
-  
-    
-    
-	
-	
+
 }
     
 	

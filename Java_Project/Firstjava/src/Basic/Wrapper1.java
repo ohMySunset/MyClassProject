@@ -9,7 +9,7 @@ public class Wrapper1 {
 		Integer i2 = new Integer("100"); // 인스턴스 생성 , String -> Integer
 		
 		System.out.println("참조변수의 비교 => i1==i2 : "+ (i1==i2)); //서로 다른 인스턴스 생성 , 주소값도 각각 다르게 생성
-		System.out.println("저장하는 value 값의 비교 => i1.equals(i2) : " + (i1.equals(i2)));
+		System.out.println("저장하는 value 값의 비교 => i1.equals(i2) : " + (i1.equals(i2)));  
 		System.out.println("i1.toString() : " + i1.toString());
 		System.out.println("i2.toString() : " + i2.toString());
 		System.out.println("Integer.MAX_VALUE : " + Integer.MAX_VALUE);

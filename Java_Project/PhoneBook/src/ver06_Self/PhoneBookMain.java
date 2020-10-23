@@ -12,7 +12,7 @@ public class PhoneBookMain {
 		
 		while(true) {	
 			
-			try {				   
+							   
 				System.out.println("메뉴를 입력해주세요.=======");
 				System.out.println(Menu.INSERT+". 저장");
 				System.out.println(Menu.SEARCH+". 검색");
@@ -22,9 +22,28 @@ public class PhoneBookMain {
 				System.out.println(Menu.EXIT+". 종료");
 				
 				System.out.println("\n>>");		
-				
-			int select = Util.sc.nextLine();	
-						
+			
+			int select = 0;	//  try구문 밖에서 초기화
+			
+			// 예외가 발생할 수 있는 부분
+			try {								
+			select = Util.sc.nextInt();									
+			  if(!(select>=Menu.INSERT && select<=Menu.EXIT)) { 	
+				MenuMisMatch ext = new MenuMisMatch("메뉴 입력 오류!");
+				throw ext;		
+			}	
+			// 주어진 메뉴를 제외한 숫자 혹은 특수문자를 입력했을 때 예외처리
+			} catch ( MenuMisMatch | InputMismatchException e){
+				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+				Util.sc.nextLine();
+				continue;
+			} catch (Exception e) {
+				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+				Util.sc.nextLine();
+				continue;
+			}
+			
+			
 			switch (select) {
 			case Menu.INSERT :
 				manager.insertInfor();
@@ -45,21 +64,9 @@ public class PhoneBookMain {
 				System.out.println("프로그램을 종료합니다.");
 				return;	
 			}			
-				
-			// 메뉴를 제외한 숫자 예외처리
-			if(!(select>0 && select<7)) { 	
-		  		  System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
-		  
-		  		  continue;
-		      	}						
-			// 숫자가 아닌 경우 예외처리						
-			} catch(InputMismatchException e) {
-				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
-				Util.sc.nextLine();
-				continue;
-			}
+					
+		}
 	        
-			}
-				
-	}
+		
+}
 }
