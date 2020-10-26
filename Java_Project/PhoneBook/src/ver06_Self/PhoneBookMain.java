@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 import ver03.Util;
 
-public class PhoneBookMain {
+public class PhoneBookMain implements Util {
 
 	public static void main(String[] args)  {
 		
@@ -27,13 +27,14 @@ public class PhoneBookMain {
 			
 			// 예외가 발생할 수 있는 부분
 			try {								
-			select = Util.sc.nextInt();									
-			  if(!(select>=Menu.INSERT && select<=Menu.EXIT)) { 	
-				MenuMisMatch ext = new MenuMisMatch("메뉴 입력 오류!");
-				throw ext;		
+			select = sc.nextInt();		
+			
+			if(!(select>=Menu.INSERT && select<=Menu.EXIT)) { 	
+			   MenuMismatchException ext = new MenuMismatchException(String.valueOf(select));
+			   throw ext;		
 			}	
 			// 주어진 메뉴를 제외한 숫자 혹은 특수문자를 입력했을 때 예외처리
-			} catch ( MenuMisMatch | InputMismatchException e){
+			} catch ( MenuMismatchException | InputMismatchException e){
 				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
 				Util.sc.nextLine();
 				continue;

@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 import ver03.Util;
 
-public class PhoneBookManager  {
+public class PhoneBookManager implements Util {
 
 	
 	// 정보를 저장할 배열 선언
@@ -38,40 +38,48 @@ public class PhoneBookManager  {
 	// 2) 사용자로부터 입력받은 정보를 분류하여 인스턴스 생성.
 	// 인터페이스 기반의 상수처리를 하여 메뉴 구성
 	public void insertInfor() {
-						
+		
+		int select = 0;		
+		
+		while(true) {
 			System.out.println("어떤 정보를 입력하시겠습니까?");
 			System.out.println(Menu.STANDARD+". 일반");
 			System.out.println(Menu.UNIV+". 대학");
 	    	System.out.println(Menu.COM +". 회사");
 	    	System.out.println(Menu.CAFE +". 동호회");	    		
-	    	
-	    	int select = 0;
+	    
 	    	
 	    	// 예외가 발생할 수 있는 부분
 	    	try {
-	    	select = Util.sc.nextInt();
-	    	Util.sc.nextLine();	   
+	    	select = sc.nextInt();
+	    		   
 	    	
 	    	if(!(select>=Menu.STANDARD && select<=Menu.CAFE)) { 	
-	    		MenuMisMatch e = new MenuMisMatch("메뉴의 선택 오류");
+	    		MenuMismatchException e = new MenuMismatchException(String.valueOf(select));
 	    		throw e;
 	  	    }
 	    	// 주어진 메뉴를 제외한 숫자 혹은 특수문자를 입력했을 때 예외처리
-	    	} catch(InputMismatchException | MenuMisMatch e){
+	    	} catch(InputMismatchException | MenuMismatchException e){
 	    		System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+	    		sc.nextLine();
+	    		continue;
 	    	} catch (Exception e) {
-				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+				System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");		
+				sc.nextLine();
+				continue;
 			}
-	    	
+	    	break;
+		}  	
+		
 	    	System.out.println("정보 입력을 시작합니다.");
 	    	System.out.println("이름 >> ");	
-	    	String name = Util.sc.nextLine();		    	
+	    	String name = sc.nextLine();		    	
 	    	System.out.println("전화번호 >> ");
-	    	String phoneNum = Util.sc.nextLine();	    	
+	    	String phoneNum = sc.nextLine();	    	
 	    	System.out.println("주소 >>");
-	    	String addr = Util.sc.nextLine();
+	    	String addr = sc.nextLine();
 	    	System.out.println("이메일 >>");
-	    	String email = Util.sc.nextLine();
+	    	String email = sc.nextLine();
 	    	
 	    		    	
 	    	switch (select) {   
@@ -81,24 +89,24 @@ public class PhoneBookManager  {
 	    	case Menu.UNIV : 
 	    		//전공, 학년 
 	    		System.out.println("전공>>");
-	    		String major = Util.sc.nextLine();	    	
+	    		String major = sc.nextLine();	    	
 	    		System.out.println("학년>>");
-	    		int grade = Util.sc.nextInt();
-	    		Util.sc.nextLine();
+	    		int grade = sc.nextInt();
+	    		sc.nextLine();
 	    		inputArray(new UnivPhoneInfor(name, phoneNum, addr, email, major, grade));
 	    		break;
 	    	case Menu.COM : 
 	    		// 회사이름
 	    		System.out.println("회사 이름>>");
-	    		String company = Util.sc.nextLine();
+	    		String company = sc.nextLine();
 	    		inputArray(new CompanyPhoneInfor(name, phoneNum, addr, email, company));
 	    		break;
 	    	case Menu.CAFE : 
 	    		// 동호회 이름, 닉네임
 	    		System.out.println("동호회 이름>>");
-	    		String cafeName = Util.sc.nextLine();
+	    		String cafeName = sc.nextLine();
 	    		System.out.println("닉네임>>");
-	    		String nickName = Util.sc.nextLine();
+	    		String nickName = sc.nextLine();
 	    		inputArray(new CafePhoneInfor(name, phoneNum, addr, email, cafeName, nickName));
 	    		break;	    		
 	    	}   		    	
@@ -121,14 +129,14 @@ public class PhoneBookManager  {
 	
 	// 입력된 이름에 부합하는 정보를 출력하는 메서드
 	void searchInfor() {	
-		Util.sc.nextLine();
+		sc.nextLine();
 		if(list.size()==0) {
 		   System.out.println("메모리에 저장된 정보가 없습니다.");
 		   System.out.println("정보를 저장하신 후 다시 시도해주세요");
 		   return;
 		}
 		System.out.println("검색하실 정보의 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
+		String name = sc.nextLine();
 		int index = searchIndex(name);
 		if(index<0) {
 			System.out.println("찾으시는 "+name+" 와(과) 일치하는 정보가 없습니다.");
@@ -148,9 +156,9 @@ public class PhoneBookManager  {
  		   System.out.println("메모리에 저장된 정보가 없습니다."+"\n 정보를 저장하신 후 다시 시도해주세요.");
  		   return;
  	   }
-    	Util.sc.nextLine();
+    	sc.nextLine();
     	System.out.println("삭제하고자 하는 정보의 이름을 입력해주세요");
-    	String name = Util.sc.nextLine();
+    	String name = sc.nextLine();
     	int index = searchIndex(name);
     	if(index<0) {
     		System.out.println("찾으시는 "+name+" 와(과) 일치하는 정보가 없습니다.");

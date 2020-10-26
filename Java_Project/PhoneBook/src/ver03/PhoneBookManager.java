@@ -1,6 +1,7 @@
 package ver03;
 
 import java.util.Scanner;
+import ver03.Util;
 
 public class PhoneBookManager {
 
@@ -21,7 +22,7 @@ public class PhoneBookManager {
 }
    PhoneBookManager(int size) {
 	   phoneBook = new PhoneInfo[size]; // 생성자 오버로딩, 요소의 개수 정의
-	   Util.sc = new Scanner(System.in);
+	   Scanner sc = new Scanner(System.in);
    }
     
 	// 기능 : 저장, 검색, 삭제
