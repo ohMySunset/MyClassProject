@@ -1,4 +1,4 @@
-package ver06_Self;
+package ver07;
 
 import java.util.InputMismatchException;
 
@@ -18,7 +18,8 @@ public class PhoneBookMain implements Util, Menu {
 				System.out.println(SEARCH+". 검색");
 				System.out.println(DELETE+". 삭제");
 				System.out.println(SHOWBASIC+". 기본 정보 출력");
-				System.out.println(SHOWALL+". 모든 정보 출력");	
+				System.out.println(SHOWALL+". 모든 정보 출력");
+				System.out.println(SAVE+". 모든 정보 저장(file 저장)");
 				System.out.println(EXIT+". 종료");
 				
 				System.out.println("\n>>");		
@@ -60,7 +61,10 @@ public class PhoneBookMain implements Util, Menu {
 				break;
 			case SHOWALL :
 				manager.showAllInfor();
-			    break;		
+			    break;
+			case SAVE :
+				manager.save();
+			    break;
 			case Menu.EXIT :
 				System.out.println("프로그램을 종료합니다.");
 				return;	

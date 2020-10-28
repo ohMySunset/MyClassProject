@@ -47,7 +47,7 @@ public class BufferdFileCopy {
 			BufferedInputStream bin = new BufferedInputStream(in, 1024);
 			BufferedOutputStream bout = new BufferedOutputStream(out, 1024);
 
-			int copyByte = 0; // 복사한 사이즈
+			int copyByte = 0; // 복사한 바이트 사이즈
 			int bData = 0;    // 원본에서 복사한 바이트 사이즈의 데이터
 			
 		//	byte[] buf = new byte[1024]; //1kbyte 버퍼 생성  

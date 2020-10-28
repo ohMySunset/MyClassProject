@@ -1,4 +1,4 @@
-package ver06_Self;
+package ver07;
 
 
 public class PhoneInfor implements Infor {

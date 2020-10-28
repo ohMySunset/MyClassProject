@@ -1,11 +1,18 @@
-package ver06_Self;
+package ver07;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import ver03.Util;
 
-public class PhoneBookManager implements Util {
+public class PhoneBookManager implements Util, Menu {
 
 	
 	// 정보를 저장할 배열 선언
@@ -14,10 +21,13 @@ public class PhoneBookManager implements Util {
 	
 	// 생성자를 통한 초기화
 	private PhoneBookManager(int num) {
+		//ArrayList<PhoneInfor> 초기화
 		list = new ArrayList<PhoneInfor>();	
 		num = 0;
+		//★ 파일에서 인스턴스들을 로드 (프로그램 실행 순서 잘 생각하기)
+		load();
+		
 	}
-
 
     // PhoneBookManager타입의 인스턴스 싱글톤 처리
 	// 인스턴스 생성 -> 미리 생성되어 있어야 하므로 static
@@ -27,10 +37,10 @@ public class PhoneBookManager implements Util {
 		return manager;
 	}
 	
-		
+			
 	// 정보 저장 메서드
 	// 1) 배열에 정보를 추가하는 메서드
-	void inputArray(PhoneInfor p) {	    
+	void inputArray(PhoneInfor p)  {		    
 		list.add(p);
 	}
 	
@@ -70,7 +80,8 @@ public class PhoneBookManager implements Util {
 			}
 	    	break;
 		}  	
-		
+		    
+		     sc.nextLine();
 	    	System.out.println("정보 입력을 시작합니다.");
 	    	System.out.println("이름 >> ");	
 	    	String name = sc.nextLine();		    	
@@ -84,10 +95,10 @@ public class PhoneBookManager implements Util {
 	    	
 	    	
 	    	switch (select) {   
-	    	case Menu.STANDARD :
+	    	case STANDARD :
 	    		inputArray(new PhoneInfor(name, phoneNum, addr, email));	    	
 	    		break;
-	    	case Menu.UNIV : 
+	    	case UNIV : 
 	    		//전공, 학년 
 	    		System.out.println("전공>>");
 	    		String major = sc.nextLine();	    	
@@ -96,13 +107,13 @@ public class PhoneBookManager implements Util {
 	    		sc.nextLine();
 	    		inputArray(new UnivPhoneInfor(name, phoneNum, addr, email, major, grade));
 	    		break;
-	    	case Menu.COM : 
+	    	case COM : 
 	    		// 회사이름
 	    		System.out.println("회사 이름>>");
 	    		String company = sc.nextLine();
 	    		inputArray(new CompanyPhoneInfor(name, phoneNum, addr, email, company));
 	    		break;
-	    	case Menu.CAFE : 
+	    	case CAFE : 
 	    		// 동호회 이름, 닉네임
 	    		System.out.println("동호회 이름>>");
 	    		String cafeName = sc.nextLine();
@@ -199,10 +210,67 @@ public class PhoneBookManager implements Util {
      		System.out.println("----------------------");
      	}
      }
+   
     
     
+    // 2020.10.27 업데이트 : 직렬화로 데이터 저장, 로드 기능 추가   
+    // 6) List:infor에 저장되어 있는 인스턴스들을 저장하는 기능
+    public void save() {
+    	
+    	if(list.size()==0) {
+    		System.out.println("저장된 데이터가 없어 파일이 저장되지 않습니다.");
+    		return;
+    	}
+    	
+    	try {
+    	// 인스턴스를 저장할 수 있는 출력스트림 생성
+    	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("phonebook.ser"));
+ //   	for( PhoneInfor pi : list) {
+ //   		out.writeObject(pi);
+ //   		out.close();
+ //   	}
+    	   out.writeObject(list);
+    	   out.close();
+    	
+    	  System.out.println("저장되었습니다.(phonebook.ser)");
+    	} catch(IOException e){
+    		System.out.println("저장하는 과정에 오류가 발생했습니다. ("+ e.getMessage()+ ") \n 다시 시도해 주세요");
+    	}
+    }
+  
     
-
+    // 7) 프로그램으로 파일의 저장 데이터를 로드하는 기능
+    void load() {
+    	// 파일의 존재여부 확인 : File 클래스 이용
+    	File file = new File("phonebook.ser");
+    	if(file.exists()==false) {
+    		System.out.println("저장된 파일이 존재하지 않습니다. 파일 저장 후 Load가 됩니다.");
+    		return;
+    	}
+    	// 파일에 있는 데이터를 메모리에 저장 : list에 저장
+    	// 파일의 데이터를 read() (읽을 수 있는) 스트림 생성    
+    	try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("phonebook.ser"));
+//	      while(true) {	    
+//	    	 Object obj = in.readObject();	    
+//	    	 if(obj==null) {
+//	    		 break;
+//	    	 }
+//	    	 list.add((PhoneInfor)obj);
+//	      }
+			list = (ArrayList<PhoneInfor>)in.readObject();
+			System.out.println("데이터 로드 완료...");
+    	} catch (IOException e) {
+	  //     System.out.println("데이터를 로드하는 과정에 오류가 발생했습니다.");
+	  //    e.printStackTrace();
+		} catch (ClassNotFoundException e) {		
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+   
+    
 }
     
 	
