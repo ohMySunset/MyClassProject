@@ -46,7 +46,7 @@ public class LoanProgress extends LoanInfor{
 		        executeShortLoan(balance);
 		       case 2 :
 		    	System.out.println("장기 대출 화면입니다. 대출 가능한 금액과 금리를 확인해주세요.");
-		    	   
+		    	executeLongLoan(balance);
 		}					
 	}		
 	
@@ -91,8 +91,8 @@ public class LoanProgress extends LoanInfor{
 		}		
 		System.out.println("( 상환기간 : "+loanPeriod+ ", 금리 : "+ interestRate +"% )");				
 		System.out.println("가능금액 : " + possibleAmount +"원 입니다.");
-		System.out.println("대출하실 금액을 입력해주세요.");
 		
+		System.out.println("대출하실 금액을 입력해주세요.");		
 		loanAmount = sc.nextInt();
 				
 		System.out.println("대출이 완료되었습니다. 내용을 확인해주세요.");
