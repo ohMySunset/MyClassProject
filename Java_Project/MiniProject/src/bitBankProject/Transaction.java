@@ -3,25 +3,22 @@ package bitBankProject;
 import java.util.Calendar;
 
 public class Transaction implements Util {
-	private String transactionDate; // 거래일자
-
-	private String transactionTime; // 거래시간
-
+	
 	private String transType; // 입금 or 출금 or 이체
 
 	private long amount; // 거래금액
 
-	
+
 
 	// 내부에서 인스턴스 생성
 
-	private static Transaction t = new Transaction();
+	private static Transaction t = new Transaction(100);
 
 
 
 	// 생성자 호출 제한
 
-	private Transaction() {
+	private Transaction(int i) {
 
 
 
@@ -35,23 +32,19 @@ public class Transaction implements Util {
 
 		return t;
 
-	}
+	}	
 
-	
 
-	Transaction(String type, long money){
 
-		Calendar c = Calendar.getInstance();
-
-		transactionDate = c.get(Calendar.YEAR)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.DATE);
-
-		transactionTime = c.get(Calendar.HOUR)+"시 "+c.get(Calendar.MINUTE)+"분 "+c.get(Calendar.SECOND)+"초";
-
-		transType = type; //거래종류
-
-		amount = money; //거래량
+	public Transaction(String type, long money){
 
 		
+
+		this.transType = type; //거래종류
+
+		this.amount = money; //거래금액
+
+
 
 	}
 
@@ -59,17 +52,29 @@ public class Transaction implements Util {
 
 	public void trans() {
 
+		AccountManager manager = AccountManager.getInstance();
 
 
-		Account manage = Account.getInstance();
 
-		
+		System.out.println("[===거래내역 조회===]");
 
 		System.out.print("계좌 번호: ");
 
 		String Accountnumber = SC.next();
 
-		Account account = FindAccount_Nu(Accountnumber);
+		Account account = manager.FindAccount_Nu(Accountnumber);
+
+		if(manager.FindAccount_Nu(Accountnumber) == null) {
+
+			System.out.println("존재하지 않는 계좌입니다.");
+
+			System.out.println("계좌번호를 다시 확인하시기 바랍니다.");
+
+			System.out.println();
+
+			return;
+
+		}
 
 		System.out.println("비밀번호 입력 : ");
 
@@ -79,27 +84,27 @@ public class Transaction implements Util {
 
 			if (!password.equals(account.getPassword())) {
 
-				System.err.println("비밀번호가 일치하지 않습니다.");
+				System.out.println("비밀번호가 일치하지 않습니다.");
 
-				System.err.println("확인 후 이용 바랍니다.");
+				System.out.println("확인 후 이용 바랍니다.");
 
 				System.out.println();
 
 			} else {
 
-				System.out.print(" 고객님의 계좌 : "+ Accountnumber + "의 거래내역입니다.");
+				System.out.println("고객님의 계좌 : "+ Accountnumber + "의 거래내역입니다.");
 
-				System.out.println("잔액 : " + manage.getBalance());
+				Transaction ts[] = manager.getTransaction();
 
-				Transaction ts[] = manage.getTransaction();
+				for (int i = 0; i < manager.getTotalTrans(); i++) {
 
-				for (int i = 0; i < manage.getTotalTrans(); i++) {
-
-					System.out.printf(" %15d원 %5s,		거래일자 : %10s		거래시간 : %10s	\n",
-
-							ts[i].getAmount(), ts[i].getTransType(), ts[i].getTransactionDate(), ts[i].getTransactionTime());
+					System.out.println(ts[i].getAmount() + " 원" +  ts[i].getTransType());
 
 				}
+
+				System.out.println("계좌 잔액 : " + account.getBalance());
+
+				System.out.println();
 
 			}
 
@@ -107,93 +112,45 @@ public class Transaction implements Util {
 
 	}
 
-	
 
-//고치기
 
-	private static Account AccountArray[] = new Account[100];	// 베열 생성
+	//getter & setter 메서드
 
-	private static Account FindAccount_Nu(String AccountNumber) {
+	public String toString() {
 
-		for (int i = 0; AccountArray[i] != null; i++)
-
-			if (AccountArray[i].getAccountNumber().equals(AccountNumber))
-
-				return AccountArray[i];
-
-		return null;
+		return transType;
 
 	}
 
-	
-
-		public String toString() {
-
-			return transType;
-
-		}
 
 
+	public String getTransType() {
 
-		public String getTransactionDate() {
+		return transType;
 
-			return transactionDate;
-
-		}
+	}
 
 
 
-		public void setTransactionDate(String transactionDate) {
+	public void setTransType(String transType) {
 
-			this.transactionDate = transactionDate;
+		this.transType = transType;
 
-		}
-
-
-
-		public String getTransactionTime() {
-
-			return transactionTime;
-
-		}
+	}
 
 
 
-		public void setTransactionTime(String transactionTime) {
+	public long getAmount() {
 
-			this.transactionTime = transactionTime;
+		return amount;
 
-		}
-
-
-
-		public String getTransType() {
-
-			return transType;
-
-		}
+	}
 
 
 
-		public void setTransType(String transType) {
+	public void setAmount(long amount) {
 
-			this.transType = transType;
+		this.amount = amount;
 
-		}
-
-
-
-		public long getAmount() {
-
-			return amount;
-
-		}
-
-
-
-		public void setAmount(long amount) {
-
-			this.amount = amount;
-
-		}
+	}
 }

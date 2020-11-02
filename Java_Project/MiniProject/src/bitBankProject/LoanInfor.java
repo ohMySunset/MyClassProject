@@ -1,5 +1,7 @@
 package bitBankProject;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoanInfor{
 
@@ -13,17 +15,22 @@ public class LoanInfor{
 	private int balance;           // 계좌 잔액
 	private int interest;       // 이자
 		
+	List<LoanInfor> loan = new ArrayList<LoanInfor>();
 	
 	private final double SHORT_INTEREST_RATE = 0.07;	// 단기 대출 금리
 	private final double LONG_INTEREST_RATE = 0.03;	// 장기 대출 금리
 
 	
+	
 	// 생성자로 초기화 	
-
-	public LoanInfor() {			
+	// TEST용 초기값 지정
+	public LoanInfor() {
+		this("김태희", 0, "1년", 2);
 	}
 	
+
 	public LoanInfor(String name, int loanAmount, String loanPeriod, int interest) {
+		this.name = name;
 		this.loanPeriod = loanPeriod;
 		this.loanAmount = loanAmount;
 		this.loanBalance = loanBalance;
@@ -107,9 +114,9 @@ public class LoanInfor{
 	
 	// 대출 내역 확인 메서드
 	void ShowLoanInfor() {
-		System.out.println("성       함 : "+name);
-		System.out.println("대출 기간 : "+loanPeriod);
-		System.out.println("대출 금액 : "+loanAmount);
+		System.out.println("성       함 : "+ name);
+		System.out.println("대출 기간 : "+ loanPeriod);
+		System.out.println("대출 금액 : "+ loanAmount);
 		
 		if(loanPeriod.equals("1년")) {	// 단기 대출
 			System.out.println("금       리 : "+SHORT_INTEREST_RATE);
