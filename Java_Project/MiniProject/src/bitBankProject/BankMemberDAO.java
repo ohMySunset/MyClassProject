@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BankMemberDAO implements Util {
 
-	List<BankMemberDTO> members = new ArrayList<BankMemberDTO>();
+	 static List<BankMemberDTO> members = new ArrayList<BankMemberDTO>();
 
 	public BankMemberDAO() {
 		members.add(new BankMemberDTO("김태희", "1234", "01012341234"));
@@ -31,7 +31,10 @@ public class BankMemberDAO implements Util {
 			case 4:
 				deleteAccount();
 				break;
-			case 5:
+			case 5 :	
+				showNext();
+				break;
+			case 6:
 				System.out.println("프로그램을 종료합니다.");
 				return;
 			}
@@ -166,7 +169,7 @@ public class BankMemberDAO implements Util {
 
 	private int menu() {
 		System.out.println("Bit Bank에 오신 것을 환영합니다");
-		return getNumInput("[1]로그인 [2]회원가입 [3] 비밀번호 찾기 [4]회원 탈퇴 [5]종료");
+		return getNumInput("[1]로그인 [2]회원가입 [3] 비밀번호 찾기 [4]회원 탈퇴 [5]은행 메뉴로 이동 [6]프로그램 종료");
 	}
 
 	private int getNumInput(String msg) {
@@ -174,6 +177,34 @@ public class BankMemberDAO implements Util {
 		return SC.nextInt();
 	}
 
+	
+	private void showNext(){
+		   while(true) {
+			   			 
+			   System.out.println("어떤 메뉴로 이동하시겠습니까?");
+			   System.out.println("====================");
+			   System.out.println(" 1. 계좌 관리");
+			   System.out.println(" 2. 대출 관리");
+			   System.out.println("====================");
+			   
+	    	   int select;	    	   
+	    	   select = SC.nextInt();
+		  
+	    	   switch(select) {
+	    	              case 1 :		 
+	    	    AccountMain account = new AccountMain();
+		       
+	    	              break;
+	    	              
+	    	              case 2 :
+	    		LoanManager loan = new LoanManager();
+	    		loan.startLoanMenu();
+	    		          break;
+	    	   }
+	    	 return;  	    	   	    	
+	       }
+		
+	}
 	
 	
 	

@@ -26,7 +26,7 @@ public class BankMemberDTO implements Util{
 
 
 
-		public static String getPassword() {
+		public String getPassword() {
 			return Password;
 		}
 

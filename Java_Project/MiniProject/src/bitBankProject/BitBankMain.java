@@ -6,12 +6,16 @@ public class BitBankMain {
 
 				BankMemberDAO memberJoinDAO = new BankMemberDAO();
 		        memberJoinDAO.run();
-
+		      		   
+		       
+		    
+		       
+        
 		        
-		        
-			}
+	}	
 
-		
+
+	
 	}
 
 

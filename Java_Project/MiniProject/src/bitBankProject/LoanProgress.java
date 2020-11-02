@@ -3,18 +3,18 @@ package bitBankProject;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 
 public class LoanProgress extends LoanInfor implements Util{
-
-	public static boolean check = false;  // 쓰레드 반복 탈출을 위한 논리값
 		
 	private double possibleAmount;   // 대출 가능 금액
     private int loanAmount;          // 대출 금액
     private String loanPeriod;       // 상환기간
     private String membership;
+   
     
     // 대출 고객 정보를 넣을 리스트
     List<LoanInfor> members2;
@@ -35,20 +35,15 @@ public class LoanProgress extends LoanInfor implements Util{
 	}
 		
 	// 단기, 장기 대출 진행 메서드
-	public void excuteLoan() {	
-		
-		int select = 0;
-		
-		System.out.println("고객님의 이름을 입력해주세요.");
-		String name = SC.nextLine();
-		
+	public void executeLoan() {	
+			
 		while(true) {
 		
-		// 1)멤버쉽이 플래티넘 미만일 경우, 2) 이미 대출을 받은 경우에는 진행할 수 없도록 예외처리
-        if(membership != "platinum") { //멤버쉽 기능이 완성되면 처리
-			System.out.println("멤버쉽 등급을 만족하지 못해 대출을 실행할 수 없습니다. 메뉴로 돌아갑니다.");
-			return;
-		} 
+	//	// 1)멤버쉽이 플래티넘 미만일 경우, 2) 이미 대출을 받은 경우에는 진행할 수 없도록 예외처리
+    //    if(membership != "platinum") { //멤버쉽 기능이 완성되면 처리
+	//		System.out.println("멤버쉽 등급을 만족하지 못해 대출을 실행할 수 없습니다. 메뉴로 돌아갑니다.");
+	//		return;
+	//	} 
            if(getLoanAmount()!= 0) {
 			System.out.println("이미 대출하신 내역이 존재합니다. 상환 완료 후에 대출이 가능합니다. 메뉴로 돌아갑니다.");
 			return;
@@ -61,10 +56,16 @@ public class LoanProgress extends LoanInfor implements Util{
 		System.out.println("2. 장기 대출");
 		System.out.println("3. 이전 화면");
 		System.out.println("=====================");
+				
+        		
+		int select = 0;
+			
+		// 메뉴값 예외처리
+		try {
+			
+		select = SC.nextInt();
+		SC.nextLine();
 		
-		
-		try {				
-		select = SC.nextInt();		
 		if(!(select>=Util.SHORT_LOAN && select<=Util.LONG_LOAN)) { 	
     		MenuMismatchException e = new MenuMismatchException(String.valueOf(select));
     		throw e;
@@ -79,33 +80,60 @@ public class LoanProgress extends LoanInfor implements Util{
 			SC.nextLine();
 			continue;
 		}
-    	break;
-    	
-	} //while end
-			
-		switch(select) {	
+    	    		
+	
+		// 고객의 계좌정보를 불러올 인스턴스 생성
+		Account account = Account.getInstance();
+	
 		
-		       case 1 :
+		switch(select) {							
+		        case 1 :
+		        			        
 		        System.out.println("단기 대출 화면입니다. 대출 가능한 금액과 금리를 확인해주세요.");
-		        executeShortLoan(balance);	
+		        
+		        System.out.println("대출고객님의 계좌 번호를 입력해주세요.");		
+				String name = SC.nextLine();
+		        
+		        // 고객의 이름과 일치하는 계좌의 배열 인덱스를 찾아서 잔액을 반환 -> executeShortLoan 메서드의 매개변수에 대입
+		        for(int i=0; i< Account.AccountArray.length; i++) {
+		        	if(Account.AccountArray[i].getAccountName().equals(name)) {
+		        executeShortLoan(Account.AccountArray[i].getBalance());		       
+		         }		        
+		        }	
+		        // 대출이 이루어지면 LoanInfor에 고객의 대출 정보를 저장.
 		        inputArray(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
-		        break;
-		       case 2 :
+		        return;
+		        
+		        
+		        case 2 :
 		    	System.out.println("장기 대출 화면입니다. 대출 가능한 금액과 금리를 확인해주세요.");
-		    	executeLongLoan(balance);
+		    	
+		    	System.out.println("고객님의 이름을 입력해주세요.");		
+				name = SC.nextLine();
+		    	
+		    	// 고객의 이름과 일치하는 계좌의 배열 인덱스를 찾아서 잔액을 반환 -> executeLongLoan 메서드의 매개변수에 대입
+		        for(int i=0; i< Account.AccountArray.length; i++) {
+		        	if(Account.AccountArray[i].getAccountName().equals(name)) {
+		        executeLongLoan(Account.AccountArray[i].getBalance());
+		         }
+		        }			
+		        // 대출이 이루어지면 LoanInfor에 고객의 대출 정보를 저장.
 		    	inputArray(new LoanInfor(name, loanAmount, loanPeriod, LongLoanInterest(loanAmount)));
-		    	break;
+		    	return;
+		    	
+		    	
 		        case 3 :
 		    	System.out.println("이전 화면으로 돌아갑니다.");
-		    	break;
+		    	return;
 		    	
-		   
-		}					
+		} //while end  
+	}					
 	}			
 
 	
 	// 단기대출 진행 메서드
-	void executeShortLoan(int balance) {	
+	private void executeShortLoan(long balance) {	
+						
 						
 		loanPeriod = "1년"; // 단기 대출 상환 기간
 		
@@ -115,37 +143,39 @@ public class LoanProgress extends LoanInfor implements Util{
 			possibleAmount = balance*0.7;		
 		} else {
 			possibleAmount = balance*0.9;
-		}		
-		System.out.println("( 상환기간 : "+ loanPeriod +", 금리 : "+ getSHORT_INTEREST_RATE() +"% )");				
-		System.out.println("대출 가능 금액 : " + possibleAmount +"원.");
+		}	
 		
-		//대출 진행을 위한 본인확인 쓰레드
-		getPWThread pw = new getPWThread();	
-		CountDownThread ct = new CountDownThread();
-				
-		pw.start();
-		ct.start();	
-					
+		System.out.println("===================================================");
+		System.out.println("( 상환기간 : "+ loanPeriod +", 금리 : "+ getSHORT_INTEREST_RATE() +"% )");				
+		System.out.println("---------------------------------------------------");
+		System.out.println("대출 가능 금액 : " + possibleAmount +"원.");
+		System.out.println("===================================================");
+		
 		System.out.println("원하시는 금액을 입력해주세요.(가능 금액 : "+ possibleAmount +"원)");		
 		loanAmount = SC.nextInt();
 		System.out.println("입력 완료>>");
-				
-		System.out.println("대출이 정상처리되었습니다. 아래 내용을 확인해주세요.");
-		System.out.print("이번 달 이자 "+ ShortLoanInterest(loanAmount)+"원을 제외한 금액 ");
+						
+		checkMember();
+		
+		System.out.println("===================================================");
+		System.out.println("※ 대출이 정상처리되었습니다. 아래 내용을 확인해주세요.");
+		System.out.println("---------------------------------------------------");
+		System.out.print("이번 달 이자 "+ ShortLoanInterest(loanAmount)+"원을 제외한 금액,");
 		loanAmount = loanAmount-ShortLoanInterest(loanAmount);  //대출금액 - 이번달 이자
-		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금될 예정입니다.\n");
-			
+		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금됩니다.");		
+		System.out.println("===================================================");
 		
-		//계좌부분 완성되면 잔액 + 대출금액 해주기
-		
-	//	return loanAmount;
+		// 계좌 잔액 + 대출금
+		balance = balance + loanAmount;
+				
+	//  return loanAmount;	
   }
 
 	
 	
 	 
 	// 장기대출 진행 메서드
-  void executeLongLoan(int balance) {
+  private void executeLongLoan(long balance) {
 	
 	  loanPeriod = "5년";  // 장기 대출 상환 기간
 	  
@@ -156,70 +186,54 @@ public class LoanProgress extends LoanInfor implements Util{
 		} else {
 			possibleAmount = balance*0.9;
 		}		
-	  
-		System.out.println("( 상환기간 : "+loanPeriod+ ", 금리 : "+ getLONG_INTEREST_RATE() +"% )");				
+	    System.out.println("===================================================");
+		System.out.println("( 상환기간 : "+loanPeriod+ ", 금리 : "+ getLONG_INTEREST_RATE() +"% )");			
+		System.out.println("---------------------------------------------------");
 		System.out.println("가능금액 : " + possibleAmount +"원.");
-		
-		//대출 진행을 위한 본인확인 쓰레드
-		getPWThread pw = new getPWThread();	
-		CountDownThread ct = new CountDownThread();
-				
-		pw.start();
-		ct.start();			
-		
+		System.out.println("===================================================");
 		
 		System.out.println("원하시는 금액을 입력해주세요.(가능 금액 : "+ possibleAmount +"원)");		
 		loanAmount = SC.nextInt();
-				
-		System.out.println("대출이 정상처리되었습니다. 아래 내용을 확인해주세요.");
+		System.out.println("입력 완료>>");		
+		
+		System.out.println("===================================================");
+		System.out.println("※ 대출이 정상처리되었습니다. 아래 내용을 확인해주세요.");
+		System.out.println("---------------------------------------------------");
 		System.out.print("이번 달 이자 "+ LongLoanInterest(loanAmount)+"원을 제외한 금액 ");
 		loanAmount = loanAmount-LongLoanInterest(loanAmount); //대출금액 - 이번달 이자
-		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금될 예정입니다.\n");
+		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금됩니다.");
+		System.out.println("===================================================");
 		
-		//계좌부분 완성되면 잔액 + 대출금액 해주기
+		// 계좌 잔액 + 대출금
+		balance = balance + loanAmount;
 		
 		
    //  return loanAmount;     		
   }
   
+  
+  
+   private void checkMember() {	
+	    System.out.println("본인확인을 위해 비밀번호를 다시 입력해주세요.");
+	    SC.nextLine();
+	    String password = SC.nextLine();
+	    // 회원 정보가 담긴 리스트를 불러오기
+		for(int i=0; i<BankMemberDAO.members.size();i++) {
+			if(BankMemberDAO.members.get(i).getPassword().equals(password)) {			
+			} else {
+				System.out.println("비밀번호 입력이 잘못되었습니다. 확인 후 다시 시도해주세요.");
+				break;
+			}		   
+		}	
+		System.out.println("본인 확인이 완료되었습니다.");
+   }		
+	
+  
+  
+
+  
 }
 
-// 대출 진행 본인 확인 쓰레드
-class getPWThread extends Thread {
-
-	@Override
-	public void run() {
-		System.out.println("본인확인을 위해 비밀번호를 다시 확인합니다.");
-	    String password = JOptionPane.showInputDialog("10초 내에 비밀번호를 입력해주세요.");
-		BankMemberDAO b1 = new BankMemberDAO();
-		for(int i=0; i<b1.members.size();i++) {
-			b1.members.get(i).getPassword().equals(password);
-			System.out.println("본인 확인이 완료되었습니다. 대출 진행 화면으로 이동합니다.");
-			LoanProgress.check = true;
-		}		
-	}
-}	
-
-
-class CountDownThread extends Thread{
-		
-		@Override
-		public void run() {
-			for(int i=10; i>0;i--) {
-				if(LoanProgress.check) {	
-				return;			
-				}
-				System.out.println(i);			
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {		
-					e.printStackTrace();
-				}
-			}
-			System.exit(0);
-		}	
-}		
-	
 
 	
 	
