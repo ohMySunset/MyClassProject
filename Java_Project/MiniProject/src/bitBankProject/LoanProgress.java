@@ -21,7 +21,8 @@ public class LoanProgress implements Util{
     
     //  배열 리스트 생성
     public final List<LoanInfor> loan = new ArrayList<LoanInfor>();
-        
+     
+    
     // 싱글톤 처리
     static LoanProgress lp = new LoanProgress()	;  
     public static LoanProgress getInstance() {

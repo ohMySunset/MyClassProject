@@ -1,5 +1,6 @@
 package bitBankProject;
 
+import java.util.InputMismatchException;
 
 public class LoanManager implements Util{
 	
@@ -17,6 +18,7 @@ public class LoanManager implements Util{
 			AccountMain account = new AccountMain();		
 			LoanManager manager = new LoanManager();
 		   
+			
 		 	// 1차 분기 	
 		    while(true) {		    	   
 		      	 System.out.println("안녕하세요! 은행 업무 선택 메뉴입니다."); 
@@ -25,11 +27,29 @@ public class LoanManager implements Util{
 		      	 System.out.println(" 1. 계좌 업무 ");
 		      	 System.out.println(" 2. 대출 업무 ");
 		      	 System.out.println("=======================");
-		      	  
 		      	 
-		      	 int select = 0;
-		      	 select = SC.nextInt();
+		      	 int select = 0; 
 		      	 
+		      	try {
+					
+		    		select = SC.nextInt();
+		    		SC.nextLine();
+		    		
+		    		if(!(select>=Util.SHORT_LOAN && select<=Util.BEFORE)) { 	
+		        		MenuMismatchException e = new MenuMismatchException(String.valueOf(select));
+		        		throw e;
+		      	    }
+		        	// 주어진 메뉴를 제외한 숫자 혹은 특수문자를 입력했을 때 예외처리
+		        	} catch(InputMismatchException | MenuMismatchException e){
+		        		System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");
+		        		SC.nextLine();
+		        		continue;
+		        	} catch (Exception e) {
+		    			System.out.println("메뉴의 선택이 올바르지 않습니다.\n"+ "다시 선택해주세요.");		
+		    			SC.nextLine();
+		    			continue;
+		    		}
+		      	
 		      	 switch(select) {
 		      	 case 1 :
 		      		 System.out.println("계좌 업무 화면으로 이동합니다>>");
@@ -78,7 +98,7 @@ public class LoanManager implements Util{
 		   loan2.executeLoan();	 
 		   break;
 	   case 3 : 
-		  loan3.repayLoan();
+		  loan3.LoanRepay();
 		   break;
 	   case 4 :
 		  loan4.ShowLoanInfor();
