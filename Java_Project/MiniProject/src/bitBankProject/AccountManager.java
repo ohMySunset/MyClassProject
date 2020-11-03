@@ -6,13 +6,14 @@ public class AccountManager implements Util{
 	private String AccountNumber;	// 계좌번호
 	private String password;	// 계좌 비밀번호
 	private long balance;	// 잔액
-	private static Account accountArray[] = new Account[100]; // 계좌생성 배열
+	private Account accountArray[]; //= new Account[100]; // 계좌생성 배열
 	private int cnt; //배열에 저장된 요소의 개수
-	private static Transaction transaction[] = new Transaction[100];	// 거래내역
+	private static Transaction transaction[] ;//= new Transaction[100];	// 거래내역
 	private int totalTrans;	// 거래횟수
 
 	private AccountManager(int num) {
 		accountArray = new Account[num];   //생성자의 매개변수의 인자를 전달 받아 배열 생성
+		transaction = new Transaction[100];
 		cnt = 0;                       
 	}
 
@@ -45,6 +46,7 @@ public class AccountManager implements Util{
 				System.out.print("비밀번호 : "); //수정 필요 __숫자 4자리 입력
 				String Password = SC.nextLine();
 				addInfor(new Account(AccountNumber, AccountName, Password));
+				System.out.println(cnt);
 			}
 			System.out.println("============================================================================");
 			System.out.println("*" + FindAccount_Nu(AccountNumber).getAccountName() + "님의 계좌가 정상적으로 개설되었습니다.");
@@ -96,7 +98,7 @@ public class AccountManager implements Util{
 	} 
 
 	// 계좌주 검색
-	public static Account FindAccount_Na(String AccountName) {
+	public Account FindAccount_Na(String AccountName) {
 		for (int i = 0; accountArray[i] != null; i++)
 			if (accountArray[i].getAccountName().equals(AccountName))
 				return accountArray[i];
@@ -124,7 +126,7 @@ public class AccountManager implements Util{
 				System.out.println();
 			} else {
 
-				//
+				
 			}
 		}
 	}
@@ -275,7 +277,7 @@ public class AccountManager implements Util{
 		}
 
 	//getter & setter 메서드
-	public String getAccountNumber() {
+	public  String getAccountNumber() {
 		return AccountNumber;
 	}
 
@@ -299,13 +301,11 @@ public class AccountManager implements Util{
 		this.balance = balance;
 	}
 
-	public static Account[] getAccountArray() {
+	public  Account[] getAccountArray() {
 		return accountArray;
 	}
 
-	public static void setAccountArray(Account[] accountArray) {
-		AccountManager.accountArray = accountArray;
-	}
+	
 
 	public int getCnt() {
 		return cnt;
@@ -342,5 +342,3 @@ public class AccountManager implements Util{
 	}
 	
 	
-	
-

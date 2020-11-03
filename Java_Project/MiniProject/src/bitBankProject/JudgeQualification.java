@@ -19,7 +19,7 @@ public class JudgeQualification implements Util {	// 대출 자격 심사 클래
 		
 		// #회원 정보에 있는지 없는지 확인 후 예외처리 
 		BankMemberDAO bmd = new BankMemberDAO();
-		LoanProgress lp = new LoanProgress();    // 변경  : 싱글톤 인스턴스 처리 
+		LoanProgress lp = LoanProgress.getInstance();   
 		
 		String nm = "";
 		String pw = "";
@@ -54,7 +54,7 @@ public class JudgeQualification implements Util {	// 대출 자격 심사 클래
 			}
 		
 		try {
-			if(lp.getLoanMember().get(index).getLoanAmount() != 0) {  // 변경  : LoanProgress 참조방식
+			if(lp.loan.get(index).getLoanAmount() != 0) { 
 				System.out.println("이미 대출하신 내역이 존재합니다. 상환 완료 후에 대출이 가능합니다. 메뉴로 돌아갑니다.");
 				return;
 			}

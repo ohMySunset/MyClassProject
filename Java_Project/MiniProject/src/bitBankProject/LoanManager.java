@@ -6,7 +6,7 @@ public class LoanManager implements Util{
 		
 
 	JudgeQualification loan1 = new JudgeQualification();
-	LoanProgress loan2 = new LoanProgress();
+	LoanProgress loan2 = LoanProgress.getInstance();
 	LoanRepay loan3 = new LoanRepay();
 	LoanInfor loan4 = new LoanInfor();
 	
