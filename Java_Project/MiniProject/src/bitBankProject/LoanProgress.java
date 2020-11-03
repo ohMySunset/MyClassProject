@@ -10,28 +10,30 @@ public class LoanProgress extends LoanInfor implements Util{
 	private double possibleAmount;   // 대출 가능 금액
     private long loanAmount;          // 대출 금액
     private String loanPeriod;       // 상환기간
-    private int cnt;
+    
     
     AccountManager account = AccountManager.getInstance();
     
     
-    private static List<LoanInfor> loanMember;
+    private List<LoanInfor> loanMember;
     
     
-    // 싱글톤 처리
-    static LoanProgress lp = new LoanProgress();  
-    public static LoanProgress getInstance() {
-    	return lp;
-    }
+//    // 싱글톤 처리
+//    static LoanProgress lp = new LoanProgress();  
+//    public static LoanProgress getInstance() {
+//    	return lp;
+//    }
       
     // 생성자    
-    public LoanProgress() {
-    	
+    public LoanProgress() {    	
     }
     
-	public LoanProgress(String name, int loanAmount, String loanPeriod, int interest) {
-		super(name, loanAmount, loanPeriod, interest);
-		setLoanMember(new ArrayList<>());
+	public LoanProgress(String name, long loanAmount, String loanPeriod, long interest) {
+	     setName(name);
+	     setLoanAmount(loanAmount);
+	     setLoanPeriod(loanPeriod);
+	     setInterest(interest);
+		setLoanMember(new ArrayList<LoanInfor>());
 		this.possibleAmount = 0;
         this.loanAmount = 0;
 	    this.loanPeriod = "";	  
@@ -42,7 +44,6 @@ public class LoanProgress extends LoanInfor implements Util{
 	void inputArray(LoanInfor l) {
 		getLoanMember().add(l);
 	}
-	
 	
 	
 	
@@ -111,9 +112,8 @@ public class LoanProgress extends LoanInfor implements Util{
 		        for(int i=0; i< AccountManager.getAccountArray().length; i++) {			
 		        	if(AccountManager.getAccountArray()[i].getAccountName().equals(name)) {
 		        		System.out.println(AccountManager.getAccountArray()[i].getAccountName().equals(name));	        		
-		        		 executeShortLoan(AccountManager.getAccountArray()[i].getBalance());	        		 
-		        		 
-		        		 getLoanMember().add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
+		        		 executeShortLoan(name, AccountManager.getAccountArray()[i].getBalance());	        		 
+                      return;
 		        	}	else {
 		        	 System.out.println("일치하는 정보를 찾을 수 없습니다.");
 		        	 return;
@@ -129,10 +129,8 @@ public class LoanProgress extends LoanInfor implements Util{
 		    	// 고객의 이름과 일치하는 계좌의 배열 인덱스를 찾아서 잔액을 반환 -> executeLongLoan 메서드의 매개변수에 대입
 		        for(int i=0; i< AccountManager.getAccountArray().length; i++) {		        	
 		        	if(AccountManager.getAccountArray()[i].getAccountName().equals(name)) {
-		              executeLongLoan(AccountManager.getAccountArray()[i].getBalance());	
-		              
-		              getLoanMember().add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
-		            
+		              executeLongLoan(name, AccountManager.getAccountArray()[i].getBalance());	
+		              break;            
 	            } else {
 		        	 System.out.println("일치하는 정보를 찾을 수 없습니다.");
 		        	 return;
@@ -154,7 +152,7 @@ public class LoanProgress extends LoanInfor implements Util{
 	
 	
 	// 단기대출 진행 메서드
-	private void executeShortLoan(long balance) {		
+	private void executeShortLoan(String name, long balance) {		
 		
 
 		loanPeriod = "1년"; // 단기 대출 상환 기간
@@ -189,11 +187,11 @@ public class LoanProgress extends LoanInfor implements Util{
 		
 	
 		// 계좌 잔액 + 대출금		
-		//Account account2 = new Account();
-		account.setBalance(account.getBalance()+loanAmount);			
+		Account account2 = new Account();
+		account2.setBalance(account.getBalance()+loanAmount);			
 	
 		// 대출이 이루어지면 LoanInfor에 고객의 대출 정보를 저장.
-   //     loanMember.add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
+        getLoanMember().add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
 		
 		
         //  return loanAmount;	
@@ -203,7 +201,7 @@ public class LoanProgress extends LoanInfor implements Util{
 	
 	 
 	// 장기대출 진행 메서드
-  private void executeLongLoan(long balance) {
+  private void executeLongLoan(String name, long balance) {
 	
 	  loanPeriod = "5년";  // 장기 대출 상환 기간
 	  
@@ -239,34 +237,23 @@ public class LoanProgress extends LoanInfor implements Util{
 		account2.setBalance(account2.getBalance()+loanAmount);	
 		
 		// 대출이 이루어지면 LoanInfor에 고객의 대출 정보를 저장.
- //       loanMember.add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
+        getLoanMember().add(new LoanInfor(name, loanAmount, loanPeriod, ShortLoanInterest(loanAmount)));
 		
 		
    		
   }
 
-public static List<LoanInfor> getLoanMember() {
+public List<LoanInfor> getLoanMember() {
 	return loanMember;
 }
 
-public static void setLoanMember(List<LoanInfor> loanMember) {
-	LoanProgress.loanMember = loanMember;
+public void setLoanMember(List<LoanInfor> loanMember) {
+	this.loanMember = loanMember;
 }
 
 
-
   
-  
-//  
-//public List<LoanInfor> getLoanMember() {
-//	return loanMember;
-//}
-//
-//public void setLoanMember(List<LoanInfor> loanMember) {
-//	this.loanMember = loanMember;
-//}
-  
-  
+ 
   
 //   private void checkMember() {	
 //	   while(true) {

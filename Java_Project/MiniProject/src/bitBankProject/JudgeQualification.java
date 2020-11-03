@@ -19,7 +19,7 @@ public class JudgeQualification implements Util {	// 대출 자격 심사 클래
 		
 		// #회원 정보에 있는지 없는지 확인 후 예외처리 
 		BankMemberDAO bmd = new BankMemberDAO();
-		LoanProgress lp = LoanProgress.getInstance();    // 변경  : 싱글톤 인스턴스 처리 
+		LoanProgress lp = new LoanProgress();    // 변경  : 싱글톤 인스턴스 처리 
 		
 		String nm = "";
 		String pw = "";

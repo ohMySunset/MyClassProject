@@ -41,9 +41,31 @@ public class LoanInfor{
 
 
 	// getter / setter 
+	
+	
 	public String getLoanPeriod() {
 		return loanPeriod;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setLoanAmount(long loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+
+	public void setInterest(long interest) {
+		this.interest = interest;
+	}
+
 
 	public void setLoanPeriod(String loanPeriod) {
 		this.loanPeriod = loanPeriod;
