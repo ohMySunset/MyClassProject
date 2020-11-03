@@ -8,8 +8,9 @@ public class AccountMain implements Util {
 
 	Transaction t = Transaction.getInstance();
 
-
-    // 여기에서 메서드 없이 시작 할 수 없는 것 같음!==================================
+	JudgeQualification jud = new JudgeQualification();
+	
+    
 	void startAccountMenu(){
 	
 	while(true) {
@@ -65,7 +66,9 @@ public class AccountMain implements Util {
 
 		case 3:
 
-			manager.membership();
+			manager.membership(jud.membership);
+			
+			break;
 
 		case 4:
 

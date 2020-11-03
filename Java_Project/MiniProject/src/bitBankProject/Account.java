@@ -38,7 +38,7 @@ public class Account implements Util {
 	
 
 	public Account() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 
@@ -133,6 +133,18 @@ public class Account implements Util {
 
 		return super.toString();
 
+	}
+
+
+
+	public static Account[] getAccountArray() {
+		return AccountArray;
+	}
+
+
+
+	public static void setAccountArray(Account accountArray[]) {
+		AccountArray = accountArray;
 	} 
 	 
 	

@@ -6,14 +6,14 @@ import java.util.List;
 public class LoanInfor{
 
 	private String name;           // 고객이름
-	private String password;
-	private String account;        // 계좌
+//	private String password;
+//	private String account;        // 계좌
 	private String loanPeriod;     // 대출 기간
 //	private double interestRate;   // 대출 금리
-	private int loanAmount;        // 대출
-	private int loanBalance;       // 대출 잔액
-	private int balance;           // 계좌 잔액
-	private int interest;       // 이자
+	private long loanAmount;        // 대출
+	private long loanBalance;       // 대출 잔액
+	private long balance;           // 계좌 잔액
+	private long interest;       // 이자
 		
 	List<LoanInfor> loan = new ArrayList<LoanInfor>();
 	
@@ -25,11 +25,11 @@ public class LoanInfor{
 	// 생성자로 초기화 	
 	// TEST용 초기값 지정
 	public LoanInfor() {
-		this("김태희", 0, "1년", 2);
+	//	this("김태희", 0, "1년", 2);
 	}
 	
 
-	public LoanInfor(String name, int loanAmount, String loanPeriod, int interest) {
+	public LoanInfor(String name, long loanAmount, String loanPeriod, long interest) {
 		this.name = name;
 		this.loanPeriod = loanPeriod;
 		this.loanAmount = loanAmount;
@@ -49,7 +49,7 @@ public class LoanInfor{
 		this.loanPeriod = loanPeriod;
 	}
 
-	public int getLoanAmount() {
+	public long getLoanAmount() {
 		return loanAmount;
 	}
 
@@ -57,7 +57,7 @@ public class LoanInfor{
 		this.loanAmount = loanAmount;
 	}
 
-	public int getLoanBalance() {
+	public long getLoanBalance() {
 		return loanBalance;
 	}
 
@@ -65,7 +65,7 @@ public class LoanInfor{
 		this.loanBalance = loanBalance;
 	}
 	
-    public int getInterest() {
+    public long getInterest() {
 		return interest;
 	}
 
@@ -88,26 +88,26 @@ public class LoanInfor{
 
 
 	// 단기 대출 이자 반환 메서드
-	int ShortLoanInterest(int loanAmount) {
+	long ShortLoanInterest(long loanAmount) {
 		interest = (int)(loanAmount*SHORT_INTEREST_RATE/12);
 		return interest;
 	}
 	
 	// 장기 대출 이자 반환 메서드
-	int LongLoanInterest(int loanAmount) {
-		interest = (int)(loanAmount*LONG_INTEREST_RATE/5/12);
+	long LongLoanInterest(long loanAmount2) {
+		interest = (int)(loanAmount2*LONG_INTEREST_RATE/5/12);
 		return interest;
 	}
 	
 	// 단기 대출 잔액 반환 메서드
-	int ShortLoanBalance(int loanAmount) {
-		loanBalance = loanAmount-(int)(loanAmount*SHORT_INTEREST_RATE/12);
+	long ShortLoanBalance(long loanAmount2) {
+		loanBalance = loanAmount2-(int)(loanAmount2*SHORT_INTEREST_RATE/12);
 		return loanBalance;
 	}
 	
 	// 장기 대출 잔액 반환 메서드
-	int LongLoanBalance(int loanAmount) {
-		loanBalance = loanAmount-(int)(loanAmount*LONG_INTEREST_RATE/5/12);
+	long LongLoanBalance(long loanAmount2) {
+		loanBalance = loanAmount2-(int)(loanAmount2*LONG_INTEREST_RATE/5/12);
 		return loanBalance;
 	}
 	

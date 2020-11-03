@@ -3,51 +3,50 @@ package bitBankProject;
 
 public class LoanManager implements Util{
 	
-	// 어디에다 넣을지 고민중! 이대로 실행하면 return이 작동을 안함..
+		
 
+	JudgeQualification loan1 = new JudgeQualification();
+	LoanProgress loan2 = LoanProgress.getInstance();
+	LoanRepay loan3 = new LoanRepay();
+	LoanInfor loan4 = new LoanInfor();
 	
 	
-	
-	AccountMain account = new AccountMain();		
-	LoanTotalMethod loan = new LoanTotalMethod();
-	
-	
-	 // 1차 분기
-  void startBankMenu(){   
- 
-    while(true) {		    	   
-   	 System.out.println("안녕하세요! 은행 업무 선택 메뉴입니다."); 
-   	 System.out.println("어떤 은행 업무를 선택하시겠습니까?");
-   	 System.out.println("=======================");
-   	 System.out.println(" 1. 계좌 업무 ");
-   	 System.out.println(" 2. 대출 업무 ");
-   	 System.out.println(" 3. 이전 단계로");
-   	 System.out.println("=======================");
-   	  
-   	 
-   	 int select = 0;
-   	 select = SC.nextInt();
-   	 
-   	 switch(select) {
-   	 case 1 :
-   		 System.out.println("계좌 업무 화면으로 이동합니다>>");
-   		 account.startAccountMenu();
-   		 break;
-   	 case 2 :
-   		 System.out.println("대출 업무 화면으로 이동합니다>>");
-   		 startLoanMenu();
-   		 break;
-   	 case 3 :
-   		 System.out.println("이전 단계로 이동합니다>>");
-   		 return;
-   	 }
-   	 return;
-     }
-  } 
- 
-    
 
-    
+	   void startBankMenu(){
+			
+			AccountMain account = new AccountMain();		
+			LoanManager manager = new LoanManager();
+		   
+		 	// 1차 분기 	
+		    while(true) {		    	   
+		      	 System.out.println("안녕하세요! 은행 업무 선택 메뉴입니다."); 
+		      	 System.out.println("어떤 은행 업무를 선택하시겠습니까?");
+		      	 System.out.println("=======================");
+		      	 System.out.println(" 1. 계좌 업무 ");
+		      	 System.out.println(" 2. 대출 업무 ");
+		      	 System.out.println("=======================");
+		      	  
+		      	 
+		      	 int select = 0;
+		      	 select = SC.nextInt();
+		      	 
+		      	 switch(select) {
+		      	 case 1 :
+		      		 System.out.println("계좌 업무 화면으로 이동합니다>>");
+		      		 account.startAccountMenu();
+		      		 break;
+		      	 case 2 :
+		      		 System.out.println("대출 업무 화면으로 이동합니다>>");
+		      		manager.startLoanMenu();
+		      		 break;		          	
+		      	 }
+		    
+		        }
+		    
+			}
+	
+	
+
     // 2차 분기
 	void startLoanMenu() {
 	
@@ -73,16 +72,16 @@ public class LoanManager implements Util{
        
        switch(select) {
        case 1 :     
-    	   loan.showPossibleAmound(); 
+    	   loan1.showPossibleAmound();
     	   break;
 	   case 2 :    				   
-		   loan.executeLoan();	 
+		   loan2.executeLoan();	 
 		   break;
 	   case 3 : 
-		   loan.repayLoan();
+		  loan3.repayLoan();
 		   break;
 	   case 4 :
-		   loan.ShowLoanInfor();
+		  loan4.ShowLoanInfor();
 		   break;	
 	   case 5 :
 		   return;

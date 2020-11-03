@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LoanTotalMethod extends LoanInfor implements Util {
 
-	// 주요 메서드 한 군데에 모아놓고 TEST중 (미완)
+/*	// 주요 메서드 한 군데에 모아놓고 TEST중 (미완)
 
 	
 	
@@ -27,15 +27,15 @@ public class LoanTotalMethod extends LoanInfor implements Util {
 
 		if(Balance>=60000 && Balance<100000) {			// 6만원 <= 계좌잔액 < 10만원 
 
-			System.out.println("최대 대출 가능 금액 : "/*+Balance*0.5*/);
+			System.out.println("최대 대출 가능 금액 : "+Balance*0.5);
 
 		} else if(Balance>=100000 && Balance<200000) {	// 10만원 <= 계좌잔액 < 20만원 
 
-			System.out.println("최대 대출 가능 금액 : "/*+Balance*0.7*/);
+			System.out.println("최대 대출 가능 금액 : "+Balance*0.7);
 
 		} else if(Balance>=200000) {					// 계좌잔액 >= 20만원
 
-			System.out.println("최대 대출 가능 금액 : "/*+Balance*0.9*/);
+			System.out.println("최대 대출 가능 금액 : "+Balance*0.9);
 
 		}
 
@@ -445,11 +445,11 @@ public class LoanTotalMethod extends LoanInfor implements Util {
 			
 		} // 대출금 상환 메서드 end
 	
+*/   
    
    
    
-   
-   
+  
 	
 	
 }
