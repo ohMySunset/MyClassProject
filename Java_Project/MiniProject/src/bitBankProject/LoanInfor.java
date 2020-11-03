@@ -111,25 +111,25 @@ public class LoanInfor{
 
 	// 단기 대출 이자 반환 메서드
 	long ShortLoanInterest(long loanAmount) {
-		interest = (int)(loanAmount*SHORT_INTEREST_RATE/12);
+		interest = (long) (loanAmount*SHORT_INTEREST_RATE/12);
 		return interest;
 	}
 	
 	// 장기 대출 이자 반환 메서드
 	long LongLoanInterest(long loanAmount2) {
-		interest = (int)(loanAmount2*LONG_INTEREST_RATE/5/12);
+		interest = (long)(loanAmount2*LONG_INTEREST_RATE/5/12);
 		return interest;
 	}
 	
 	// 단기 대출 잔액 반환 메서드
 	long ShortLoanBalance(long loanAmount2) {
-		loanBalance = loanAmount2-(int)(loanAmount2*SHORT_INTEREST_RATE/12);
+		loanBalance = loanAmount2-(long)(loanAmount2*SHORT_INTEREST_RATE/12);
 		return loanBalance;
 	}
 	
 	// 장기 대출 잔액 반환 메서드
 	long LongLoanBalance(long loanAmount2) {
-		loanBalance = loanAmount2-(int)(loanAmount2*LONG_INTEREST_RATE/5/12);
+		loanBalance = loanAmount2-(long)(loanAmount2*LONG_INTEREST_RATE/5/12);
 		return loanBalance;
 	}
 	
