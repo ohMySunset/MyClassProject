@@ -23,7 +23,7 @@ public class LoanInfor implements Util{
 		this.loanPeriod = loanPeriod;
 		this.loanAmount = loanAmount;
 		this.interest = interest;
-		this.loanPrincipal = loanPrincipal;
+		this.setLoanPrincipal(loanPrincipal);
 
 	}
 
@@ -224,6 +224,16 @@ public class LoanInfor implements Util{
 
 		
 
+	}
+
+
+	public long getLoanPrincipal() {
+		return loanPrincipal;
+	}
+
+
+	public void setLoanPrincipal(long loanPrincipal) {
+		this.loanPrincipal = loanPrincipal;
 	}
 	
 }

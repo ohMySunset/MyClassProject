@@ -1,7 +1,7 @@
 package bitBankProject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -185,8 +185,8 @@ public class LoanProgress implements Util{
 		System.out.print("이번 달 이자 "+ infor.ShortLoanInterest(loanAmount)+"원을 제외한 금액,");
 		loanAmount = loanAmount-infor.ShortLoanInterest(loanAmount);  //대출금액 - 이번달 이자
 		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금됩니다.");	
-		SimpleDateFormat simpledate = new SimpleDateFormat("dd");
-		System.out.println("매월" + simpledate + "일에" +"name"+"님의 계좌에서"+ infor.ShortLoanInterest(loanAmount)+"원의 이자가 출금됩니다.");
+		Date d = new Date();
+		System.out.println("매월" + d.getDay() + "일에" +"name"+"님의 계좌에서"+ infor.ShortLoanInterest(loanAmount)+"원의 이자가 출금됩니다.");
 		System.out.println("===================================================");
 		
 	

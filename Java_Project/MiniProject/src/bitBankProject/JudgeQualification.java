@@ -20,7 +20,6 @@ public class JudgeQualification {
 	// 생성자
 
 	public JudgeQualification() {
-
 		super();
 
 	}
@@ -40,9 +39,6 @@ public class JudgeQualification {
 		// #회원 정보에 있는지 없는지 확인 후 예외처리 
 
 		BankMemberDAO bmd = new BankMemberDAO();
-
-		//LoanProgress lp = new LoanProgress();
-
 		LoanProgress lp = LoanProgress.getInstance();
 
 		
