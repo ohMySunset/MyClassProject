@@ -2,133 +2,219 @@ package bitBankProject;
 
 public class LoanInfor implements Util{
 
+
 	private String name;           // 고객이름
+
 	private String loanPeriod;     // 대출 기간
+
 	private long loanAmount;        // 대출
+
 	private long loanBalance;       // 대출 잔액
+
 	private long interest;       // 이자
-	private long loanPrincipal;  // 대출 원금	
-	
-	
-	// 생성자로 초기화 	
-	// TEST용 초기값 지정
-	public LoanInfor() {
-	//	this("김태희", 0, "1년", 2);
+
+	private long loanPrincipal;
+
+	LoanProgress lp = LoanProgress.getInstance();
+
 		
+
+	// 생성자로 초기화 	
+
+	// TEST용 초기값 지정
+
+	public LoanInfor() {
+
+	//	this("김태희", 0, "1년", 2);
+
 	}
+
 	
 
-	public LoanInfor(String name, long loanAmount, long loanPrincipal,  String loanPeriod, long interest) {
+
+
+	public LoanInfor(String name, long loanAmount, long loanPrincipal, String loanPeriod, long interest) {
+
 		this.name = name;
+
 		this.loanPeriod = loanPeriod;
+
 		this.loanAmount = loanAmount;
+
 		this.interest = interest;
-		this.setLoanPrincipal(loanPrincipal);
+		
+		this.loanPrincipal = loanPrincipal;
+
+
 
 	}
 
+	
 
-	// getter / setter 		
-	public String getLoanPeriod() {
-		return loanPeriod;
-	}
+	// getter/setter
 
 	public String getName() {
+
 		return name;
+
 	}
+
 
 
 	public void setName(String name) {
+
 		this.name = name;
+
 	}
 
-	public void setLoanAmount(long loanAmount) {
-		this.loanAmount = loanAmount;
+
+
+	public String getLoanPeriod() {
+
+		return loanPeriod;
+
 	}
 
-	public void setInterest(long interest) {
-		this.interest = interest;
-	}
+
 
 	public void setLoanPeriod(String loanPeriod) {
+
 		this.loanPeriod = loanPeriod;
+
 	}
+
+
 
 	public long getLoanAmount() {
+
 		return loanAmount;
+
 	}
 
-	public void setLoanAmount(int loanAmount) {
+
+
+	public void setLoanAmount(long loanAmount) {
+
 		this.loanAmount = loanAmount;
+
 	}
+
+
 
 	public long getLoanBalance() {
+
 		return loanBalance;
+
 	}
 
-	public void setLoanBalance(int loanBalance) {
+
+
+	public void setLoanBalance(long loanBalance) {
+
 		this.loanBalance = loanBalance;
-	}
-	
-    public long getInterest() {
-		return interest;
+
 	}
 
-	public void setInterest(int interest) {
+
+
+	public long getInterest() {
+
+		return interest;
+
+	}
+
+
+
+	public void setInterest(long interest) {
+
 		this.interest = interest;
+
+	}
+
+	public long getLoanPrincipal() {
+		return loanPrincipal;
 	}
 
 
 
 
+
+	public void setLoanPrincipal(long loanPrincipal) {
+		this.loanPrincipal = loanPrincipal;
+	}
+
+	
+
 	
 	
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
 	// 단기 대출 이자 반환 메서드
-	long ShortLoanInterest(long loanAmount) {
-		interest = (long) (loanAmount*LoanProgress.SHORT_INTEREST_RATE/12);
+
+	long shortLoanInterest(long loanPrincipal) {
+
+		interest =(long)(loanPrincipal*LoanProgress.SHORT_INTEREST_RATE/12);
+
 		return interest;
+
 	}
+
 	
+
 	// 장기 대출 이자 반환 메서드
-	long LongLoanInterest(long loanAmount2) {
-		interest = (long)(loanAmount2*LoanProgress.LONG_INTEREST_RATE/5/12);
+
+	long longLoanInterest(long loanPrincipal) {
+
+		interest =(long)(loanPrincipal*LoanProgress.LONG_INTEREST_RATE/5/12);
+
 		return interest;
-	}
-	
-	// 단기 대출 잔액 반환 메서드
-	long ShortLoanBalance(long loanAmount2) {
-		loanBalance = loanAmount2-(long)(loanAmount2*LoanProgress.SHORT_INTEREST_RATE/12);
-		return loanBalance;
-	}
-	
-	// 장기 대출 잔액 반환 메서드
-	long LongLoanBalance(long loanAmount2) {
-		loanBalance = loanAmount2-(long)(loanAmount2*LoanProgress.LONG_INTEREST_RATE/5/12);
-		return loanBalance;
-	}
-	
-	
 
+	}
 
 	
+
+	// 단기 대출 원리금 차감 메서드
+
+	long shortLoanBalance(long loanAmount, long loanPrincipal) {
+
+		loanBalance =loanAmount-(long)(loanPrincipal/12)-shortLoanInterest(loanPrincipal);
+
+		return loanBalance;
+
+	}
+
 	
+
+	// 장기 대출 원리금 차감 메서드
+
+	long longLoanBalance(long loanAmount, long loanPrincipal) {
+
+		loanBalance =loanAmount-(long)(loanPrincipal/5/12)-longLoanInterest(loanPrincipal);
+
+		return loanBalance;
+
+	}
+
+	
+
 	// 대출 내역 확인 메서드
 
 	void ShowLoanInfor() {
 
 		
 
-		LoanProgress lp = LoanProgress.getInstance();
-
-
 		String nm = "";
 
 		int index = -1;
 
 		
+
 		while(true) {
 
 			
@@ -166,7 +252,8 @@ public class LoanInfor implements Util{
 						}
 
 					}
-				
+
+					
 
 					if(index == -1) {
 
@@ -208,8 +295,6 @@ public class LoanInfor implements Util{
 
 			System.out.println("대출 잔액 : "+lp.loan.get(index).getLoanBalance());
 
-			System.out.println("이자 잔액 : "+lp.loan.get(index).getInterest());
-
 			
 
 		} else if(lp.loan.get(index).getLoanPeriod().equals("5년")) {	// 장기 대출					// 장기 대출
@@ -218,8 +303,6 @@ public class LoanInfor implements Util{
 
 			System.out.println("대출 잔액 : "+lp.loan.get(index).getLoanBalance());
 
-			System.out.println("이자 잔액 : "+lp.loan.get(index).getInterest());
-
 		}
 
 		
@@ -227,13 +310,13 @@ public class LoanInfor implements Util{
 	}
 
 
-	public long getLoanPrincipal() {
-		return loanPrincipal;
-	}
 
 
-	public void setLoanPrincipal(long loanPrincipal) {
-		this.loanPrincipal = loanPrincipal;
-	}
+
+
+
 	
+
+
+
 }
