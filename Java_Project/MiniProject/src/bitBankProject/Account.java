@@ -1,27 +1,30 @@
 package bitBankProject;
 
-
 public class Account implements Util {
+
+
 
 	private String AccountNumber; // 계좌번호
 
-	private String AccountName;         // 이름
+	private String AccountName; // 이름
 
-	private String password;     // 계좌 비밀번호
+	private String password; // 계좌 비밀번호
 
-	private long balance;		  // 잔액
+	private long balance; // 잔액
 
 	private static Account AccountArray[] = new Account[100];
 
-	private int totalTrans;	// 거래횟수
+	private int totalTrans; // 거래횟수
 
 
 
+	// 생성자
 	
+	public Account() {
+		
+	}
 
-	//생성자
-
-	public Account (String AccountNumber, String AccountName, String password) {      
+	public Account(String AccountNumber, String AccountName, String password) {
 
 		this.AccountNumber = AccountNumber;
 
@@ -36,12 +39,6 @@ public class Account implements Util {
 	//getter & setter 메서드
 
 	
-
-	public Account() {
-
-	}
-
-
 
 	public int getTotalTrans() {
 
@@ -83,7 +80,7 @@ public class Account implements Util {
 
 
 
-	public void setAccountName(String name) {
+	public void setAccountName(String AccountName) {
 
 		this.AccountName = AccountName;
 
@@ -133,19 +130,12 @@ public class Account implements Util {
 
 		return super.toString();
 
-	}
-
-
-
-	public static Account[] getAccountArray() {
-		return AccountArray;
-	}
-
-
-
-	public static void setAccountArray(Account accountArray[]) {
-		AccountArray = accountArray;
 	} 
-	 
+
+
+
 	
+
+	
+
 }

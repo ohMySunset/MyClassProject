@@ -7,20 +7,23 @@ public class LoanInfor implements Util{
 	private long loanAmount;        // 대출
 	private long loanBalance;       // 대출 잔액
 	private long interest;       // 이자
-		
-		
+	private long loanPrincipal;  // 대출 원금	
+	
+	
 	// 생성자로 초기화 	
 	// TEST용 초기값 지정
 	public LoanInfor() {
 	//	this("김태희", 0, "1년", 2);
+		
 	}
 	
 
-	public LoanInfor(String name, long loanAmount, String loanPeriod, long interest) {
+	public LoanInfor(String name, long loanAmount, long loanPrincipal,  String loanPeriod, long interest) {
 		this.name = name;
 		this.loanPeriod = loanPeriod;
 		this.loanAmount = loanAmount;
 		this.interest = interest;
+		this.loanPrincipal = loanPrincipal;
 
 	}
 
@@ -120,16 +123,12 @@ public class LoanInfor implements Util{
 
 		LoanProgress lp = LoanProgress.getInstance();
 
-		
-
-		
 
 		String nm = "";
 
 		int index = -1;
 
 		
-
 		while(true) {
 
 			
@@ -167,8 +166,7 @@ public class LoanInfor implements Util{
 						}
 
 					}
-
-					
+				
 
 					if(index == -1) {
 
