@@ -1,6 +1,6 @@
 package bitBankProject;
 
-public class BitBankMain implements Util{
+public class LoginMain implements Util{
 
 	public static void main(String[] args) {
 

@@ -56,12 +56,9 @@ public class LoanProgress implements Util{
 			System.out.println("멤버쉽 조건을 만족하지 못해 대출을 실행할 수 없습니다. 메뉴로 돌아갑니다.");
 			return;
 		} 
-           if(loanAmount != 0) {
-			System.out.println("이미 대출하신 내역이 존재합니다. 상환 완료 후에 대출이  가능합니다. 메뉴로 돌아갑니다.");
-			return;
-		}
+          showLoanAmount();
 		
-        System.out.println("멤버쉽 조건을 만족하여 대출 진행이 가능합니다.");
+		     
 		System.out.println("대출 실행 화면 입니다.");		
 		System.out.println("=====================");
 		System.out.println("어떤 대출을 진행하시겠습니까?");
@@ -252,7 +249,17 @@ public class LoanProgress implements Util{
   }
 
 
-
+   // 원금 반환 메서드
+  void showLoanAmount() {	  
+	  for(int i = 0; i<loan.size(); i++ ) {
+		   if(loan.get(i).getLoanAmount()!=0) {
+			   System.out.println("이미 대출하신 내역이 존재합니다. 상환 완료 후에 대출이  가능합니다. 메뉴로 돌아갑니다.");
+			   return;
+		   } else {
+			   System.out.println("멤버쉽 조건을 만족하여 대출 진행이 가능합니다.");
+		   }
+	  }	  	  
+  }
   
 
 

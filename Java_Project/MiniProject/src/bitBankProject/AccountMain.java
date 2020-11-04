@@ -1,107 +1,159 @@
 package bitBankProject;
 
 
+
+import java.util.InputMismatchException;
+
+
+
 public class AccountMain implements Util {
 
 
-	AccountManager manager = AccountManager.getInstance();
 
-	Transaction t = Transaction.getInstance();
+	public void startAccountMenu() {
 
-	JudgeQualification jud = new JudgeQualification();
-	
-    
-	void startAccountMenu(){
-	
-	while(true) {
+		
 
-		System.out.println(" 안녕하세요. 무엇을 도와드릴까요? ");
+		BitBankManager bbm = new BitBankManager();
 
-		System.out.println("============================ ");
+		AccountManager manager = AccountManager.getInstance();
 
-		System.out.println("1. 계좌 생성");
-
-		System.out.println("2. 계좌 조회");
-
-		System.out.println("3. 계좌 해지");
-
-		System.out.println("4. 예금");
-
-		System.out.println("5. 출금");
-
-		System.out.println("6. 이체");
-
-		System.out.println("7. 계좌 거래내역 조회");
-
-		System.out.println("============================ ");
+		Transaction t = Transaction.getInstance();
 
 
 
-		int MenuSelect = SC.nextInt();
-		SC.nextLine();
-	   	 
+		while(true) {
+
+			System.out.println(" 안녕하세요. 무엇을 도와드릴까요? ");
+
+			System.out.println("============================ ");
+
+			System.out.println("1. 계좌 생성");
+
+			System.out.println("2. 계좌 조회");
+
+			System.out.println("3. 계좌 해지");
+
+			System.out.println("4. 예금");
+
+			System.out.println("5. 출금");
+
+			System.out.println("6. 이체");
+
+			System.out.println("7. 계좌 거래내역 조회");
+
+			System.out.println("8. 이전 메뉴로 돌아가기");
+
+			System.out.println("============================ ");
+
+			
+
+			System.out.println("\n>> ");
 
 
-		if(!(MenuSelect>=1 && MenuSelect<=7)) {
 
-			System.out.println("메뉴의 선택이 옳바르지 않습니다.\n다시 선택해주세요");
+			int MenuSelect = 0;
 
-			continue;
+			
+
+			try {
+
+				
+
+				MenuSelect = SC.nextInt();
+
+				
+
+			if(!(MenuSelect>=1 && MenuSelect<=8)) {
+
+				BadInputException e = new BadInputException(String.valueOf(MenuSelect));
+
+			    throw e;
+
+		    }
+
+			} catch (InputMismatchException | BadInputException e) {
+
+				System.out.println("메뉴입력이 잘못되었습니다. \n다시 선택해주세요 \r");
+
+				SC.nextLine();
+
+				continue;
+
+			} catch (Exception e1) {
+
+				System.out.println("메뉴입력이 잘못되었습니다. \n다시 선택해주세요 \r");
+
+				SC.nextLine();
+
+				continue;
+
+		  	}
+
+		
+
+			
+
+			
+
+			switch (MenuSelect) {
+
+			case 1:
+
+				manager.CreateAccount();
+
+				break;
+
+			case 2:
+
+				manager.AccountCheck();
+
+				break;
+
+			case 3:
+
+				manager.deleteAccount();
+
+				break;
+
+			case 4:
+
+				manager.saving();
+
+				break;
+
+			case 5:
+
+				manager.withdraw();			
+
+				break;
+
+			case 6:
+
+				manager.transfer();			
+
+				break;
+
+			case 7:
+
+				t.trans();
+
+				break;
+
+			case 8:
+
+				bbm.startBankMenu();
+
+			}
+
+
 
 		}
 
-		switch (MenuSelect) {
 
-		case 1:
 
-			manager.CreateAccount();
-
-			break;
-
-		case 2:
-
-			manager.AccountCheck();
-
-			break;
-
-		case 3:
-
-			manager.membership(jud.membership);
-			
-			break;
-
-		case 4:
-
-			manager.saving();
-
-			break;
-
-		case 5:
-
-			manager.withdraw();			
-
-			break;
-
-		case 6:
-
-			manager.transfer();			
-
-			break;
-
-		case 7:
-
-			t.trans();
-
-			break;
-
-		} 
-		return;
 	}
+
+
+
 }
-}
-
-
-			
-	
-
-
