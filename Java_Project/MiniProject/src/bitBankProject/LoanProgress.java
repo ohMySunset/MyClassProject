@@ -53,12 +53,14 @@ public class LoanProgress implements Util{
 		
 		// 1)멤버쉽이 플래티넘 미만일 경우, 2) 이미 대출을 받은 경우에는 진행할 수 없도록 예외처리		
         if(am.membership(jq.membership) != "Platinum") { //멤버쉽 기능이 완성되면 처리
-			System.out.println("멤버쉽 조건을 만족하지 못해 대출을 실행할 수 없습니다. 메뉴로 돌아갑니다.");
+		   System.out.println("멤버쉽 조건을 만족하지 못해 대출을 실행할 수 없습니다.");
+		   System.out.println(" [※ 필수 조건 : Platinum 등급(계좌업무 3번 이상, 혹은 예금 금액 60,000원 이상 시 승급)]");
+		   System.out.println("메뉴로 돌아갑니다.");
 			return;
 		} 
           showLoanAmount();
 		
-		     
+		       
 		System.out.println("대출 실행 화면 입니다.");		
 		System.out.println("=====================");
 		System.out.println("어떤 대출을 진행하시겠습니까?");
@@ -193,7 +195,7 @@ public class LoanProgress implements Util{
 		loanAmount = loanAmount-infor.shortLoanInterest(loanAmount);  //대출금액 - 이번달 이자
 		System.out.println(loanAmount+ "원이 고객님의 계좌로 입금됩니다.");	
 		Date d = new Date();
-		System.out.println("매월" + (d.getDay()+1) + "일에" + name +" 님의 계좌에서 "+ infor.shortLoanInterest(loanPrincipal) +"원이  출금됩니다.");
+		System.out.println("매 월 " + (d.getDay()+1) + "일에 " + name +" 님의 계좌에서 "+ infor.shortLoanInterest(loanPrincipal) +"원이  출금됩니다.");
 		System.out.println("===================================================");
 		
 	
@@ -256,7 +258,7 @@ public class LoanProgress implements Util{
 		System.out.print("이번 달 이자 "+ infor.longLoanInterest(loanAmount)+"원을 제외한 금액 ");
 		loanAmount = loanAmount-infor.longLoanInterest(loanAmount); //대출금액 - 이번달 이자
 		Date d = new Date();
-		System.out.println("매 월" + (d.getDay()+1) + "일에" + name +" 님의 계좌에서 "+ infor.shortLoanInterest(loanPrincipal) +"원이  출금됩니다.");
+		System.out.println("매 월 " + (d.getDay()+1) + "일에 " + name +" 님의 계좌에서 이자 "+ infor.shortLoanInterest(loanPrincipal) +"원이  출금됩니다.");
 		System.out.println("===================================================");
 		
 		// 계좌 잔액 + 대출금
