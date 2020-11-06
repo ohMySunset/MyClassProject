@@ -1,9 +1,16 @@
 package bitBankProject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
+
 
 public class LoanProgress implements Util{
 	
@@ -22,7 +29,7 @@ public class LoanProgress implements Util{
     
     
     //  배열 리스트 생성
-    public final List<LoanInfor> loan = new ArrayList<LoanInfor>();
+    public List<LoanInfor> loan = new ArrayList<LoanInfor>();
      
     
     // 싱글톤 처리
@@ -32,7 +39,8 @@ public class LoanProgress implements Util{
     }
           
     // 생성자    
-    LoanProgress() {       	
+    LoanProgress() {      
+//    	load();
     }
     	
 
@@ -284,7 +292,38 @@ public class LoanProgress implements Util{
   }
   
 
-
+  
+	/*
+	 * public void save() {
+	 * 
+	 * if(loan.size()==0) { System.out.println("저장된 데이터가 없어 파일이 저장되지 않습니다.");
+	 * return; } try { // 인스턴스를 저장할 수 있는 출력스트림 생성 ObjectOutputStream out = new
+	 * ObjectOutputStream(new FileOutputStream("loanMember.ser"));
+	 * out.writeObject(loan); out.close();
+	 * 
+	 * System.out.println("저장되었습니다.(loanMember.ser)"); } catch(IOException e){
+	 * System.out.println("저장하는 과정에 오류가 발생했습니다. ("+ e.getMessage()+
+	 * ") \n 다시 시도해 주세요"); } }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * void load() { // 파일의 존재여부 확인 : File 클래스 이용 File file = new
+	 * File("loanMember.ser"); if(file.exists()==false) {
+	 * System.out.println("저장된 파일이 존재하지 않습니다. 파일 저장 후 Load가 됩니다."); return; } // 파일에
+	 * 있는 데이터를 메모리에 저장 : list에 저장 // 파일의 데이터를 read() (읽을 수 있는) 스트림 생성 try {
+	 * ObjectInputStream in = new ObjectInputStream(new
+	 * FileInputStream("loanMemebr.ser")); loan =
+	 * (ArrayList<LoanInfor>)in.readObject(); System.out.println("데이터 로드 완료..."); }
+	 * catch (IOException e) {
+	 * 
+	 * } catch (ClassNotFoundException e) { e.printStackTrace(); }
+	 * 
+	 * 
+	 * }
+	 */
+  
+  
    
   
 }

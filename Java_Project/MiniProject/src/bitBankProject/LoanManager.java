@@ -22,7 +22,7 @@ public class LoanManager implements Util {
 	    	   System.out.println(" 2. 대출 실행");
 	    	   System.out.println(" 3. 대출금 상환 ");
 	    	   System.out.println(" 4. 대출 내역 확인");
-	    	   System.out.println(" 5. 이전 단계 ");
+	    	   System.out.println(" 5. 이전 단계 ");	    	   
 	    	   System.out.println("====================================");
 	    	   	     	              
 	     
@@ -35,16 +35,18 @@ public class LoanManager implements Util {
 		    	   jq.showPossibleAmound(); 
 		    	   break;
 			   case 2 :    				   
-				   lp.executeLoan();	 
+				   lp.executeLoan();
+//				   lp.save();
 				   break;
 			   case 3 : 
 				   lr.LoanRepay();
 				   break;
 			   case 4 :
-				   li.ShowLoanInfor();
+				   li.ShowLoanInfor();				 
 				   break;	
 			   case 5 :
 				   bbm.startBankMenu();
+			
 			   }
 		
 	       }

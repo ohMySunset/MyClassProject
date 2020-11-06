@@ -14,6 +14,7 @@ public class LoanInfor implements Util{
 	private long interest;       // 이자
 
 	private long loanPrincipal;
+	
 
 	LoanProgress lp = LoanProgress.getInstance();
 
