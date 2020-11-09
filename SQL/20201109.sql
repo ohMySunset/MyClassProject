@@ -103,7 +103,7 @@ from emp;
 
 
 
-
+-- 조건 키워드 WHERE
 -- 특정 데이터를 추출하는 where절
 -- select 컬럼명... from 테이블 이름 where 조건식
 
@@ -143,7 +143,7 @@ where hiredate = '81/11/17'  -- 날짜 비교에서도 작은 따옴표로 묶�
 ;
 
 
-
+-- AND 연산자
 -- 10번 부서 소속인 사원들 중에서    (--> and)
 -- 직급이 MANAGER인 사람을 검색하여
 -- 사원명, 부서번호, 직급을 출력하려고 한다면
@@ -152,10 +152,111 @@ where hiredate = '81/11/17'  -- 날짜 비교에서도 작은 따옴표로 묶�
 --   └>행을 찾는 조건
 -- [조건1] 10번 부서 소속인 사원 : DEPTNO=10 
 -- [조건2] 직급이 MANAGER인 사원 : JOB='MANAGER' 
-
 select ename, deptno, job
 from emp
 where deptno =10 and job = 'MANAGER'
 ;
 
 
+
+-- OR 연산자
+ -- 10번 부서에 소속된 사원이거나 직급이 MANAGER인 사람을 검색하여 사원명, 부서번호, 직급을 출력합시다.  
+ --  [조건1] 10번 부서 소속인 사원 : DEPTNO=10    
+ -- [조건2] 직급이 MANAGER인 사원 : JOB='MANAGER' 
+ select ename, deptno, job
+ from emp
+ where deptno=10 or job='MANAGER'
+ ;
+
+
+
+-- NOT 연산자
+-- 부서번호가 10번이 아닌 사원의 
+-- 사원이름, 부서번호, 직급을 출력해 봅시다.  
+ select *
+ from emp
+-- where not deptno = 10
+-- where deptno != 10;
+ where deptno <>10
+ ;
+ 
+ 
+ 
+ -- BETWEEN AND 연산자
+ -- 2000에서 3000 사이의 급여를 받는 사원을 조회하자
+ select ename, sal
+ from emp
+ --where sal >= 2000 and sal <= 3000
+where sal between 2000 and 3000  -- between a and b ->  a 이상 b 이하의 범위
+ ;
+ 
+ -- BETWEEN AND 연산자는 문자형, 날짜형에도 사용할 수 있다. 
+ -- 비교 대상이 되는 값을 단일 따옴표로 둘러싸야 한다
+ -- 1987년에 입사한 사원을 출력해 봅시다
+ -- 1987/01/01 ~ 1987/12/31
+ select *
+ from emp
+ --where hiredate between '1987/01/01' and '1987/12/31'
+ where hiredate >= '87/01/01' and hiredate <= '87/12/31'
+ ;
+ 
+ 
+ 
+ --  IN 연산자
+ -- 커미션이 300 이거나 500 이거나 1400 인 사원을 검색하자
+ select *
+ from emp
+-- 1) OR연산자 사용할 시
+-- where comm = 300 or comm = 500 or comm = 1400   
+ -- 2) IN연산자 사용할 시
+ where comm in( 300, 500, 1400)
+ ;
+ 
+ 
+ -- LIKE 연산자
+ -- 와일드카드(%) 사용하기
+ -- 찾으려는 이름이 F로 시작 하는 것은 알지만 그 뒤의 문자는 모를 경우 
+select *
+from emp
+--where ename like 'F%' -- F로 시작하고 뒤에는 어떤 문자가 와도 상관없다 
+--where ename like '%S' -- S로 끝나고 앞에는 어떤 문자가 와도 상관없다.
+--where ename like '%A%' -- 이름에 A문자를 포함하는 이름을 검색
+--where ename like '_A%'  -- A문자 앞에 어떤 문자가 오든 하나의 문자가 존재하고 A뒤에는 길이에 상관없이 어떤 문자가 와도 상관없다.
+--where ename like '__R%' -- 첫번째, 두번째 자리에는 어떤 문자이든 존재하고 세번째 자리에는 무조건 R이 오며 뒤의 나머지 자리에는 뭐가 오든 상관이 없음.
+-- '1987/12/19' -> '_____12%'
+where ename not like '%A%'
+;
+
+
+
+-- IS NULL과 IS NOT NULL
+-- 커미션을 받지 않는 사원에 대한 검색해보자
+select *
+from emp
+--where comm = null  -> null은 불확실한 값이기 때문에 비교연산을 할 수가 없음. 
+where comm is null or comm=0 
+;
+ 
+ -- 커미션을 받는 사원을 검색
+ select *
+ from emp
+ where comm is not null and comm > 0
+ ;
+ 
+ 
+ 
+ -- 사원의 리스트를
+ -- 급여의 오름차순으로 정렬해보자
+ SELECT *
+ FROM  emp
+ --order by sal asc    -- 오름차순
+ --order by sal desc    -- 내림차순
+ --order by sal               -- 생략인 경우 디폴트(ASC오름차순) 
+ --order by ename desc
+ --order by comm desc
+-- order by hiredate  -- 날짜의 작다 표현은 오래된 날짜 : 오름차순은 오래된 날짜부터 최근 날짜로 정렬된다
+order by hiredate desc, sal asc
+ ;
+ 
+ 
+ 
