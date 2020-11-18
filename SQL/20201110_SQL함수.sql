@@ -14,6 +14,8 @@ select ABS(-15.5) from dual;  --> 절대값
 select FLOOR(15.7) from dual;  --> 소수점 자리 버림
 select ROUND(15.693) from dual;  --> 반올림
 select ROUND(15.693, 1) from dual;  --> 소수점 1번째 자리까지 표현, 두번째 자리에서 반올림한다
+select LOG(10, 100) from dual; --> 지수표현 
+select POWER(3, 2) from dual;  --> POWER( M, N) -> M의 N승을 반환
 
 
 -- 2) 문자 함수
