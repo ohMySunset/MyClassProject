@@ -187,7 +187,7 @@ select seq_dept_deptno.nextval from dual;  --  dept 테이블의 deptno값을 �
 -- 현재 숫자를 확인
 select seq_dept_deptno.currval from dual;
 
-insert into dept01 values (seq_dept_deptno.nextval, 'test', 'test');
+insert into dept01 values (seq_dept_deptno.nextval  ,'test', 'test');
 
 select * from dept01;
 

@@ -37,3 +37,13 @@
 --                  ex)          1                    :                    N
 --                           학과□ (0, *)  -----◇----- 학생□ (1,1)
 
+
+drop sequence seq_dept_deptno;
+
+create sequence seq_dept_deptno
+MINVALUE 10
+start with 60
+increment by 10
+
+;
+
