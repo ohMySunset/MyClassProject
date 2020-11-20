@@ -48,22 +48,17 @@ public class JDBCEmpTest {
 //			System.out.println("배치할 부서 번호를 입력해주세요.");
 //			int deptno = sc.nextInt();
 //				
-//			String sqlInsert = "insert into emp values(seq_emp_empno.nextval,?,?,?,to_date(sysdate, 'YYYY-MM-DD'),?,?,?)";
 //			
-//			String sqlUpdate = "update emp set ename = ? where ename = ?";
+
 //			
 			PreparedStatement pstmt = null;
 			
 		
 			
 //			// insert
+//			String sqlInsert = "insert into emp values(seq_emp_empno.nextval,?,?,?,to_date(sysdate, 'YYYY-MM-DD'),?,?,?)";
 //			pstmt=conn.prepareStatement(sqlInsert);
-//			
-//			//update
-//			pstmt = conn.prepareStatement(sqlUpdate);
-//	
-			
-			// insert 
+//					 
 //			pstmt.setString(1, ename);
 //			pstmt.setString(2, job);
 //			pstmt.setInt(3, mgr);			
@@ -72,16 +67,19 @@ public class JDBCEmpTest {
 //			pstmt.setInt(6, deptno);
 
 			
+			
+			
 //			//update
+//			String sqlUpdate = "update emp set sal = ? where ename = ?";
+//			pstmt = conn.prepareStatement(sqlUpdate);
+//										
 //			pstmt.setInt(1, 1000);
 //			pstmt.setString(2, "SCOTT");
 //			
-//			
-//			
-//			
+			
+						
 //			int resultCnt = pstmt.executeUpdate();
-//						
-//			
+//								
 //			if(resultCnt>0) {
 //				System.out.println("데이터 입력이 완료되었습니다.");
 //			} else {
@@ -90,27 +88,49 @@ public class JDBCEmpTest {
 //			
 			
 			
-			// 사원 정보 리스트 출력
-			
+			// 사원 정보 리스트			
 //			String sqlSelect = "select * from emp";
 //	        pstmt = conn.prepareStatement(sqlSelect);
 			
 			
 			
-			// 검색
-			System.out.println("검색하고자 하는 사원의 이름을 입력해주세요");
-			String searchName = sc.nextLine();
-						
+			// 사원과 부서 정보리스트 
+	        String sqlSelect = "select * from emp e, dept d where e.deptno = d.deptno";
+	        pstmt = conn.prepareStatement(sqlSelect);
+
 			
-			// 검색 정보 출력
-			String sqlSearch = "select * from emp where ename = ?";
-			pstmt = conn.prepareStatement(sqlSearch);	
-			pstmt.setString(1, searchName);
+			
+			// 사원 검색
+//			System.out.println("검색하고자 하는 사원의 이름을 입력해주세요");
+//			String searchName = sc.nextLine();
+//							
+//			String sqlSearch = "select * from emp where ename = ?";
+//			pstmt = conn.prepareStatement(sqlSearch);	
+//			pstmt.setString(1, searchName);
 					
 			
 			ResultSet rs = pstmt.executeQuery();
 			
 			
+			// 사원 정보 출력
+//			if(!rs.next()) {
+//				System.out.println("검색결과가 없습니다.");
+//			}
+//			else {
+//			 do {    
+//				System.out.print(rs.getInt(1)+"\t");
+//				System.out.print(rs.getString(2)+"\t");
+//				System.out.print(rs.getString(3)+"\t");
+//				System.out.print(rs.getInt(4)+"\t");
+//				System.out.print(rs.getDate(5)+"\t");
+//				System.out.print(rs.getInt(6)+"\t");
+//				System.out.print(rs.getInt(7)+"\t");
+//				System.out.print(rs.getInt(8)+"\n");
+//			} while(rs.next());
+//			}; 
+			
+			
+			// 사원 정보와 부서 정보의 전체 출력
 			if(!rs.next()) {
 				System.out.println("검색결과가 없습니다.");
 			}
@@ -123,11 +143,15 @@ public class JDBCEmpTest {
 				System.out.print(rs.getDate(5)+"\t");
 				System.out.print(rs.getInt(6)+"\t");
 				System.out.print(rs.getInt(7)+"\t");
-				System.out.print(rs.getInt(8)+"\n");
+				System.out.print(rs.getInt(8)+"\t");
+				System.out.print(rs.getInt(9)+"\t");
+				System.out.print(rs.getString(10)+"\t");
+				System.out.print(rs.getString(11)+"\n");
+				
 			} while(rs.next());
 			}; 
 			
-						
+					
 			rs.close();
 			pstmt.close();
 			conn.close();
