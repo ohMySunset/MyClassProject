@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS를 이용한 버튼</title>
+    
+    <style>
+    
+        * {  /* 최초값 정의*/
+            margin : 0;
+            padding : 0;
+        }    
+        
+        #btn{
+            width : 300px;
+            height : 150px;
+            
+            margin : 100px;
+            
+            border: 20px solid #ddd ;    
+            border-radius:50px ;
+                
+            background-color: darkorange;
+            
+            text-align: center;
+            line-height: 150px;
+            
+        }
+        
+        #btn>a{
+            display: block;  /* a태그는 인라인이므로 블럭처리하면 전체표현 가능*/
+            font-size : 4em;
+            font-weight: bold;     
+            text-decoration: none;
+            color : #FFFFFF;
+            font-style: italic;
+            border-radius: 30px; /*위에서 블럭처리 했기 때문에 radius처리 가능*/
+        }
+        
+        #btn>a:hover{
+            background-color: white;
+            color : darkorange;
+            background-image: url(images/lms.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    
+    <div id="btn">
+     <a href="#">Click</a>
+    </div>
+    
+    
+</body>
+</html>

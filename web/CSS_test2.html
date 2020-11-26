@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One true Layout Test</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 css 로드하기-->
+    <!--<link rel="stylesheet" href="default.css">-->
+    
+    
+    
+     <style>         
+         
+         
+         
+         #wrap {
+         border : 6px solid lightgray;
+         width:936px; 
+        /* height : 1485px;*/
+             
+         margin : 6px;
+         padding : 20px;
+         }
+
+         
+         
+         #header{
+         border : 1px solid white;
+         width : 934px;
+         height : 110px;   
+             
+             text-align: center;
+             line-height: 110px; 
+         }
+         #header1{
+             left : 40px;
+             
+             font-family: 'Oswald', sans-serif;
+             font-weight: bold;
+             font-size: 30px;
+         }
+         
+         #header2{
+             left: 40px;
+             top: 22px;
+             font-size: 15px;
+         }
+         
+         .lay1{
+             position: absolute;
+         }
+         
+         #header{
+            position: relative;
+         }
+
+         
+
+         
+         #navi{
+             border-top : 1px solid gray;
+             border-bottom: 1px solid gray;
+             width : 934px;
+             height: 40px; 
+         }
+
+         
+         #sp1>li{
+             float:left;
+             
+             list-style: none;
+             
+             border : 1px solid white;
+             padding: 8px;
+            
+         }
+         
+         #html{
+             text-decoration: none;
+                color: black;
+         }
+           #css{
+             text-decoration: none;
+               color: black;
+         }
+           #java{
+             text-decoration: none;
+               color: black;
+         }    
+         
+          #sp2>li{
+             float:right;
+              
+             list-style: none;
+             line-height: 40px;
+             
+         }
+                
+         #text{
+             border-radius: 10px 0 0 10px; 
+              margin-left: 20px;            
+         }
+         
+         input[type=text]{
+             font-size: 16px;
+         }
+          #bnt{
+             border-radius: 0 10px 10px 0; 
+         }
+          
+         
+         
+         
+         
+         #content{
+             border : 1px solid white;
+             width : 690px;
+             height: 1280px;
+             
+             overflow: hidden;
+             float:left;
+             
+             padding : 20px;
+             
+             font-size: 13px;
+             font-family: 'Nanum Gothic', sans-serif;
+                    
+         }
+         
+         #aside{
+            border : 1px solid white;         
+            width : 198px;
+            height: 300px;
+             
+            float:left;
+         }
+         
+         #aside>div{
+             width : 55px;
+             height : 200px;
+             
+             font-size: 13px;
+         }
+         
+         #footer{
+             clear :both;
+             
+             border : 1px solid white;     
+             
+             color : blue;
+             font-size: 15px;
+         }
+    </style>
+    
+    
+</head>
+  
+  
+    
+    
+<body>
+    <div id="wrap">
+        
+        <div id="header">
+    <div id="header1" class="lay1">HTML Example Preview</div>
+    <div id="header2" class="lay1">한빛아카데미</div>
+        </div>    
+            
+    <div id="navi" >       
+        <div id="sp1">
+        <li><a href="#" id="html">HTML5</a></li>
+        <li><a href="#" id="css">CSS3</a></li>
+        <li><a href="#" id="java">JavaScript</a></li>
+        </div>
+        <div id="sp2">
+        <li><input type="button" value="검색" id="bnt"></li>
+        <li><input type="text" id="text"></li>         
+        </div>
+    </div>
+        
+    <div id="content">
+        <h2>HTML5 개요와 활동</h2>
+        <h4>2013년 02월 14일</h4>
+        <img src="images/html5-display.png" width="430px">
+        <br>
+        <p>HTML 5는 별도 프로그램을 깔지 않아도 인터넷 브라우저상에서 화려한 그래픽 효과를 구현하며, 음악ㆍ동영상을 자유롭게 감상할 수 있는 마크업 언어(markup language)이다.
+        <p>
+            2004년부터 HTML 5 표준화 그룹인 WHATWG(Web Hypertext Application Technology Working Group)는 HTML 5를 HTML의 차기 핵심 표준으로 만들기 위한 세부 작업을 시작하였고, 2014년 10월 웹표준화기구 월드와이드컨소시엄(W3C)은 HTML 5을 웹표준으로 선정했다. 이에 따라 애플ㆍ마이크로소프트(MS), 구글, 페이스북 등 글로벌 IT 기업들은 HTML 5 시대 주도권을 잡기 위해 치열한 경쟁에 돌입하기도 했다.
+        </p>
+        <hr>
+        <h2>HTML5 응용과 실습</h2>
+        <h4>2013년 02월 17일</h4>
+        <img src="images/html.jpg" width="430px">
+        <br>
+        <p>HTML5는 인터넷 보급 초창기에 텍스트와 이미지, 하이퍼링크 기능 정도만 제공했던 HTML을 보완한 차세대 웹 표준이다. 음악이나 동영상 같은 멀티미디어 외에 다양한 애플리케이션까지 제공할 수 있도록 진화했다.
+        </p>
+        <p>
+            따라서 HTML5는 PC의 웹에서 구현되는 애플리케이션들을 스마트폰이나 태블릿 같은 다른 디바이스에서도 똑같이 구현시킬 수 있다는 장점을 갖고 있다. 디바이스의 종류에 상관없이 멀티미디어 및 그래픽 처리가 가능하며, 디바이스의 제어까지 가능해진 것이다.</p>
+        <p>
+            인터넷진흥원의 관계자는 “예를 들어 하나의 서비스를 HTML5로 개발하면 유선과 무선에서 동시에 쓸 수 있어 관리 비용을 줄일 수 있다”라고 소개하며 “과거에는 OS나 브라우저 별로 인터넷 뱅킹 또는 쇼핑몰 서비스를 따로 개발해야 했지만 HTML5의 등장으로 그런 불편함이 사라지게 된 것”이라고 설명했다.</p>
+        <p>멀티미디어 제공이나 다양한 그래픽 처리를 할 수 있게 된 것도 장점이지만, HTML5의 등장으로 무엇보다도 개선된 웹 관련 문제로는 ‘플러그인(Plug-in)’과 ‘액티브X(ActiveX)’를 꼽을 수 있다.</p>
+        <br>
+        <hr>
+        </div>
+        
+    <div id="aside" >
+        <div>
+        <h4>카테고리</h4> 
+            데이터 데이터 데이터 데이터 데이터
+        <h4>최근 글</h4> 
+            데이터 데이터 데이터 데이터
+         </div>
+        </div>
+        
+        
+    <div id="footer">Created By SunKyung</div>
+        
+    </div>
+    
+</body>
+</html>

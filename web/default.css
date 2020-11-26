@@ -1,0 +1,166 @@
+* {
+     font-family: 'Do Hyeon', sans-serif;
+     margin: 0;
+     padding: 0;
+ }
+
+ body {
+     background-color: beige
+ }
+
+ /*main_wrap*/
+ #main_wrap {
+     width: 800px;
+     /*height: 800px;*/
+
+     background-color: #FFF ;
+
+     margin: 20px auto; /*좌우 여백을 auto로 주면 웹페이지 가운데에 위치하게됨*/
+
+     border: 1px solid #DDD;
+     border-radius: 5px;
+
+     box-shadow: 3px 3px 5px #DDD;
+
+ }
+
+ /*해더*/
+ header {
+     /*border: 1px solid;*/
+     padding: 20px 50px;;
+ }
+
+ /*네비게이션*/
+ nav {
+     border-top: 1px solid #AAA;
+     border-bottom: 1px solid #AAA;
+     overflow: hidden;
+     margin: 5px;
+ }
+
+nav>ul {
+    float: left;
+    overflow: hidden;
+    list-style: none;
+}
+
+nav>ul>li {
+    float: left;
+    width: 80px;
+    height: 30px;
+    
+    /*padding: 0 10px;*/
+    
+    line-height: 30px;
+    text-align: center;
+}
+
+nav>ul>li:hover {
+    cursor: pointer;
+    background-color: cadetblue;
+    color: aliceblue;
+    
+}
+
+
+nav>form {
+    float:right;
+    margin-right: 10px;
+}
+
+nav>form>input[type=text]{
+    border-radius: 10px 0 0 10px;
+    padding : 0 10px; /*가독성을 위해 텍스트 창 안의 너비 조정 -> 상하좌우*/
+}
+
+nav>form>input[type=button]{
+    margin-left: -10px;
+    width : 40px;
+    border-radius: 0 10px 10px 0;
+}
+
+nav>form>input{
+    border : 1px solid #AAA;
+    margin-top : 5px;
+}
+
+
+ /*contents_wrap*/
+ #contents_wrap {
+     /*블록 내부의 요소들만 float 속성을 적용*/
+     overflow: hidden;   
+ }
+
+ /*content*/
+ #content {
+     /*border: 1px solid;*/
+
+     width: 595px;
+     /*height: 300px;*/
+
+     float: left;
+     padding : 5px;
+     
+ }
+
+#content>section>article>h1{
+    color: darkblue;
+    margin : 15px 0;
+    font-size: 24px;
+}
+#content>section>article>img{
+    height : 150px;
+    margin : 10px 0;
+}
+
+#content>section>article>hr{
+    border:0;
+    border-top: 1px solid #AAA;
+    margin : 10px 0;
+}
+
+ /*aside*/
+ #contents_wrap > aside {
+     /*border: 1px solid;*/
+
+     width: 195px;
+     /*height: 100px;*/
+     
+     
+
+     float: right;
+ }
+
+#contents_wrap>aside>h4{
+    margin-top: 30px;
+}
+
+#contents_wrap>aside>ul{
+    list-style: none;
+    padding-left: 10px;
+}
+
+#contents_wrap>aside>h4+div{
+    padding-left: 10px;
+}
+
+
+
+
+ /*footer*/
+ footer {
+    /* border: 1px solid;*/
+     padding: 20px;
+     text-align: center;
+     color : #999;
+     background-color: #EEE;
+     line-height: 40px;
+ }
+
+footer>img{
+    /*display : block;*/
+    text-align: center;
+    
+}
+
+

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 속성</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+   
+    <style>
+        h1.title{
+            background-color: darksalmon;
+            color : black;
+            font-size: 24px;
+        }
+        body{
+            /*url은 경로를 표현한다*/
+         /*   background-image: url(images/mini1.png);*/
+        }
+        
+    </style>
+    
+    
+    
+    <style>
+        
+        /*CSS에서 사용되는 단위 : %, em, px*/
+        
+        #size1>div:nth-child(1){
+           font-size : 100%;
+        } 
+         #size1>div:nth-child(2){
+           font-size : 150%;
+        } 
+        #size1>div:nth-child(3){
+           font-size : 200%;
+        } 
+        
+        
+         #size2>div:nth-child(1){
+           font-size : 1.0em;
+        } 
+         #size2>div:nth-child(2){
+           font-size : 1.5em;
+        } 
+        #size2>div:nth-child(3){
+           font-size : 2.0em;
+        } 
+        
+        
+        #size3>div:nth-child(1){
+           font-size : 16px;
+        } 
+         #size3>div:nth-child(2){
+           font-size : 24px;
+        } 
+        #size3>div:nth-child(3){
+           font-size : 32px;
+        } 
+        
+    </style>
+    
+    
+    
+    <style>
+        #color>h4:nth-child(1){
+            /*키워드를 이용한 색상값*/
+            background-color: aquamarine;
+            color : blue;
+        }
+        #color>h4:nth-child(2){
+            /*rgb(R,G,B)를 이용한 색상값*/
+            background-color: rgb(123,99,22);
+            color : rgb(0,255,255);
+        }
+        #color>h4:nth-child(3){
+            /*rgba(R,G,B,A)를 이용한 색상값*/
+            background-color: rgba(255,0,0,0.1);
+            color : rgba(242,65,65,95);
+        }
+        #color>h4:nth-child(4){
+            /*#000000을 이용한 색상표현*/
+            /*background-color: #EEEEEE;*/
+            background-color: #EC95FF; /*#EEE; 세자리 표현도 가능하다.*/
+            color : #11deFF;
+        }      
+    </style>
+    
+    
+    <style>
+     /*박스 속성 : width, height, border, padding, margin*/
+        /*전체 너비 = width+(margin+padding+border)*2*/
+        /*전체 높이 = height+(margin+padding+border)*2**/
+        #box1 {
+            background-color:  lightcoral;
+            /*표현영역*/
+            width:100px;
+            height: 100px;
+            /*테두리*/      
+            border : 10px solid black;   
+            border-width: thick;
+          /*  테두리와 텍스트 사이의 간격*/
+            padding : 10px;
+           /* padding-top: 30px;*/
+           /* 요소 태그들과의 간격*/
+            margin : 20px;
+            /*margin-left:200px;*/
+            
+        }
+        
+        #box2{
+            background-color: cornflowerblue;
+            
+            width : 100px;
+            height : 100px;
+            
+            padding: 10px;
+            margin : 10px;
+            
+            border : 5px solid blue;
+            /*border-radius: 좌상 우상 우하 좌하*/
+            /*border-radius: 10px; *//*전체*/
+           /* border-radius: 10px 30px;*/
+           /* border-radius: 10px 20px 30px 50px;*/
+            border-radius: 70px;
+            background-image: url(images/mini1.png);
+            background-size: 100%;
+        }
+    </style>
+    
+    <style>
+        #display span {
+            background-color: aqua;
+            width : 100px;
+            height : 100px;
+        }
+        
+        #display>span:nth-child(1){
+            /*화면에서 요소 태그를 표현하지 않는다*/
+            /*display : none;*/
+        }
+         #display>span:nth-child(2){
+            /* 블럭 속성을 가짐*/
+             /*display: block;*/
+             display : inline-block;
+            
+        }
+         #display>span:nth-child(3){
+            
+        }
+    </style>
+    
+   <style>
+       #font{
+           /*font-family: '궁서체';*/
+           /*font-family: 'Sunflower', sans-serif;*/
+           font-family: 'Nanum Myeongjo', serif;
+           font-size: 3em;
+           font-weight: bold;
+           font-style : italic;
+           color : darkgreen;
+           
+         /* 텍스트의 수평 방향을 정렬 text-align : center, left, right*/
+           text-align: center;
+       }
+    </style>
+    
+    <style>
+        h3{
+            text-align: center;
+            box-shadow: 5px 5px 5px gray;
+                
+        }
+        
+        h3+h4 {
+          text-align:right;
+    }
+        h3+h4+p{
+            line-height: 180%;
+            border : 1px solid #EEE;
+            width : 80%;
+            box-shadow: 5px 5px 20px #DDD;
+        }
+    </style>
+        
+    
+</head>
+
+<body>
+    
+    
+    <h1 class="title">텍스트의 중앙 정렬</h1>
+    <h3>텍스트의 수평 방향의 정렬</h3>
+    <h4>2020.11.24</h4>
+    <p>24일 한국은행이 발표한 '3분기 가계신용(잠정)' 통계에 따르면 3분기 말 현재 가계신용 잔액은 전 분기 대비 44조9000억 원(2.7%) 늘어난 1682조1000억 원을 기록했다. 이는 한은이 관련 통계를 집계한 2002년 4분기 이후 역대 최대치다.</p>
+    
+    <h1 class="title">폰트 관련 속성 : font-family, font-size, font-style, font-weight</h1>
+    <div id="font">
+      안녕하세요 반갑습니다!
+    </div>
+    
+    
+    <h1 class="title">display 속성 : none, block, inline, inline-block</h1>
+    
+    <div id="display">
+        <span>span1</span>
+        <span>span2</span>
+        <span>span3</span>
+    </div>
+    
+    
+    <h1 class="title">박스 속성 : width, height, border, padding, margin</h1>
+    <div>
+        <div id="box2">
+        
+        </div>
+    <div id="box1">
+        Box Box Box Box Box Box Box Box Box
+        </div>
+    
+    </div>
+    
+    <h1 class="title">[ Font-size : 단위 확인 ]</h1>   
+    <div>
+    
+    <div id="size1">
+    <div>font-size : 100%</div>
+    <div>font-size : 150%</div>
+    <div>font-size : 200%</div>
+    </div>
+    
+    <hr>
+    
+    <div id="size2">
+    <div>font-size : 1.0em</div>
+    <div>font-size : 1.5em</div>
+    <div>font-size : 2.0em</div>
+    </div>
+    
+    <hr>
+    
+    <div id="size3">
+    <div>font-size : 16px</div>
+    <div>font-size : 24px</div>
+    <div>font-size : 32px</div>
+    </div>
+    
+    </div>
+    
+    
+    <h1 class="title">Color를 표현하는 단위</h1>
+    <div id="color">
+        <h4>키워드 이용한 색상 표현</h4>
+        <h4>rgb(R,G,B) 이용한 색상표현</h4>
+        <h4>rgba(R,G,B,A) 이용한 색상표현</h4>
+        <h4>#000000</h4>
+    </div>
+    
+</body>
+</html>

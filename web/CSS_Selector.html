@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자</title>
+    
+    <style>
+       /* 선택자{
+            속성 이름 : 속성 값;
+            속성 이름 : 속성 값;            
+        }*/
+        
+       /*전체 선택자 : 전체 폰트의 컬러값을 지정*/
+        *{
+            color : red;
+        }
+        
+        
+       /* 태그 선택자 : 태그로 전체 영역을 설정*/
+/*
+        h1,p,body{
+            margin: 0;
+            padding: 0;
+        }
+*/
+        
+        h1{
+            background-color: aquamarine;
+             
+        }
+        
+        p{
+            color : blue;
+            background-color: antiquewhite;
+     
+        }
+        
+        div{
+            height:50px;
+        }
+        
+        ul{
+            border: 1px solid blue;
+        }
+        
+        li{
+            border: 1px solid red;
+        }
+        
+        form{
+            border:1px solid black;
+            
+        }
+        
+        /*아이디 선택자 : #아이디*/
+        #header{
+            background-color: aqua;
+        }
+        #aside{
+            background-color: blueviolet;           
+        }
+        #content{
+            background-color: cadetblue
+        }
+        
+        
+        /*클래스 선택자 : 요소에 class 속성이 있는 것을 지정하는 선택자*/
+        
+        div.color_s{
+            color : skyblue;
+        }
+
+        .color_w{
+            color : white;
+        }
+     
+        .font_size_32{
+            font-size: 32px;
+        }
+        
+        .font_weight_bold{
+            font-weight: bold;
+        }
+        .font_italic{
+            font-style :italic;
+        }
+        
+        
+        
+       /*속성 선택자 : 선택자[속성이름]*/
+        input[type] {
+            background-color: chartreuse;
+            color : darkred;
+        }
+        /*속성 선택자 : 선택자[속성이름= 값]*/
+        input[type=button]{
+            background-color: aqua;
+            padding : 10px;
+            margin : 10px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        /*속성 선택자 : 선택자[속성이름$ = 값] -> 특정 값으로 끝나는 속성*/
+        img[src$=png]{
+            border:5px solid red;           
+        }
+         img[src$=jpg]{
+            border:5px solid blue;       
+        }
+        
+        /*후손 선택자 : 선택자A 선택자B
+        A태그 하위의 존재하는 태그를 기준으로 B선택자로 선택*/
+        #header2 h1{
+            background-color: black;
+            color: aliceblue;
+            font-size: 16px;        
+        }
+        
+        /*자손 선택자 : 선택자A > 선택자B (태그, id, class 등이 올 수 있음)
+        선택자 A로 선택된 태그 바로 아래의 태그들 중 선택자B로 선택*/
+        #header2>h1{
+            border : 5px solid gray;    
+            font-size: 40px;
+        }
+        
+        /*동위 선택자 : 범위를 한정해서 선택
+        선택자A + 선택자B => A선택자 바로 뒤의 선택자B
+        선택자A ~ 선택자B => A선택자 뒤의 모든 선택자B*/
+        #div1>h1+h2{
+            background-color: coral;
+            color : yellow;
+        }
+        
+        #div1>h1~h2{
+            background-color: cadetblue
+        }
+        /*
+        반응 선택자
+        :hover => 마우스 커서가 특정 태그 위로 올라갈 때
+        :active => 마우스 커서 버튼을 누르고 있는 상태*/
+        
+        h1:hover {
+            background-color: red;
+            color : aquamarine;
+            cursor : pointer;
+        }
+        h1:active {
+            background-color: black;
+            color : white;
+        }
+        
+       /* 상태선택자
+        :checked => checkbox, radio
+        :focus => 모든 input 태그
+        :enabled => 사용 가능한 input
+        :disabled => 사용 불가한 input
+        */
+        
+        input:enabled{
+            border : 1px solid blue;
+            background-color: aqua;
+        }
+        input:disabled{
+            border : 1px solid red;
+            background-color: darkgray;
+        }
+        input:focus{
+            background-color: yellow;
+        }
+        #msg{
+            padding : 20px;
+            background-color: antiquewhite;
+            display: none;
+        }
+        input[type=checkbox]:checked + #msg{
+            display: block;
+        }
+        
+        #nav, #nav>li{
+            border : 0;
+            list-style: none; 
+            margin : 0;
+            padding: 0;       
+        }
+        
+        #nav{
+            overflow: hidden;
+           /* float:left 속성을 #nav 안으로 한정한다.*/
+            margin:20px 0;
+           
+        }
+        
+        #nav>li{
+            float:left;
+            padding: 0 10px;
+            border : 1px solid black;
+            font-size: 30px;
+        }
+        
+        #nav>li:first-child{
+            background-color: aqua;
+            border-radius: 10px 0 0 10px
+        }
+        #nav>li:last-child{
+            background-color: aqua;
+            border-radius: 0 10px 10px 0
+        }
+        #nav>li:nth-child(2n){
+            background-color: aqua;
+        }
+        #nav>li:nth-child(2n+1){
+            background-color: aquamarine;
+        }
+        
+        
+      /*  문자 선택자
+        ::first-letter
+        ::first-line*/
+        
+        p::first-letter{
+            font-size: 300%; /* 16px*3*/
+
+        }
+        
+        p::first-line{
+            color : black;
+        }
+        
+        p::selection{
+            background-color: black;
+            color :aqua;
+        }
+        
+        /*링크 선택자
+        :link
+        :visited*/
+        
+        a:link{
+            color :aquamarine;   
+            text-decoration:none;
+        }
+        a:visited{
+            color :aquamarine;
+            text-decoration: none;
+        }
+        a:hover{
+            color : blue;
+        }
+        
+    /*    a:link::after{
+            content:'('attr(href)')';
+        }
+    */
+         a:link::before{
+            content:'('attr(href)')';
+        }
+        
+        
+        
+    </style>
+    
+    
+</head>
+    
+<body>
+    
+    <h2>
+    <a href="http://www.naver.com">네이버</a>
+    </h2>
+    
+    
+    
+    
+       <ul id="nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+    
+    
+    
+    
+    보이기<input type="checkbox">
+    <div id="msg">체크박스를 체크하시면 div블럭이 등장!</div>
+    
+    
+    <br>
+    
+      <h1 class="color_w">바이든, 첫 국무장관에 20년 최측근 내정…국가안보보좌관은 힐러리 측근 유력</h1>
+    <p>
+        조 바이든 미국 대통령 당선인이 첫 국무부 장관에 앤서니 블링컨 전 국무부 부장관을 임명할 계획이라는 보도가 나왔습니다.
+    </p>  
+    <p>
+        CNN 등은 바이든 당선인 캠프 소식통을 인용해 "블링컨 전 국무부 부장관을 첫 국무부 장관으로 임명할 계획"이라며 "24일쯤(현지시간) 내각 구성을 발표하게 될 것"이라고 보도했습니다.
+    </p>
+    
+    
+    
+    
+    <input><input disabled>
+    
+    
+    <div id="div1">
+        <h1>Header - 1</h1>
+        <h2>Header - 2</h2>
+        <h2>Header - 2</h2>
+        <h2>Header - 2</h2>
+        <h2>Header - 2</h2>
+
+    </div>
+    
+
+    
+<!--
+     <div id="header2">
+         <h1 class="title">Lorem ipsum</h1>
+         <div id="nav">
+             <h1>Navigation</h1>
+         </div>
+         
+     </div>
+     <div id="section">
+         <h1 class="title">Lorem ipsum</h1>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+     </div>
+
+    
+    <img src="images/mini1.png" height="100">
+    <img src="images/mini2.jpg" height="100">
+    <img src="images/ssing.jpg" height="100">  
+   
+    
+    <h1>form tag -> input</h1>
+    
+    <form>
+    <ul>
+        <li><input type="text"></li>
+        <li><input type="button" value ="button"></li>
+        <li><input type ="password" value="button"></li>
+        <li><input type ="button" value="새로운 버튼"></li>
+        </ul>
+    </form>
+    
+  
+    
+    
+    <div id="header" class="color_w font_size_32 font_weight_bold font_italic">header</div>
+    <div id="aside" class="color_s">aside</div>
+    <div id="content" class="color_w" >content</div>
+    
+-->
+    
+</body>
+</html>
+
+
