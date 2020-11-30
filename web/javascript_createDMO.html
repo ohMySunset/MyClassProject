@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서객체 동적생성</title>
+    <script>
+    
+    window.onload = function(){
+        
+      
+    
+    //태그 요소 생성
+    var header = document.createElement('h1');
+        
+    //텍스트 요소 생성
+    var textnode = document.createTextNode('안녕하세요');
+        
+    //태그요소에 텍스트 요소 추가
+    header.appendChild(textnode);
+        
+    //동적으로 생성한 새로운 문서객체를 body요소에 추가 
+    document.body.appendChild(header);
+    
+    //텍스트가 없는 요소 : img
+    var img = document.createElement('img');
+    img.src = 'images/mini1.png'; 
+    img.width = 200;
+    img.height = 200;
+        
+    // 바디영역을 캐스팅 하면서 이미지도 함께 캐스팅 했으므로 상단에 노출된다.    
+     document.getElementById('title').appendChild(img);   
+        
+   // document.body.appendChild(img);   
+    
+     var title = document.getElementById('title');
+    console.log('h1#title id ->', title.getAttribute('data-brackets-id'));
+      
+      var link = document.getElementById('link_naver');    
+        
+    // 텍스트 노드 생성
+   //  var str = document.createTextNode('-'+link.getAttribute('href'));
+     var str = document.createTextNode('-'+link.href);
+        
+        
+    link.appendChild(str);    
+      
+        
+    var img1 = document.createElement('img');
+       img1.setAttribute('src', 'images/dog.png');
+       img1.setAttribute('width', 200);
+        document.body.appendChild(img1);
+        
+        
+      // 속성의 값이 html로 인식 (더 많이 사용)
+        title.innerHTML = '<i>안녕하세요</i>';
+    
+         alert(title.innerHTML);
+         alert(title.textContent);
+        
+        
+      // html로 인식하는 것이 아니라 순수하게 문자열로 인식하여 내용을 출력
+        title.textContent = '<i>안녕하세요</i>';  //태그까지 표현
+        
+    };
+        
+    </script>
+    
+    
+     
+    
+</head>
+
+<body>
+    <!--바디 영역이 먼저 생성!-->
+    <h1 id="title">새로운 문서객체를 추가합니다.</h1>
+    
+    <a href="http://www.naver.com" id="link_naver">네이버-</a>
+    
+</body>
+</html>
