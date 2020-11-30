@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Test</title>
+    
+    <style>
+        ul.no_style{
+            list-style: none;
+        }
+    </style>
+
+
+    <!--  자바스크립트 위치 (1)  위에서부터 순서대로 진행-->
+    <script>
+        //alert(1); /*ok 버튼을 누르지 않으면 뒷부분 진행이 안됨*/
+        /*alert(11);*/
+        /*문자열의 표현은 작은따옴표로 하는것이 좋다.*/ 
+        //alert('"안녕\n하세요"'); 
+        
+       /* 숫자의 표현은 정수와 실수를 구분하지 않고 숫자로 통일,
+        기본적인 사칙연산이 가능하다. + - * / %*/
+        //alert(1+2);
+        console.log('1+2=',1+2);
+        console.log('"김"=="한"','김'=='한');
+        console.log('"김">"한"','김'>'한');
+        console.log('"김"<"한"','김'<'한');
+        
+         // true->1 false->0
+        console.log('true>false=>', true>false); 
+        
+        /*자바스크립트의 변수 선언
+        var 변수이름;
+        변수선언 : 타입 결정 전
+        변수 초기화 : 값을 할당하면 타입 결정! 
+        선언되지 않거나 할당되지 않은 변수-> undefined*/
+        var num = 100;
+        console.log('변수 num이 가지는 값 =>',num+200);
+       
+       // 변수 타입 
+        var number = 1000;  // 숫자 타입
+        var str = 'String'; // 문자열
+        var bool = true;    // 논리값
+        var func = function (){}; // 함수
+        var obj = {}; // 객체
+        
+       // 타입의 확인 -> typeof(변수이름) 
+ /*       console.log('변수 number의 타입 ->', typeof(number));
+        console.log('변수 str의 타입 ->', typeof(str));
+        console.log('변수 func의 타입 ->', typeof(func));
+        console.log('변수 obj의 타입 ->', typeof(obj));
+        console.log('변수 bool의 타입 ->', typeof(bool));*/
+        
+      /*  if(typeof(number)=='number'){
+            alert('변수 number는 number타입입니다.' + number*3);
+        }*/
+        
+       // 같은 변수명을 가질 경우 마지막에 입력한 값이 출력됨
+        var food = '김치찌개';
+        var food = '감자탕';
+        var food = 10;
+    
+        console.log(food);
+        
+        //사용자의 의사표현을 묻는 함수 confirm()
+        // : yes / no -> true / false
+        
+        var chk = confirm('삭제하시겠습니까?');
+        console.log('chk =', chk);
+        
+        // 사용자의 데이터 입력을 받는 함수 prompt()  --> 문자열을 반환
+        // 최근에는 자주 사용하지 않고 주로 html의 input으로 입력받음.
+       /*var userData = prompt('숫자를 입력해주세요', 100);*/      
+        // 다른 타입을 숫자타입으로 형변환 Number()
+     /*  var age = Number(userData);
+        
+         console.log('userDate =',userData+':'+typeof(userData));
+         console.log('age =', age +':'+typeof(age));*/
+        
+        // 더하기 연산을 제외하고는 숫자연산이 우선!            
+    /*    if(userData>19){ //문자열로 받았지만 숫자가 우선이기 때문에 비교가 가능하다.
+            alert('안녕하세요 반갑습니다!');
+        } else {
+            alert('성인만 입장이 가능합니다.');
+        }*/
+        
+       // 다른 타입을 문자타입으로 형변환 String()
+        var str = String(123);
+        console.log('str의 타입은'+':'+'typeof(str)');
+                            
+ /*       //논리값으로 변환하는 함수 : Boolean()
+         console.log(Boolean(0));
+         console.log(Boolean(''));
+         console.log(Boolean(NaN));
+         console.log(Boolean(null));
+         console.log(Boolean(undefined));
+        
+         console.log(0==false);  // true
+         console.log(''==false); // true
+         console.log(''==0);
+        
+         console.log(NaN==false);
+         console.log(null==false);
+         console.log(undefined== false);
+        
+         console.log(!!0);  
+         console.log(!!''); 
+        
+         console.log(!!NaN);
+         console.log(!!null);
+         console.log(!!undefined);
+        
+        
+         console.log('0==false =>',0==false );  
+         console.log('\'\'==false=>',''==false); 
+         console.log('\'\'==0 =>',''==0);
+         console.log('\'123\'==123 =>', '123'==123);*/
+        
+   
+        // || (논리합 연산자) 논리값이 false일 때만 실행
+        // (불 표현식) || (표현식이 false일 때 실행할 문장)
+     (food>0) || console.log('음수입니다.');   
+     (food<0) || console.log('양수입니다.');   
+        
+        // && (논리곱 연산자) 논리값이 true일 때만 실행
+        // (불 표현식) || (표현식이 true일 때 실행할 문장)
+     (food<0) && console.log('음수입니다.');   
+     (food>0) && console.log('양수입니다.'); 
+        
+        // 배열 : 순차적인 특징 -> 반복문을 통해서 일괄 처리
+        // 자바스크립트의 변수는 6가지, 배열의 요소는 타입을 규제하지 않음 => 타입 제한이 없다. 
+      //대괄호로 생성 ([ ] )
+        var arr = [];
+        var arr = [123, 'hello', {}, function(){alert('Hot')}, true, [1,2,3,4,5]];
+        console.log('typeof(arr)=>', typeof(arr));
+        console.log('arr =>', arr);
+        
+        //for 반복문을 이용하여 일괄처리
+        for(var i=0; i<arr.length;i++){
+            console.log(String(i), arr[i]);
+        }
+        // for in 반복문을 이용
+        for(var i in arr){
+            console.log(i, arr[i]);
+        }
+        
+        
+        
+
+    </script>
+
+    </head>
+
+    <body>
+
+    <!--  자바스크립트 위치 (2)-->
+    <script>
+ /*       var name1 = '카카오';
+        var name2 = '네이버';
+        
+        
+            var htmlStr = '';
+        htmlStr += '<ul class="no_style">\n';
+        htmlStr += '     <li>'+name1+'</li>\n';
+        htmlStr += '     <li>'+name2+'</li>\n';
+        htmlStr += '</ul>';
+        console.log(htmlStr);
+        
+        document.body.innerHTML = '<h1>안녕!!!</h1>';
+         document.body.innerHTML = htmlStr;*/
+        /*alert(2);*/
+    </script>
+
+
+    </body>
+
+    </html>
+
+    <!--  자바스크립트 위치 (3)-->
+    <script>
+       /* alert(3);*/
+    </script>

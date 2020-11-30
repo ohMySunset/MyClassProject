@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트 폼-2</title>
+    
+
+    <style>
+       
+        #intro{
+           overflow-y: scroll;         
+        }
+        
+        #intro>input[type=text]{
+            width:420px;
+            height:100px;
+        }
+        
+        
+    </style>
+
+    
+    <script>
+       
+        window.onload = function(){
+          
+            document.querySelector('#myform').onsubmit = function(){
+                
+                var name = document.querySelector('#name2');
+                var userid = document.getElementById('userid3');
+                var pw = document.getElementById('pw3');
+                var rePw = document.getElementById('repw3');
+                
+                
+                if(name.value.trim().length<1){
+                    alert('이름은 필수입력 항목입니다.');
+                    name.value='';
+                    name.focus();
+                    return false;
+                };
+                
+                if(userid.value.trim().length<1){
+                    alert('ID는 필수입력 항목입니다.');
+                    name.value='';
+                    userid.focus();
+                    return false;
+                };
+                
+                if(pw.value.trim()<1){
+                    alert('비밀번호는 필수입력 항목입니다.');
+                    name.value='';
+                    pw.focus();
+                    return false;
+                };
+                
+                 if(rePw.value.trim()<1 || pw.value!=rePw.value){
+                    alert('비밀번호를 다시 확인해주세요.');
+                    name.value='';
+                    rePw.focus();
+                    return false;
+                };
+                
+                
+            }
+           
+            
+            
+            chk.onclick = function(){
+                alert('주민등록번호가 정상 입력되었습니다.');
+            }
+            
+        };
+        
+        
+        
+    </script>
+    
+    
+</head>
+
+<body>
+   <!-- <h1>테스트 폼-2</h1>-->
+    
+   <form>
+       
+       <h3> 회원 로그인</h3>
+       <hr>
+    <table>
+        <tr>
+        <td><label for=userid>아이디(이메일)</label></td> 
+        <td><input type=email id=userid></td> 
+        </tr>
+        <tr>
+        <td><label for=pw>비밀번호</label></td>
+        <td><input type=password id=pw></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td><input type="submit" value="로그인"></td> 
+        </tr>
+        
+       </table>   
+           
+       <hr>      
+    
+    </form>
+       
+    
+     <br>
+    
+
+    
+    <form>
+        
+    <h3> 회원가입</h3>
+    <hr>
+    <table>
+     <tr>
+         <td><label for="userid2">아이디(이메일)</label></td>
+         <td><input type="email" id="userid2"></td>
+        </tr>
+        <tr>
+            <td><label for="pw2">비밀번호</label></td>
+            <td><input type="password" id="pw2"></td>
+        </tr>    
+        <tr>
+            <td><label for=name>이름</label></td>
+            <td><input type="name" id="name"></td>
+        </tr>
+        <tr>
+            <td>사진</td>
+            <td><input type="file" id="file"></td>
+        </tr>    
+        <br>
+        <tr>
+            <td></td>
+            <td> <input type="submit" value="등록"></td>
+        </tr>
+    </table>
+       
+      <hr>
+        
+    </form>
+    
+    
+    <br>
+    
+    
+    <form id="myform" action="http://www.daum.net">
+        
+    <h3>회원가입</h3>
+        
+    <table id="nav" border="1" height="300">       
+        <tr>
+        <td><label for="name2">*이름</label></td>   
+        <td><input type="name" id="name2"></td> 
+        </tr>
+         <tr>
+        <td><label for="userid3">*ID</label></td>     
+         <td><input id="userid3"></td> 
+        </tr>
+         <tr>
+        <td><label for="pw3">*비밀번호</label></td>     
+         <td><input type="password" id="pw3"></td> 
+        </tr>
+         <tr>
+        <td><label for="repw3">*비밀번호 확인</label></td>     
+         <td><input type="password" id="repw3"></td> 
+        </tr>
+         <tr>
+        <td><label for="idnum">*주민등록번호</label></td>     
+         <td><input id="idnum">-<input><input type="button" value="주민등록번호 확인" id="chk"></td> 
+        </tr>
+         <tr>
+        <td>*직업</td>     
+         <td><select name="job">
+             <option>직업명</option>
+             <option>회사원</option>
+             <option>주부</option>
+             <option>학생</option>
+             <option>무직</option>
+             </select> </td> 
+        </tr>
+         <tr>
+        <td>*성별</td>     
+         <td><input type="radio" name="gender" value="M">남
+             <input type="radio" name="gender" value="F">여</td> 
+        </tr>
+         <tr>
+        <td>*취미</td>     
+         <td><input type="checkbox" name="hobby" value="read">독서
+             <input type="checkbox" name="hobby" value="drive">드라이브
+             <input type="checkbox" name="hobby" value="movie">영화 <br>
+             <input type="checkbox" name="hobby" value="consert">콘서트
+             <input type="checkbox" name="hobby" value="shopping">쇼핑
+             <input type="checkbox" name="hobby" value="amusement">놀이동산
+            </td> 
+        </tr>
+         <tr>
+        <td>*자기소개</td>     
+         <td id="intro"><input type="text"></td> 
+        </tr>
+         <tr>
+        <th colspan="2"><input type="submit" value="가입완료"><input type="reset" value="취소"></th>     
+         <td></td>
+            
+        </tr>
+        
+
+    
+        </table>
+    
+    
+    
+    </form>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,4 @@
+http://localhost:80/index.html
+프로토콜 도메인 포트 경로
+
+https:// -> 인증서가 있는 페이지URL

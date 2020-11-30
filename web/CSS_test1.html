@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS test</title>
+   <style>
+       
+       *{
+           margin: 0;
+           padding: 0;
+       }  
+       
+       h1{
+           font-family: fantasy;
+           color : black;
+           font-weight: bold;       
+       }
+       
+     .circle{
+    width: 100px;
+    height : 100px;
+    border : 1px solid black;
+    text-align: center;
+    line-height: 100px;    
+     position: absolute;
+    } 
+       
+       #circle1{
+           display: block;
+           background-color: antiquewhite;
+           left:23px;
+           top:23px;
+           border-radius: 50px;
+           background-image: url(images/%EB%9D%BC%EC%9D%B4%EC%96%B8.gif);
+           background-size: contain;
+           background-position: center;
+           
+       }   
+       
+       #circle2{
+           display: block;
+           background-color: blueviolet;
+           left :250px;
+           top : 23px;
+            border-radius: 50px;
+             background-image: url(images/%EB%9D%BC%EC%9D%B4%EC%96%B82.gif);
+           background-size: contain;
+           background-position: center;
+       }   
+       
+       #circle3{
+           display: block;
+           background-color: darkcyan;
+           left: 250px;
+           top : 200px;
+            border-radius: 50px;
+             background-image: url(images/%EB%9D%BC%EC%9D%B4%EC%96%B83.gif);
+           background-size: contain;
+           background-position: center;
+       }   
+       
+       #circle4{
+           display: block;
+           background-color: coral;
+           left: 23px;
+           top: 200px;
+            border-radius: 50px;
+             background-image: url(images/%EB%9D%BC%EC%9D%B4%EC%96%B84.gif);
+           background-size: contain;
+           background-position: center;
+       }   
+       
+       #wrap{
+           margin: 10px;
+           position : relative;
+           width : 370px;
+           height: 320px;
+           border: 2px solid black;
+           background-image: url(images/kakao1.jpg);
+           background-size : cover;
+           background-repeat: no-repeat;
+           background-position: center;
+       }
+       
+       
+       
+    </style> 
+   
+    
+    
+    
+</head>
+
+<body>
+    
+    <h1>KAKAO FRIENDS</h1>
+    <div id="wrap">
+        
+    <div id="circle1" class="circle"></div>
+    <div id="circle2" class="circle"></div>
+    <div id="circle3" class="circle"></div>
+    <div id="circle4" class="circle"></div>
+   
+    </div>
+    
+    
+</body>
+</html>

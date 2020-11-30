@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS float을 이용한 레이아웃</title>
+    
+    <style>
+        img{
+            float:left;
+        }
+        
+        #wrap{
+            /*overflow: hidden;*/ /*div블럭 안의 조건을 한정지어줌*/
+            
+        }
+        
+        
+        
+        footer{
+            clear : both;
+            background-color: antiquewhite;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+    <img src="images/mini1.png" width="100">
+    <p>
+    브랜드별로 보면 삼성전자가 출하량 기준 1위로 23.6%를, 2위인 LG전자가 11.6%를 차지했다. 중국 TCL과 하이센스가 10.9%와 9.0%로 뒤를 이었다.
+    </p>
+    </div>
+    
+    <footer>
+    footer
+    </footer>
+</body>
+</html>
