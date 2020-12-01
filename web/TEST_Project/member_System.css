@@ -1,0 +1,147 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+*{
+    padding :0;
+    margin:0;   
+}
+
+body{
+   font-family: 'Poor Story', cursive;
+}
+
+/*프로그램 타이틀 선택 (클래스로 불러오기)*/
+h1.header{
+    margin:20px;
+}
+
+hr{
+   border : 0;
+   border-top:1px solid #CCC;
+}
+
+h2.title{
+     margin:20px 40px;
+}
+
+#regform{
+    margin: 10px 40px;  /*위의 타이틀과 줄맞춤*/
+}
+
+#regform>table{
+    width:600px;
+}
+
+#regform>table td{ /*table의 모든 열 하나에 100px씩*/
+    width:120px;
+    padding:10px;
+}
+
+#regform>table input{
+     width:90%;
+    padding: 10px;
+}
+
+#regform>table label{
+    display: block;
+}
+
+#regform>table input[type="submit"]{
+    width:100px;
+    background-color: cornflowerblue;
+    border:2px solid #CCC;
+    
+    font-weight: bold;
+     font-size: 1.2em;
+    font-family: 'Poor Story', cursive;
+}
+
+div.msg{
+    color : red;
+    display: none;
+}
+
+
+table.table{
+    margin: 10px 40px; 
+    width:600px;
+    border-collapse: collapse;   
+}
+
+table.table td, table.table th{
+    padding:10px;
+    border :1px solid #aaa;
+    background-color: floralwhite; 
+    
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+#edit_div{
+    width : 300px;
+    padding : 10px;
+    
+    border : 1px solid #aaa;
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 10px #aaa;
+    
+    position : absolute;
+    
+    top : 50px;
+    left : 150px;
+    
+    background-color :aliceblue;
+    
+    display:none;
+    
+}
+
+#edit_div>div.edit_for_header{
+    overflow: hidden;
+}
+
+#edit_div>div.edit_for_header>h2{
+    float:left;
+}
+
+#edit_div>div.edit_for_header>a{
+    float:right;
+}
+
+#editform{
+   margin : 5px; 
+}
+
+#editform>table{
+ width : 100%; 
+}
+
+#editform>table td{
+    padding:5px;
+    text-align: center;
+}
+
+#editform input[type="submit"]{
+    
+    background-color: cornflowerblue;
+    color: darkblue;
+    
+    padding: 10px;
+    
+    width:50%;
+    
+    font-size: 1.2em;
+    font-family: 'Poor Story', cursive;
+    font-weight: bold;
+    
+    border:1px solid darkblue;
+     
+}

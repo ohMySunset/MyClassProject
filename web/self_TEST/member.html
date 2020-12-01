@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Management system</title>
+    
+    
+    <link rel="stylesheet" href="default.css">
+    
+</head>
+
+    
+    
+    
+    
+<body>
+
+    
+    <!--타이틀 시작-->
+    <div>
+        <h1 class="header">Library Management System</h1>
+        <hr>
+    </div>
+    <!--타이틀 종료-->
+    
+    
+    
+    
+    <!-- 도서 등록 시작-->
+    <div>
+    <h2 class="title">도서 등록</h2> 
+  
+        <form class="regform" onsubmit="return">
+        <table>
+            <tr>
+            <td>
+              <label for="bookid">도서번호</label>
+              <input type="number" name="bookid" id="bookid" required>
+              <div class="msg">* 도서번호를 다시 확인해주세요.</div>
+            </td>      
+            <td>
+                <label for="bookname">도서명</label>
+                <input type="text" name="bookname" id="bookname" required>
+                 <div class="msg"> * 도서명은 필수입력 항목입니다.</div>
+            </td>
+            <td>
+                <label for="publis">출판사</label>
+                <input type="text" name="publis" id="publis" required>
+                 <div class="msg">* 출판사는 필수입력 항목입니다. </div>
+            </td>
+            <td>
+               <input type="submit" value="등록하기"> 
+            </td>    
+            </tr>
+            </table>
+    
+        </form>      
+    </div>
+    <!-- 도서 등록 시작-->
+    
+    
+    <div>
+    <h2 class="title">도서 리스트</h2>
+    
+    </div>
+    
+    
+</body>
+</html>
