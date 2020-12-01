@@ -9,23 +9,37 @@ url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap')
     
     background-color: floralwhite;
     
-
+    text-align: center;
     
 /*    background-size: 100%;
     background-repeat: no-repeat;
     
     position: static;
-    */
- 
+    */ 
 }
+
+
+.wrap:nth-child(1){
+    border : 5px solid black;
+}
+
+.wrap:nth-child(2){
+     border-top : 5px solid black;   
+}
+
 
 h1.header{
    font-size: 40px;
-   margin : 30px;
+   margin : 30px;    
 }
+
 
 h2.title{
     margin : 20px 30px;
+}
+
+.wrap{
+    width : 900px;
 }
 
 .regform{
@@ -34,7 +48,7 @@ h2.title{
 
 .regform>table{
   /*  border : 1px solid black;*/
-   width : 500px;     
+   width :850px;     
 }
 
 .regform>table input{
@@ -42,9 +56,9 @@ h2.title{
     width : 130px;
     height: 30px;
     
-    background-color: navajowhite;
+    background-color: #F5EC7D;
     
-    border-color: navajowhite;  
+    border-color: #F5EC7D;  
     border-radius: 10px;
 
 }
@@ -70,9 +84,42 @@ h2.title{
     font-weight: bold;
 }
     
-.regform>table div{
+.regform>table div.msg{
     color : crimson;
     font-size: 15px;
     text-align: center;
-    
+    display: none;    
 }   
+
+
+
+
+
+
+
+
+
+table.table{
+    width : 860px;
+    
+    margin : 30px;
+    
+    border-collapse: collapse;
+ 
+     border : 1px solid black ; 
+}
+
+.table th{
+
+    
+  padding : 13px;
+    
+  background-color: #F5EC7D;   
+}
+
+.table td{
+    
+   padding : 18px; 
+}
+
+
