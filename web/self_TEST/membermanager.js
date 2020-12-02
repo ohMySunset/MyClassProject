@@ -29,7 +29,7 @@ Books.prototype.makeHtml = function(index){
  bookHtml += '<th>' + this.bookid + '</th>';
  bookHtml += '<th>' + this.bookname + '</th>';
  bookHtml += '<th>' + this.publis + '</th>';
- bookHtml += '<th><a href="javascript:delbook('+index+');">수정/</a><a>삭제</a></th>'; 
+ bookHtml += '<th><a>수정/</a><a href="javascript:delbook('+index+');">삭제</a></th>'; 
  bookHtml += '</tr>';
     
  return bookHtml; 
@@ -124,7 +124,7 @@ function setlist(){
  tbody += '<td>' + booklist[i].bookid + '</td>';
  tbody += '<td>' + booklist[i].bookname + '</td>';
  tbody += '<td>' + booklist[i].publis + '</td>';
- tbody += '<td><a href="javascript:delbook('+i+');">수정/</a><a>삭제</a></td>';
+ tbody += '<td><a>수정/</a><a href="javascript:delbook('+i+');">삭제</a></td>';
  tbody += '</tr>';
     }
     

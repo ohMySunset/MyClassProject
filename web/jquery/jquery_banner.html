@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 이미지 처리</title>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    
+    
+    <style>
+        img{
+            width : 200px;
+            height : 200px;
+        }
+        
+        div{
+             width : 200px;
+            height : 200px;
+            
+            border : 2px solid #DDD;
+            
+           /* div 블럭 밖의 이미지는 보이지 않게 처리!*/
+            overflow: hidden;
+            
+        }
+    </style>
+    
+    
+    <script>
+    
+        $(document).ready(function(){
+                     
+            setInterval(function(){
+                
+                $('img').first().appendTo('div'); // 앞의 선택자를 뒤의 선택자 뒤쪽으로 이동
+                
+            },4000);
+            
+            
+          
+            
+            
+            
+            
+            
+            
+            
+        });
+    
+    
+    </script>
+    
+    
+    
+    
+</head>
+
+<body>
+    
+    
+    <div>
+    <img src="../CSS&HTML/images/%EB%9D%BC%EC%9D%B4%EC%96%B8.gif">
+    <img src="../CSS&HTML/images/%EB%9D%BC%EC%9D%B4%EC%96%B82.gif">
+    <img src="../CSS&HTML/images/%EB%9D%BC%EC%9D%B4%EC%96%B83.gif">
+    <img src="../CSS&HTML/images/%EB%9D%BC%EC%9D%B4%EC%96%B84.gif">
+    </div>
+    
+    
+    
+</body>
+</html>
