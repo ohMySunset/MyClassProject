@@ -4,80 +4,332 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Management system</title>
-    
-    
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="default.css">
-    
-    <script src="membermanager.js"></script>
-    
+
+    <!-- <script src="membermanager.js"></script>-->
+
+
+    <script>
+        window.onload = function() {
+            //  alert('외부 스크립트 파일에서 로드');  
+        }
+
+        //jQuery 시작    
+        $(document).ready(function() {
+
+            // 배열 생성
+            var booklist = [];
+
+            // 생성자 
+            function Books(id, name, pub) {
+                this.bookid = id;
+                this.bookname = name;
+                this.publis = pub;
+            };
+
+
+            // 프로토 타입의 메서드 -> html형식으로 만들어줌
+            Books.prototype.makeHtml = function(index) {
+
+                console.log(this.bookid + ' : ' + this.bookname + ' : ' + this.publis);
+
+                var bookHtml = '';
+                bookHtml += '<tr>';
+                bookHtml += '<th>' + index + '</th>';
+                bookHtml += '<th>' + this.bookid + '</th>';
+                bookHtml += '<th>' + this.bookname + '</th>';
+                bookHtml += '<th>' + this.publis + '</th>';
+                bookHtml += '<th><a>수정/</a><a href="javascript:delbook(' + index + ');">삭제</a></th>';
+                bookHtml += '</tr>';
+
+                return bookHtml;
+            }
+
+
+            // 유효성 검사
+            var check = true;
+
+            $('#bookid').keyup(function() {
+                if ($('#bookid').val() < 1) {
+                    $('#bookid+div.msg').css('display', 'block');
+                    $('#bookid').on('keyup', function() {
+                        $('#bookid+div.msg').css('display', 'none');
+                        return false;
+                    });
+                }
+            });
+
+
+            $('#bookname').keyup(function() {
+                if ($('#bookname').val() < 1) {
+                    $('#bookname+div.msg').css('display', 'block');
+                    $('#bookname').on('keyup', function() {
+                        $('#bookname+div.msg').css('display', 'none');
+                        return false;
+                    });
+                }
+            });
+
+            $('#publis').keyup(function() {
+                if ($('#publis').val() < 1) {
+                    $('#publis+div.msg').css('display', 'block');
+                    $('#publis').on('keyup', function() {
+                        $('#publis+div.msg').css('display', 'none');
+                        return false;
+                    });
+                }
+            });
+
+
+            // 정보 등록
+            // 등록 -> submit으로 처리 
+            $('.regform').submit(function() {
+
+                // 생성자 불러오기
+                var bookinput = new Books(bookid.value, bookname.value, publis.value);
+
+                bookinput.makeHtml();
+
+
+                // 등록 할건지 확인받기     
+                var chk = confirm('등록하시겠습니까?');
+
+                if (chk == false) {
+                    return false;
+                }
+
+                // 배열에 추가
+                booklist.push(bookinput);
+
+                console.log(' 입력한 정보 확인 :', bookinput); //데이터 확인
+
+                setlist();
+
+                return false;
+
+
+                // 배열을 재정렬       
+                function setlist() {
+
+                    if (chk) {
+
+                        console.log(chk);
+
+                        var b_list = $('.b_list');
+
+                        console.log(b_list);
+
+                        var tbody = '<tr>';
+                        tbody += '<th>No.</th>';
+                        tbody += '<th>도서번호</th>';
+                        tbody += '<th>도서명</th>';
+                        tbody += '<th>출판사</th>';
+                        tbody += '<th>관리</th>';
+                        tbody += '</tr>';
+
+                        //  for(var i=0; i<booklist.length;i++){
+
+                        console.log(booklist);
+
+                        $.each(booklist, function(index, item) {
+
+                            tbody += '<tr>';
+                            tbody += '<td>' + index + '</td>';
+                            tbody += '<td>' + item.bookid + '</td>';
+                            tbody += '<td>' + item.bookname + '</td>';
+                            tbody += '<td>' + item.publis + '</td>';
+                            tbody += '<td><button id="edit">수정/</button><button id="del">삭제</button></td>';
+                            tbody += '</tr>';
+
+                        });
+
+                        console.log(tbody);
+
+                        b_list.html(tbody);
+
+                    }
+
+
+                    // 삭제 처리
+                    $('#del').click(function(index) {
+
+                        var chk = confirm('정말 삭제하시겠습니까?');
+
+                        if (chk) {
+
+                            booklist.splice(index, 1);
+                        }
+                        alert('삭제되었습니다.');
+
+                        setlist();
+
+                    });
+
+
+                    //수정 처리
+
+
+                    $('#edit').click(function(index) {
+
+
+
+                    });
+
+
+                    function editmember(index) {
+
+                        console.log(members[index]);
+
+                        //수정 화면 casting
+                        var edit_div = document.querySelector('#edit_div');
+                        // 화면에서 감추기 (css에서도 처리)
+                        edit_div.style.display = 'block';
+
+                        //form안에 있는 input들을 캐스팅
+                        //id 
+                        var eid = document.querySelector('#editid');
+                        //name
+                        var ename = document.querySelector('#editname');
+                        //pw
+                        var epw = document.querySelector('#editpw');
+                        //repw
+                        var erepw = document.querySelector('#editrepw');
+                        //index
+                        var idx = document.querySelector('#index');
+
+                        idx.value = index;
+                        eid.value = members[index].userid;
+                        ename.value = members[index].username;
+                        epw.value = members[index].userpw;
+                        erepw.value = members[index].userpw;
+
+
+                    }
+
+
+                };
+
+
+
+
+
+
+
+
+            });
+
+
+
+        });
+    </script>
+
+
 </head>
 
-    
-    
-    
-    
+
+
+
+
 <body>
 
-    
+
     <!--타이틀 시작-->
-    <div class="wrap">
+    <div class="wrap_all">
         <h1 class="header">Library Management System</h1>
+
         <!--<input img src="books.png" id="imgs">-->
-    <!--타이틀 종료-->
-    
-    
-    
-    
-    <!-- 도서 등록 시작-->
-    <div class="wrap">
-    <h2 class="title">[도서 등록]</h2> 
-  
-        <form class="regform" onsubmit="return regbooks();">
-        <table>
-            <tr>
-            <td>
-              <label for="bookid">도서번호</label>
-              <input type="number" name="bookid" id="bookid" required>
-              <div class="msg">* 도서번호를 다시 확인해주세요.</div>
-            </td>      
-            <td>
-                <label for="bookname">도서명</label>
-                <input type="text" name="bookname" id="bookname" required>
-                 <div class="msg"> * 도서명은 필수입력 항목입니다.</div>
-            </td>
-            <td>
-                <label for="publis">출판사</label>
-                <input type="text" name="publis" id="publis" required>
-                 <div class="msg">* 출판사는 필수입력 항목입니다. </div>
-            </td>
-            <td>
-               <input type="submit" value="등록하기"> 
-            </td>    
-            </tr>
+        <!--타이틀 종료-->
+
+
+
+
+        <!-- 도서 등록 시작-->
+        <div class="content_wrap">
+            <h2 class="title">[도서 등록]</h2>
+
+            <form class="regform">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="bookid">도서번호</label>
+                            <input type="text" name="bookid" id="bookid" required>
+                            <div class="msg">* 도서번호를 다시 확인해주세요.</div>
+                        </td>
+                        <td>
+                            <label for="bookname">도서명</label>
+                            <input type="text" name="bookname" id="bookname" required>
+                            <div class="msg"> * 도서명은 필수입력 항목입니다.</div>
+                        </td>
+                        <td>
+                            <label for="publis">출판사</label>
+                            <input type="text" name="publis" id="publis" required>
+                            <div class="msg">* 출판사는 필수입력 항목입니다. </div>
+                        </td>
+                        <td>
+                            <input type="submit" value="등록하기" id="reg">
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+
+        <!-- 도서 등록 시작-->
+
+
+        <div class="wrap">
+            <h2 class="title">[도서 리스트]</h2>
+
+            <table class="table">
+                <tbody class="b_list">
+                    <tr>
+                        <th>No.</th>
+                        <th>도서번호</th>
+                        <th>도서명</th>
+                        <th>출판사</th>
+                        <th>관리</th>
+                    </tr>
+                </tbody>
             </table>
-    
-        </form>      
+        </div>
     </div>
-    <!-- 도서 등록 시작-->
-    
-    
-    <div class="wrap">
-    <h2 class="title">[도서 리스트]</h2>
-    
-        <table class="table">      
-            <tbody class="b_list">
-        <tr>
-            <th>No.</th>
-            <th>도서번호</th>
-            <th>도서명</th>
-            <th>출판사</th>
-            <th>관리</th>
-        </tr>
-         </tbody>
-        </table>
+
+
+    <div class="popup">
+        <form class="editform">
+            <table>
+                <tr>
+                    <td><h3>[데이터 수정]</h3></td>
+                    <td><input type="button" value="X" id="exit"></td>                
+                </tr>
+                <tr>
+                    <td>
+                        <label for="editid">도서번호
+                        <input type="text" name="editid" id="editid"></label>           
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="editname">도서명
+                        <input type="text" name="editname" id="editname"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="editpub">출판사
+                            <input type="text" name="editpub" id="editpub"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="수정" id="edit"></td>
+                </tr>
+            </table>
+        </form>
+
     </div>
-    
-    
-</body>
-    
-</html>
+
+
+</body></html>

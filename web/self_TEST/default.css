@@ -7,7 +7,7 @@ url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap')
     
     font-family: 'Nanum Gothic Coding', monospace;
     
-    background-color: floralwhite;
+    background-color: white;
     
     text-align: center;
     
@@ -19,36 +19,47 @@ url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap')
 }
 
 
-.wrap:nth-child(1){
+.wrap_all{
     border : 5px solid black;
+    border-radius: 20px;
+    
+    background-color : floralwhite;
 }
 
-.wrap:nth-child(2){
-     border-top : 5px solid black;   
+.content_wrap{
+    background-color : floralwhite;
 }
-
 
 h1.header{
    font-size: 40px;
-   margin : 30px;    
+   margin : 30px;   
+    
+  background-color : floralwhite;
 }
 
 
 h2.title{
     margin : 20px 30px;
+    background-color : floralwhite;
 }
 
 .wrap{
     width : 900px;
+    background-color : floralwhite;
 }
 
 .regform{
     margin : 10px 30px;
+    
+   background-color : floralwhite;
 }
 
 .regform>table{
   /*  border : 1px solid black;*/
-   width :850px;     
+   width :850px;   
+    
+   background-color : floralwhite;
+
 }
 
 .regform>table input{
@@ -82,6 +93,7 @@ h2.title{
 
 .regform>table td{
     font-weight: bold;
+    background-color : floralwhite;
 }
     
 .regform>table div.msg{
@@ -109,9 +121,7 @@ table.table{
      border : 1px solid black ; 
 }
 
-.table th{
-
-    
+.table th{   
   padding : 13px;
     
   background-color: #F5EC7D;   
@@ -120,6 +130,105 @@ table.table{
 .table td{
     
    padding : 18px; 
+}
+
+
+
+.popup{
+    
+    position: absolute;
+    
+    margin-top : -250px;
+    margin-left: 300px;
+    
+    display : block;
+    
+    overflow: hidden;
+    
+    border : 5px solid black;
+    border-radius: 20px;
+    
+    width : 300px;
+    height : 230px;
+    
+    padding : 15px;
+    
+    font-size: 16px;
+    
+    background-color: #ABCBEE;
+
+}
+
+
+.editform, table, tr, td, h3, .editform label{
+    background-color: #ABCBEE;
+}
+
+.editform h3{
+    font-size: 20px;
+  
+    margin-right: -50px;
+    line-height: 60px;        
+}
+
+
+.editform label{
+    font-size : 17px;
+    font-weight: bold;
+}
+
+#exit{
+    width : 25px;
+    height: 25px;
+    
+    background-color: #E2EBF8;
+    
+    border-radius: 5px;
+    border: 2px solid black;
+
+    font-weight: bold;
+    
+    float : right;
+    
+    margin-right: 20px;
+}
+
+
+
+
+.editform input[type="text"]{
+    border-radius: 10px;
+    
+    border : 1px solid black;
+    background-color:  ;
+    
+    width: 150px;
+    height : 22px;
+  
+    margin : 10px 15px;
+    margin-right: 20px;
+    margin-top : -1px;
+}
+
+#editid{
+    margin-left:-1px;
+}
+
+
+#edit{
+    width : 90px;
+    height: 40px;
+    
+    background-color: #E2EBF8;
+    
+    border-radius: 5px;
+    border: 2px solid black;
+
+    font-weight: bold;
+    font-size: 15px;
+     
+    margin-right: -10px;
+    margin-top : 20px;
 }
 
 

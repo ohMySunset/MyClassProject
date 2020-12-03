@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>★☆★☆★☆jQuery 이벤트 연결 범위 한정★☆★☆★☆ </title>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    
+    <style>
+    
+        h1{
+            border : 3px solid #AAA;
+        }
+        
+    </style>
+    
+    
+    <script>
+    
+  /*  $(document).ready(function(){
+        $('h1').click(function(){
+           
+           var length = $('h1').length; // h1이 여러개 생성될거기 때문에 
+           var html = $(this).html();
+            $('#wrap').append('<h1>'+length+'-'+html+'</h1>');
+        });*/
+        
+          $(document).ready(function(){
+        // 해당 범위에 새로운 엘리먼트가 추가되어도 이벤트 적용이 가능하도록 만들자!      
+        // ┌> 범위 한정 : 감싸고 있는 wrap영역 안에 있는 모든 h1에게 click이벤트를 적용한다.      
+        $('#wrap').on('click','h1',function(){
+           
+           var length = $('h1').length; // h1이 여러개 생성될거기 때문에 
+           var html = $(this).html();
+            $('#wrap').append('<h1>'+length+'-'+html+'</h1>');
+        });
+        
+              
+              
+              
+              
+        
+        
+    });
+        
+    </script>
+    
+    
+</head>
+
+<body>
+    
+    <div id="wrap">
+        <h1>Header</h1>
+    </div>
+    
+    
+</body>
+</html>
