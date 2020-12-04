@@ -155,14 +155,10 @@ table.table{
     
     font-size: 16px;
     
-    background-color: #ABCBEE;
+    
 
 }
 
-
-.editform, table, tr, td, h3, .editform label{
-    background-color: #ABCBEE;
-}
 
 .editform h3{
     font-size: 20px;
@@ -173,18 +169,18 @@ table.table{
 
 
 .editform label{
-    font-size : 17px;
+    font-size : 16px;
     font-weight: bold;
 }
 
 #exit{
     width : 25px;
     height: 25px;
-    
-    background-color: #E2EBF8;
+   
+    background-color: #F5EC7D;
     
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid ;
 
     font-weight: bold;
     
@@ -199,7 +195,7 @@ table.table{
 .editform input[type="text"]{
     border-radius: 10px;
     
-    border : 1px solid black;
+    border : 2px solid black;
     background-color:  ;
     
     width: 150px;
@@ -207,11 +203,10 @@ table.table{
   
     margin : 10px 15px;
     margin-right: 20px;
-    margin-top : -1px;
+    margin-top : -2px;
 }
-
 #editid{
-    margin-left:-1px;
+    margin-left:3px;
 }
 
 
@@ -219,7 +214,7 @@ table.table{
     width : 90px;
     height: 40px;
     
-    background-color: #E2EBF8;
+    background-color: #F5EC7D;
     
     border-radius: 5px;
     border: 2px solid black;
@@ -228,7 +223,14 @@ table.table{
     font-size: 15px;
      
     margin-right: -10px;
-    margin-top : 20px;
+    margin-top : 2px;
 }
 
 
+div.msg{
+    font-size: 13px;
+    font-weight: bold;
+    color :crimson;
+    
+    margin-top: -5px;
+}

@@ -141,7 +141,7 @@
                             tbody += '<td>' + item.bookid + '</td>';
                             tbody += '<td>' + item.bookname + '</td>';
                             tbody += '<td>' + item.publis + '</td>';
-                            tbody += '<td><button id="edit">수정/</button><button id="del">삭제</button></td>';
+                            tbody += '<td><button id="li_edit">수정/</button><button id="del">삭제</button></td>';
                             tbody += '</tr>';
 
                         });
@@ -172,7 +172,7 @@
                     //수정 처리
 
 
-                    $('#edit').click(function(index) {
+                    $('#li_edit').click(function(index) {
 
 
 
@@ -308,19 +308,22 @@
                 <tr>
                     <td>
                         <label for="editid">도서번호
-                        <input type="text" name="editid" id="editid"></label>           
+                        <input type="text" name="editid" id="editid"></label> 
+                        <div class="msg">* 도서번호를 다시 확인해주세요.</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="editname">도서명
                         <input type="text" name="editname" id="editname"></label>
+                        <div class="msg"> * 도서명은 필수입력 항목입니다.</div>                  
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="editpub">출판사
                             <input type="text" name="editpub" id="editpub"></label>
+                        <div class="msg">* 출판사는 필수입력 항목입니다. </div>
                     </td>
                 </tr>
                 <tr>
