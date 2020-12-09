@@ -218,6 +218,22 @@ function fnCalCount(type, ths) {
     }
 }
 
+
+/*
+var cart =[]
+
+
+
+function setCart(){
+    
+    
+    
+};
+
+*/
+
+
+
 /*카트에 담아둔 음식 삭제*/
 // 나중에 데이터 삭제 추가해줘야함
 
@@ -232,4 +248,8 @@ function removeCart() {
         removecart.innerHTML = removeHtml;
         
     }
+      
 };
+
+
+
