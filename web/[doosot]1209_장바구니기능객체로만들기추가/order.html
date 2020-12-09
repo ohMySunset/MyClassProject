@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -10,13 +10,11 @@
     <link rel="stylesheet" href="./css/default.css">
 
     <!--자바스크립트 불러오기-->
-    <script src="js/default.js"></script>
     <script src="data/menuinfo.js"></script>
+    <script src="js/default.js"></script>
 
     <!--제이쿼리 라이브러리 로드-->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-
-
 
 
     <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -30,94 +28,9 @@
     <script>
         $(document).ready(function() {
 
-            var addcnt1 = 1;
-            var addcnt2 = 1;
-            var addcnt3 = 1;
-            var addcnt4 = 1;
-            var addcnt5 = 1;
-            var addcnt6 = 1;
-
-
-
-            $('#addmenu1').click(function() {
-                if (addcnt1 % 2 != 0) {
-                    $('#addmenu1').css('border', '3px solid red');
-                } else {
-                    $('#addmenu1').css('border', '0px solid red');
-                }
-                addcnt1++;
-            });
-
-            $('#addmenu2').click(function() {
-                if (addcnt2 % 2 != 0) {
-                    $('#addmenu2').css('border', '3px solid red');
-                } else {
-                    $('#addmenu2').css('border', '0px solid red');
-                }
-                addcnt2++;
-            });
-
-            $('#addmenu3').click(function() {
-                if (addcnt3 % 2 != 0) {
-                    $('#addmenu3').css('border', '3px solid red');
-                } else {
-                    $('#addmenu3').css('border', '0px solid red');
-                }
-                addcnt3++;
-            });
-
-            $('#addmenu4').click(function() {
-                if (addcnt4 % 2 != 0) {
-                    $('#addmenu4').css('border', '3px solid red');
-                } else {
-                    $('#addmenu4').css('border', '0px solid red');
-                }
-                addcnt4++;
-            });
-
-            $('#addmenu5').click(function() {
-                if (addcnt5 % 2 != 0) {
-                    $('#addmenu5').css('border', '3px solid red');
-                } else {
-                    $('#addmenu5').css('border', '0px solid red');
-                }
-                addcnt5++;
-            });
-
-            $('#addmenu6').click(function() {
-                if (addcnt6 % 2 != 0) {
-                    $('#addmenu6').css('border', '3px solid red');
-                } else {
-                    $('#addmenu6').css('border', '0px solid red');
-                }
-                addcnt6++;
-            });
-
-
-            // 추가메뉴창 닫기
-            $('#addmenuClose').click(function() {
-                $('#menuinfo').css('display', 'none');
-
-                $('#addmenu1').css('border', '0px solid red');
-                $('#addmenu2').css('border', '0px solid red');
-                $('#addmenu3').css('border', '0px solid red');
-                $('#addmenu4').css('border', '0px solid red');
-                $('#addmenu5').css('border', '0px solid red');
-                $('#addmenu6').css('border', '0px solid red');
-
-                addcnt1 = 1;
-                addcnt2 = 1;
-                addcnt3 = 1;
-                addcnt4 = 1;
-                addcnt5 = 1;
-                addcnt6 = 1;                
-            });
-            
-          
-   
-            
 
         });
+
     </script>
 
 </head>
@@ -143,26 +56,29 @@
         <div class="orderback">
             <div class="orderbody">
 
-                <!--메뉴-->
+                <!--메뉴 START -->
                 <div class="menuselect">
 
-                    <button onclick="javascript:callsqlist();">사각도시락</button>
-                    <button onclick="javascript:callbowllist();">보울도시락</button>
-                    <button onclick="javascript:callsidelist();">실속반찬</button>
-                    <button onclick="javascript:callbvlist();">음료</button>
+                    <button onclick="javascript:menulist(0);">사각도시락</button>
+                    <button onclick="javascript:menulist(1);">보울도시락</button>
+                    <button onclick="javascript:menulist(2);">실속반찬</button>
+                    <button onclick="javascript:menulist(3);">음료</button>
                 </div>
+                <!--메뉴 END -->
 
-                <!--장바구니-->
+
+                <!-- 장바구니 START -->
                 <div class="cart">
                     <h1>선택내역</h1>
                     <hr class="cart_line_deco">
-                    <div class="cartlist">
+                    <div class="cartlist" id="cartlist">
+<!--
 
 
 
                         <table class="tg">
                             <form class="">
-                                <tbody id="addmenu_list">
+                                <tbody id="addmenu_tbody">
                                     <tr>
                                         <td rowspan="2"><img src="image/menu/square/1.jpg"></td>
                                         <td colspan="3">
@@ -198,12 +114,13 @@
                             </form>
                         </table>
                         <hr>
+-->
 
 
 
                     </div>
                     <div class="sum" id="sum">
-                        <p>25000원</p>
+                        <input type="text" name="sum_money" value="0" style="width:160px; height:50px;">원
                     </div>
 
                     <div class="paybutton">
@@ -212,35 +129,39 @@
                     </div>
 
                 </div>
+                <!-- 장바구니 END -->
 
-
-                <!--메뉴리스트-->
+                <!-- 메뉴리스트 START -->
                 <div class="menulist">
                     <div class="square" id="square"></div>
                     <div clsss="bowl" id="bowl">
-                        <h1>TEST</h1>
+                        <h1></h1>
                     </div>
                     <div class="side" id="side">
-                        <h1>TEST</h1>
+                        <h1></h1>
                     </div>
                     <div class="beverage" id="beverage">
-                        <h1>TEST</h1>
+                        <h1></h1>
                     </div>
                 </div>
+                <!-- 메뉴리스트 END -->
             </div>
         </div>
     </section>
 
 
-    <!-- 사이드 메뉴 선택착-->
+    <!-- 사이드 메뉴 선택창 START -->
     <div class="menuinfo" id="menuinfo">
         <div>
             <div class="addselectmenu">
+                <img id="view_img" class="view_img">
+  
                 <table>
-                    <tr style="text-align:center;">
-                        <td>
+                    <tr>
+                        <td style="width:55%; text-align:left;"><span id="menu_name"></span></td>
+                        <td style="width:35%; text-align:right;">
                             <input type="button" value="◀" onclick="fnCalCount('m', this);">
-                            <input type="text" name="pop_out" value="1" readonly="readonly" style="text-align:center;" />
+                            <input type="text" name="pop_out" value="1" readonly="readonly" style="text-align:center" />
                             <input type="button" value="▶" onclick="fnCalCount('p',this);">
                         </td>
                     </tr>
@@ -251,8 +172,7 @@
                 <input type="button" onclick="fnCalCount('m', this);" value="-">-->
             </div>
             <hr>
-            <div id="div_addmenu">
-                test</div>
+            <div id="div_addmenu"></div>
             <!--  <h2>밥 추가 변경</h2>
             <div class="addmenu" id="addmenu1">
                 <a1>밥</a1><br>
@@ -280,7 +200,7 @@
                 <a2>+ 500원</a2>
             </div>-->
             <div class="addmenubutton">
-                <input type="submit" value="선택완료">
+                <input type="button" value="선택완료" id="addmenuSubmit">
                 <input type="button" value="닫기" id="addmenuClose">
 
             </div>
@@ -288,16 +208,16 @@
         </div>
 
     </div>
+    <!-- 사이드 메뉴 선택착 END -->
 
-    <!--매장or테이크아웃여부-->
+    <!-- 매장or테이크아웃여부 START -->
     <div class="takeout" id="takeout">
         <input type="button" class="btn btn-warning" value="매장식사" onclick="javascript:takeout('no')"><br>
         <input type="button" class="btn btn-warning" value="포장하기" onclick="javascript:takeout('yes')">
     </div>
+    <!-- 매장or테이크아웃여부 END -->
 
-
-
-
+    <!-- FOOTER START -->
     <footer class="footer2">
         <p>
             <font color=#cf1126>❤</font> 남서아 | 서지민 | 양선경 | 이수진 | 진효선 | 최혜인 <font color=#cf1126>❤</font>
@@ -306,11 +226,13 @@
         <p>
 
     </footer>
+    <!-- FOOTER END -->
 
 
 
 
 
 
+</body>
 
-</body></html>
+</html>

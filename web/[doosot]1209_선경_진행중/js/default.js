@@ -188,13 +188,15 @@ function fnPopupProc() {
     
     var menudata = JSON.parse(itemList[nowTabNum]);
     
+    
+    
     // 배열 초기화
     popSelect.length = 0;
 
     // 선택완료 버튼 클릭
     $('#addmenuSubmit').click(function () {
 
-        menu = {};
+       var menu = {};
 
         menu.menuctgy = nowTabNum;
         menu.menuId = nowItemNum;
@@ -205,12 +207,17 @@ function fnPopupProc() {
         if (nowTabNum != 3) {
             
             for (var i = 0; i < 6; i++) {
+                var sidedata = JSON.parse(itemList[4]);
 
+               var topi = {};
+                
                 // 토핑 선택한 경우에만 데이터 저장
                 if (toppingList[i] == 1) {
-                   topping.push([menudata[i].name, menudata[i].price]);
-                }
-                menu.topping = topping;
+                     topi.selectTo([sidedata[i].name, sidedata[i].price]);
+                    menu.topping = topping;
+                } 
+                
+                
             }    
 
             

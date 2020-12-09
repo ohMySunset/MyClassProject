@@ -1,11 +1,19 @@
-// 카트 배열 이차원 배열로 만들었음, 작동은 하나 강사님한테 까임...ㅠㅜ
-
-
 var toppingList = [];
 var nowTabNum = 0; // 현재 선택된 탭번호
 var nowItemNum = 0; // 현재 선택된 메뉴번호
+var ChooseCnt = 0;
+// 카트 정보 저장할 함수
 var cartList = [];
-var chooseCnt = 0; // 선택완료를 누른 횟수
+
+function save_cartList(img, name, price, cnt, toppings) {
+    this.img = img;
+    this.name = name;
+    this.price = price;
+    this.cnt = cnt;
+    this.toppings = toppings;
+}
+
+
 
 window.onload = function () {
     // 메뉴 불러오기
@@ -14,9 +22,9 @@ window.onload = function () {
     // 팝업창 제어 프로세스
     fnPopupProc();
 
-
-    // 다른 부분 클릭 안되게 하기
+    //팝업외에다른곳클릭X;
     noClick();
+
 };
 
 
@@ -97,7 +105,6 @@ function getSidemenuItem(tabNum, itemNum) {
         div_side.innerHTML = '';
         $('#menuinfo').height("300px");
     }
-    
 };
 
 
@@ -117,9 +124,6 @@ function addmenuClose() {
     document.querySelector('#menuinfo').style.display = 'none'
     document.querySelector('#addmenu1').style.border = '0px';
 
-    // 클릭되게 하기
-    okClick();
-
 };
 
 // [팝업창] 추가메뉴창 열기
@@ -131,8 +135,7 @@ function addmenuOpen(tabNum, itemNum) {
     // 팝업창 노출 
     document.querySelector('#menuinfo').style.display = 'block';
 
-
-    // 다른 부분 클릭 안되게 하기
+    // 다른곳 클릭금지
     noClick();
 }
 
@@ -143,7 +146,7 @@ function takeout(takeout) {
     console.log(takeout);
     document.querySelector('#takeout').style.display = 'none';
 
-    // 클릭되게 하기
+    // 다른곳 클릭금지
     okClick();
 }
 
@@ -159,44 +162,6 @@ function fnCalCount(type, ths) {
         if (tCount > 1) $input.val(Number(tCount) - 1);
     }
 }
-
-
-
-
-/*카트에 담아둔 음식 삭제*/
-// 나중에 데이터 삭제 추가해줘야함
-
-function removeCart() {
-    var chk = confirm('모두 삭제하시겠습니까?');
-
-    if (chk) {
-        removeHtml = '';
-        var removecart = document.getElementById("addmenu_tbody");
-        removecart.innerHTML = removeHtml;
-        var removecart = document.getElementById("sum");
-        removecart.innerHTML = removeHtml;
-        
-        cartList.splice(0,cartList.length);
-        console.log(cartList);      
-    }
-};
-
-
-// 장바구니 배열의 데이터 삭제
-function delData(index) {
-
-    var delChk = confirm('삭제하시겠습니까?');
-
-    if (delChk) {
-        cartList[index].splice(index, 1);
-    }
-
-    /*setCart();*/
-    console.log('삭제 -->' + cartList);
-};
-
-
-
 
 
 
@@ -217,7 +182,6 @@ function fnEtcClick(tabNum, itemNum) {
 }
 
 
-
 // 팝업창 제어 프로세스
 function fnPopupProc() {
 
@@ -227,53 +191,62 @@ function fnPopupProc() {
     // 선택완료 버튼 클릭
     $('#addmenuSubmit').click(function () {
 
+        //사이드 메뉴 호출
+        var sidemenudata = JSON.parse(itemList[4])
 
-
-        // 클릭되게 하기
-        okClick();
-
-        // 메인 메뉴 
-        popSelect.push({
-            tabNum: nowTabNum,
-            itemNum: nowItemNum,
-            cnt: $("input[name='pop_out']").val()
-        });
+        // 메인 메뉴      >>>>>>> 생성자로 저장할거라 블럭처리함
+        /*        popSelect.push({
+                    tabNum: nowTabNum,
+                    itemNum: nowItemNum,
+                    cnt: $("input[name='pop_out']").val()
+                });*/
 
         // 음료수탭 제외 
+        if (nowTabNum != 3) {
 
+            for (var i = 0; i < 6; i++) {
 
-        for (var i = 0; i < 6; i++) {
+                // 토핑 선택한 경우에만 데이터 저장
+                if (toppingList[i] == 1) {
+                    popSelect.push({
+                        sidename: sidemenudata[i].name,
+                        sideprice: sidemenudata[i].price
+                    });
+                }
 
-            // 토핑 선택한 경우에만 데이터 저장
-            if (toppingList[i] == 1) {
-                popSelect.push({
-                    tabNum: 4,
-                    itemNum: i,
-                    cnt: 1
-                });
-            } else {
-                popSelect.push({
-                    tabNum: 4,
-                    itemNum: i,
-                    cnt: 0
-                });
             }
-
         }
 
 
-        console.log(popSelect);
+        // 고른 도시락 종류[사각/보울..등등]에 맞는 아이템리스트 호출
+        var menudata = JSON.parse(itemList[nowTabNum]);
 
-        // cartList에 지금 선택한 메뉴를 넣어줌
-        cartList[chooseCnt] = popSelect;
-        // 선택횟수 ++;
-        chooseCnt++;
-        // 배열비워줌
+
+        // 변수에 넣어줌
+        var img = menudata[nowItemNum].src;
+        var name = menudata[nowItemNum].name;
+        var price = menudata[nowItemNum].price;
+        var cnt = $("input[name='pop_out']").val();
+        var toppings = popSelect;
+
+
+        // 생성자에 넣어줌
+        var list = new save_cartList(img, name, price, cnt, toppings);
+
+        //확인용 콘솔출력
+        console.log(img + ':' + name + ':' + price + ':' + cnt + ':' + toppings)
+
+        // 카트리스트 배열에 넣어줌
+        cartList.push(list);
+        
+
+        //확인용 콘솔출력
+        console.log(cartList)
+
+        // 토핑담는 용도로 전락한 popSelect는 초기화해준다.
         popSelect = [];
 
 
-        // !!-------확인용 나중에 지울 것-----!!
-        show_cart();
 
         $('#menuinfo').css('display', 'none');
 
@@ -282,11 +255,15 @@ function fnPopupProc() {
             toppingList[i] = 0;
         }
 
-        setCart();
+        // 장바구니 출력해주기
+        show_cartList();
         
+        showSum();
+
+        // 클릭되게하기
+        okClick();
+
     });
-
-
 
     // 추가메뉴창 닫기
     $('#addmenuClose').click(function () {
@@ -297,12 +274,7 @@ function fnPopupProc() {
             toppingList[i] = 0;
         }
 
-
-        // 클릭되게 하기
-        okClick();
-
     });
-
 }
 
 
@@ -329,137 +301,133 @@ function okClick() {
 
 
 
-/* 장바구니에 리스트업 메서드*/
-function setCart (popselect){
-    
-     var addmenu_tbody = document.querySelector('#addmenu_tbody');
-   
-      console.log(addmenu_tbody);
-      
-        var tbody = '';
-      
-    for(var i=0;i<cartList.length;i++){
-        
-        var menudata = JSON.parse(itemList[cartList[i][0].tabNum]); 
-        
-        //토핑이 아니고 메뉴일 때만 출력
-    // if(popSelect[i].tabNum !=4){  s
-        
-        tbody +='<td rowspan="2"><img src="'+menudata[cartList[i][0].itemNum].src+'"></td>';
-        tbody +='<td colspan="3"><a1>'+menudata[cartList[i][0].itemNum].name+'</a1></td>';
-        tbody +='</tr>';
-        tbody +='<tr class="trline">';
-        tbody +='<td><a2>'+menudata[cartList[i][0].itemNum].price+'</a2></td>';
-        tbody +='<td>';
-        tbody +='<input type="button" value="◀" onclick="cartCount("m", this);">';
-        tbody +='<input type="text" value="'+cartList[i][0].cnt+'" name="cartCnt" class="cartText" style="width:20px;">';
-         console.log(cartList[i][0].cnt);
-        tbody +='<input type="button" value="▶" onclick="cartCount("p", this);">';
-        tbody +='</td>';
-        tbody +='<td><input type="button" class="cancel" value="삭제" onclick="javascript:delData('+i+');"></td>';
-        tbody +='</tr>';
-     
-        var sidedata = JSON.parse(itemList[4]);
-        
-      for(var j=1; j<7; j++){
-       if (cartList[i][j].cnt != 0) {
-        tbody +='<tr>';
-        tbody +='<td class="sidemenu_show" colspan="4">';
-        tbody +='<ul>';         
-        tbody +='<li>';  
-        tbody +='<a1>'+sidedata[cartList[i][j].itemNum].name+'</a1>';
-        tbody +='<a1>'+sidedata[cartList[i][j].itemNum].price+'</a1>';
-        tbody +='</li>';
-        tbody +='</ul>';
-        tbody +='</td>';
-        tbody +='</tr>';  
-            }
-      }
-        
-    }
-        console.log(tbody);
-        addmenu_tbody.innerHTML = tbody;
-    
-    console.log(cartList);
-       
-};
+// 장바구니에 리스트 출력
+function show_cartList() {
 
-
-
-
-
-
-
-function show_cart(popSelect) {
-    console.log('배열은');
-    console.log(cartList);
-    console.log(cartList[0][0].tabNum); // 메뉴의 종류
-    console.log(cartList[0][0].itemNum); // 메뉴찾기
-    console.log(cartList[0][0].cnt); // 메뉴 갯수
-
-    // 메뉴의 종류 : itemList[cartList[0][0].tabNum
-    // var menudata = JSON.parse(itemList[cartList[0][0].tabNum]);
-    var sidedata = JSON.parse(itemList[4]);
-
-    // 메뉴의 이름 : menudata[cartList[0][0].itemNum].name
-    // console.log(menudata[cartList[0][0].itemNum].name);
-    // 메뉴의 가격 : menudata[cartList[0][0].itemNum].price
-    // console.log(menudata[cartList[0][0].itemNum].price);
-    // 메뉴 갯수 :
-    // console.log(cartList[0][0].cnt);
-    // 메뉴 사진 :
-    // console.log(menudata[cartList[0][0].itemNum].src);
-
+    var carthtml = '';
 
     for (var i = 0; i < cartList.length; i++) {
+        carthtml += '<table class="tg">';
+        carthtml += '<form class=""><tbody id="addmenu_tbody"><tr>';
+        carthtml += '<td rowspan="2"><img src="'
+        carthtml += cartList[i].img;
+        carthtml += '"></td><td colspan="3"><a1>';
+        carthtml += cartList[i].name;
+        carthtml += '</a1></td></tr>';
+        carthtml += '<tr class="trline"><td><a2>'
+        carthtml += cartList[i].price;
+    //    carthtml += '</a2></td><td><a3>X';
+    //    carthtml += cartList[i].cnt;
+        carthtml += '</a3></td>';         
+        carthtml += '<td><div>';
+        carthtml += '<input type="button" id="minus" value="◀" onclick="cartCount("m", this);">';
+        carthtml += '<input type="text" value="'+cartList[i].cnt+'" name="cartCnt" style="width:20px;">';
+                    console.log(cartList[i].cnt);
+        carthtml += '<input type="button" id="plus" value="▶" onclick="cartCount("p", this);">';
+        carthtml += '</div></td>';
+        carthtml += '</tr><tr>';
+        carthtml += '<td><input type="button" class="cancle" id="delete" value="삭제" onclick="javascript:delete_cartmenu(' + i + ');"></td></tr>';
+        carthtml += '<tr><td class="sidemenu_show" colspan="4">';
+        carthtml += '<ul>'
 
-        var menudata = JSON.parse(itemList[cartList[i][0].tabNum]);
-
-        console.log('-------' + i + '번째 메뉴시작---------');
-        console.log(menudata[cartList[i][0].itemNum].name);
-        console.log(menudata[cartList[i][0].itemNum].src);
-        console.log(menudata[cartList[i][0].itemNum].price);
-        console.log(cartList[i][0].cnt);
-
-
-        for (var j = 1; j < 7; j++) {
-            if (cartList[i][j].cnt != 0) {
-                console.log(sidedata[cartList[i][j].itemNum].name);
-                console.log(sidedata[cartList[i][j].itemNum].price);
-
-            }
+        for (var j = 0; j < cartList[i].toppings.length; j++) {
+            carthtml += '<li><a1>'
+            carthtml += cartList[i].toppings[j].sidename;
+            carthtml += '</a1><a2>'
+            carthtml += cartList[i].toppings[j].sideprice;
+            carthtml += '</a2></li>'
         }
+        carthtml += '</ul></td></tr></tbody></form></table><hr>'
 
-
-        console.log('----------메뉴하나끝----------');
     }
 
+
+    console.log(carthtml);
+
+    var ct = document.querySelector('.cartlist');
+    ct.innerHTML = carthtml;
+    
 }
 
 
 
+/*카트에 담아둔 음식 삭제*/
+function removeCart() {
+    var chk = confirm('모두 삭제하시겠습니까?');
 
-//장바구니 창 음식 수량 선택
-/*$('.warp').on('click' ,'#m', function(){
-    console.log('버튼 작동');
+    if (chk) {
+        removeHtml = '';
+        var removecart = document.getElementById("addmenu_tbody");
+        removecart.innerHTML = removeHtml;
+        var removecart = document.getElementById("sum");
+        removecart.innerHTML = removeHtml;
+        
+        // 카트에 저장된 데이터 모두 삭제
+        cartList.splice(0,cartList.length);
+        
+        // 다시 카트 리스트 출력
+        show_cartList();
+        
+        console.log(cartList);
+
+    }
+};
+
+
+/* 카트에서 원하는 메뉴 인덱스만 삭제*/
+function delete_cartmenu(index) {
+
+    var chk = confirm('선택하신 메뉴를 삭제하시겠습니까?');
+
+    if (chk) {
+        cartList.splice(index, 1);
+        alert('삭제완료!');
+        
+        show_cartList();
+        
+        showSum();
+    }
+
+
+}
+
+ /*가격의 총합계를 구하는 메서드*/
+function showSum(){ 
     
-    var minus = $(this).parents("td").find('input[name="cartCnt"]');
-
+    var totalSum = Number($('input[name="sum_money"]').val());
     
-})*/
+    // 합계 초기화
+    totalSum = 0;
+    
+    // 메뉴의 가격합계
+    for(var i=0;i<cartList.length;i++){
+         totalSum += parseInt(String(cartList[i].price).replace(",","")); 
+         console.log(totalSum);
+        // 토핑의 가격합계
+          for (var j = 0; j < cartList[i].toppings.length; j++) {
+          totalSum += parseInt(String(cartList[i].toppings[j].sideprice).replace(",",""));
+       }
+    }
+        console.log(totalSum);
+    
+    $('input[name="sum_money"]').val(totalSum);
+       
+    console.log(sum);
+        
+}
 
 
-
-
-/*
-function fnCalCount(type, ths) {
-    var $input = $(ths).parents("td").find("input[name='pop_out']");
+function cartCount(type,ths){
+    var $input = $(ths).parents("td").find('input[name="cartCnt"]');
     var tCount = Number($input.val());
-
     if (type == 'p') {
         $input.val(Number(tCount) + 1);
 
     } else {
         if (tCount > 1) $input.val(Number(tCount) - 1);
     }
-}*/
+}
+
+
+
+
