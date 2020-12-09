@@ -11,7 +11,7 @@
 
     <!--자바스크립트 불러오기-->
     <script src="data/menuinfo.js"></script>
-    <script src="js/default.js"></script>
+    <script src="js/default_d.js"></script>
 
     <!--제이쿼리 라이브러리 로드-->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
@@ -78,10 +78,10 @@
                         <table class="tg">
                             <form class="cartform">
                                 <tbody id="addmenu_tbody">
-                                    <tr>
+                                   <!-- <tr>
                                         <td rowspan="2"><img src="image/menu/square/1.jpg"></td>
                                         <td colspan="3">
-             <!--                               <a1>생선까스도련님고기고기</a1>
+                                            <a1>생선까스도련님고기고기</a1>
                                         </td>
                                     </tr>
                                     <tr class="trline">
@@ -101,10 +101,6 @@
                                                 <li>
                                                     <a1>현미밥</a1>
                                                     <a2>1,500원</a2>
-                                                </li>
-                                                <li>
-                                                    <a1>스팸</a1>
-                                                    <a2>2,000원</a2>
                                                 </li>
                                             </ul>
                                         </td>
@@ -159,7 +155,7 @@
                         <td style="width:55%; text-align:left;"><span id="menu_name"></span></td>
                         <td style="width:35%; text-align:right;">
                             <input type="button" value="◀" onclick="fnCalCount('m', this);">
-                            <input type="text" name="pop_out" value="1" id="pop_out" readonly="readonly" style="text-align:center" />
+                            <input type="text" name="pop_out" value="1" id="pop_out" readonly="readonly" style="text-align:center">
                             <input type="button" value="▶" onclick="fnCalCount('p',this);">
                         </td>
                     </tr>

@@ -20,3 +20,5 @@ var itemList =
 // 팝업 선택 내역 
 // popSelect = [탭번호, 음식번호, 갯수]
 var popSelect = [];
+
+var top ='[{"index":"1","src":null,"name":"밥","price" : "1,000원"},{"index":"2","src":null,"name":"현미밥","price" : "1,500원"},{"index":"3","src":null,"name":"잡곡밥","price" : "2,000원"},{"index":"4","src":null,"name":"스팸","price" : "2,000원"},{"index":"5","src":null,"name":"계란후라이","price" : "1,000원"},{"index":"6","src":null,"name":"청양고추","price" : "500원"}]';
