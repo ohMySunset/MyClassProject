@@ -72,59 +72,15 @@
                     <h1>선택내역</h1>
                     <hr class="cart_line_deco">
                     <div class="cartlist" id="cartlist">
-<!--
-
-
-
-                        <table class="tg">
-                            <form class="">
-                                <tbody id="addmenu_tbody">
-                                    <tr>
-                                        <td rowspan="2"><img src="image/menu/square/1.jpg"></td>
-                                        <td colspan="3">
-                                            <a1>생선까스도련님고기고기</a1>
-                                        </td>
-                                    </tr>
-                                    <tr class="trline">
-                                        <td>
-                                            <a2>5,500원</a2>
-                                        </td>
-                                        <td>
-                                            <a3>X 4</a3>
-                                        </td>
-                                        <td>
-                                            <input type="button" class="cancel" value="삭제">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="sidemenu_show" colspan="4">
-                                            <ul>
-                                                <li>
-                                                    <a1>현미밥</a1>
-                                                    <a2>1,500원</a2>
-                                                </li>
-                                                <li>
-                                                    <a1>스팸</a1>
-                                                    <a2>2,000원</a2>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </form>
-                        </table>
-                        <hr>
--->
-
 
 
                     </div>
                     <div class="sum" id="sum">
-                        <input type="text" name="sum_money" value="0" style="width:160px; height:50px;">원
+                            <!--합계출력-->
                     </div>
 
                     <div class="paybutton">
-                        <input type="submit" class="btn btn-warning" value="결제">
+                        <input type="submit" class="btn btn-warning" value="결제" onclick="payClick()"> <!--결제창띄우기--> 
                         <input type="button" class="btn btn-warning" value="취소" onclick="removeCart()">
                     </div>
 
@@ -161,44 +117,14 @@
                         <td style="width:55%; text-align:left;"><span id="menu_name"></span></td>
                         <td style="width:35%; text-align:right;">
                             <input type="button" value="◀" onclick="fnCalCount('m', this);">
-                            <input type="text" name="pop_out" value="1" readonly="readonly" style="text-align:center" />
+                            <input type="text" name="pop_out" value="1" readonly="readonly" style="text-align:center">
                             <input type="button" value="▶" onclick="fnCalCount('p',this);">
                         </td>
                     </tr>
                 </table>
-
-                <!--                <input type="button" onclick="fnCalCount('p',this);" value="+">
-                <input type="text" name="pop_out" value="0" readonly="readonly">
-                <input type="button" onclick="fnCalCount('m', this);" value="-">-->
             </div>
             <hr>
             <div id="div_addmenu"></div>
-            <!--  <h2>밥 추가 변경</h2>
-            <div class="addmenu" id="addmenu1">
-                <a1>밥</a1><br>
-                <a2>+ 1,000원</a2>
-            </div>
-            <div class="addmenu" id="addmenu2">
-                <a1>현미밥</a1><br>
-                <a2>+ 1,500원</a2>
-            </div>
-            <div class="addmenu" id="addmenu3">
-                <a1>잡곡밥</a1><br>
-                <a2>+ 2,000원</a2>
-            </div>
-            <h2>토핑 추가</h2>
-            <div class="addmenu" id="addmenu4">
-                <a1>스팸</a1><br>
-                <a2>+ 2,000원</a2>
-            </div>
-            <div class="addmenu" id="addmenu5">
-                <a1>계란후라이</a1><br>
-                <a2>+ 1,000원</a2>
-            </div>
-            <div class="addmenu" id="addmenu6">
-                <a1>청양고추</a1><br>
-                <a2>+ 500원</a2>
-            </div>-->
             <div class="addmenubutton">
                 <input type="button" value="선택완료" id="addmenuSubmit">
                 <input type="button" value="닫기" id="addmenuClose">
@@ -216,13 +142,79 @@
         <input type="button" class="btn btn-warning" value="포장하기" onclick="javascript:takeout('yes')">
     </div>
     <!-- 매장or테이크아웃여부 END -->
+    
+    
+     <!--결제수단선택창 만들기-->
+        <div class="payment" id="paystart">
+            <div>
+                <table class="ptab">
+                    <tr>
+                        <h2 class="title">결제수단 선택</h2>
+                        <hr align="center" width:95>
+                    </tr>
+                    <tbody class="tab">
+                        <tr>
+                            <td><img src="image/pay/cash.png" width="100" height="100" onclick="choosePay(0)"></td>
+                            <td><img src="image/pay/card.png" width="100" height="100" onclick="choosePay(1)"></td>
+                            <td><img src="image/pay/sam.png" width="100" height="100" onclick="choosePay(2)"></td>
+                        </tr>
+                        <tr align="center">
+                            <td>현금</td>
+                            <td>카드</td>
+                            <td>삼성페이</td>
+                        </tr>
+                        <tr>
+                            <td><img src="image/pay/kakao.png" width="100" height="100" onclick="choosePay(3)">
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>카카오페이</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <!--결제수단선택창 종료-->
+
+    <!--세부선택창-->
+    <div class="payment" id="paychoice">
+    </div>
+    <!--세부선택창 종료-->
+
+    <!--결제실패창 시작-->
+    <div class="payment" id="payfail">
+        <table class="ptab2">
+            <tr>
+                <h2 class="title">결제</h2>
+                <hr align="center" width:95>
+            </tr>
+            <tbody class="tab2">
+                <tr>
+                    <td align="center"><img src="image/pay/cry.png" width="180" height="180"></td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        결제에 실패했습니다.<br>다시 시도해 주세요.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--결제실패창 닫기-->
+    
+    <!--영수증 시작-->
+    <div class="payment" id="receipt">
+</div>
+    <!--영수증 종료-->
+
+    
 
     <!-- FOOTER START -->
     <footer class="footer2">
         <p>
             <font color=#cf1126>❤</font> 남서아 | 서지민 | 양선경 | 이수진 | 진효선 | 최혜인 <font color=#cf1126>❤</font>
         </p>
-        <p>@TEAM DOOSOT DOSIRAK
+        <p>@TEAM HANSOT DOSIRAK
         <p>
 
     </footer>

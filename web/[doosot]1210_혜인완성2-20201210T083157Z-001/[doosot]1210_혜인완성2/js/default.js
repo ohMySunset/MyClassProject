@@ -4,6 +4,7 @@ var nowItemNum = 0; // 현재 선택된 메뉴번호
 var ChooseCnt = 0;
 // 카트 정보 저장할 함수
 var cartList = [];
+var paySum = 0;
 
 function save_cartList(img, name, price, cnt, toppings) {
     this.img = img;
@@ -59,23 +60,18 @@ function getItem() {
 };
 
 /* [팝업창] 사이드 메뉴 불러오기 메서드 */
-function getSidemenuItem(tabNum, itemNum) {
+function getSidemenuItem() {
 
-
-    var menudata = JSON.parse(itemList[tabNum]);
-
-    // 현재 선택된 내역 저장 
-    nowTabNum = tabNum;
-    nowItemNum = itemNum;
+    var menudata = JSON.parse(itemList[nowTabNum]);
 
     // 메뉴명, 이미지 넣기        
-    $('#menu_name').text(menudata[itemNum].name);
-    $("#view_img").attr("src", menudata[itemNum].src);
+    $('#menu_name').text(menudata[nowItemNum].name);
+    $("#view_img").attr("src", menudata[nowItemNum].src);
     // 음식 개수 1로 재셋팅
     $("input[name='pop_out']").val(1);
 
     // 토핑 데이터 가져오기(음료수 탭만 제외 )
-    if (tabNum != 3) {
+    if (nowTabNum != 3) {
         var tabNum = 4;
         var menudata = JSON.parse(itemList[tabNum]);
 
@@ -129,8 +125,12 @@ function addmenuClose() {
 // [팝업창] 추가메뉴창 열기
 function addmenuOpen(tabNum, itemNum) {
 
+    // 현재 선택된 내역 저장 
+    nowTabNum = tabNum;
+    nowItemNum = itemNum;
+
     // 팝업창 셋팅
-    getSidemenuItem(tabNum, itemNum);
+    getSidemenuItem();
 
     // 팝업창 노출 
     document.querySelector('#menuinfo').style.display = 'block';
@@ -233,12 +233,13 @@ function fnPopupProc() {
         // 생성자에 넣어줌
         var list = new save_cartList(img, name, price, cnt, toppings);
 
+
         //확인용 콘솔출력
         console.log(img + ':' + name + ':' + price + ':' + cnt + ':' + toppings)
 
         // 카트리스트 배열에 넣어줌
         cartList.push(list);
-        
+
 
         //확인용 콘솔출력
         console.log(cartList)
@@ -257,8 +258,8 @@ function fnPopupProc() {
 
         // 장바구니 출력해주기
         show_cartList();
-        
-        showSum();
+
+        //showSum();
 
         // 클릭되게하기
         okClick();
@@ -273,6 +274,9 @@ function fnPopupProc() {
             $('#addmenu' + i).css('border', '0px solid red');
             toppingList[i] = 0;
         }
+
+        // 클릭되게하기
+        okClick();
 
     });
 }
@@ -300,7 +304,6 @@ function okClick() {
 }
 
 
-
 // 장바구니에 리스트 출력
 function show_cartList() {
 
@@ -311,33 +314,39 @@ function show_cartList() {
         carthtml += '<form class=""><tbody id="addmenu_tbody"><tr>';
         carthtml += '<td rowspan="2"><img src="'
         carthtml += cartList[i].img;
-        carthtml += '"></td><td colspan="3"><a1>';
+        carthtml += '"></td><td colspan="5"><a1>';
         carthtml += cartList[i].name;
         carthtml += '</a1></td></tr>';
         carthtml += '<tr class="trline"><td><a2>'
         carthtml += cartList[i].price;
-    //    carthtml += '</a2></td><td><a3>X';
-    //    carthtml += cartList[i].cnt;
-        carthtml += '</a3></td>';         
-        carthtml += '<td><div>';
-        carthtml += '<input type="button" id="minus" value="◀" onclick="cartCount("m", this);">';
-        carthtml += '<input type="text" value="'+cartList[i].cnt+'" name="cartCnt" style="width:20px;">';
-                    console.log(cartList[i].cnt);
-        carthtml += '<input type="button" id="plus" value="▶" onclick="cartCount("p", this);">';
-        carthtml += '</div></td>';
-        carthtml += '</tr><tr>';
-        carthtml += '<td><input type="button" class="cancle" id="delete" value="삭제" onclick="javascript:delete_cartmenu(' + i + ');"></td></tr>';
+        //    carthtml += '</a2></td><td><a3>X';
+        //    carthtml += cartList[i].cnt;
+        carthtml += '</a3></td>';
+        carthtml += '</tr>';
         carthtml += '<tr><td class="sidemenu_show" colspan="4">';
         carthtml += '<ul>'
 
         for (var j = 0; j < cartList[i].toppings.length; j++) {
             carthtml += '<li><a1>'
-            carthtml += cartList[i].toppings[j].sidename;
+            carthtml += '└> ' + cartList[i].toppings[j].sidename;
             carthtml += '</a1><a2>'
             carthtml += cartList[i].toppings[j].sideprice;
             carthtml += '</a2></li>'
+
+
         }
-        carthtml += '</ul></td></tr></tbody></form></table><hr>'
+
+
+
+        carthtml += '</ul></td></tr>'
+        carthtml += '<td colspan="3" class="tdcol3">';
+        carthtml += '<input type="button" id="minus" value="-" onclick="cartCount(\'m\',this,' + i + ');">';
+        carthtml += '<input type="text" value="' + cartList[i].cnt + '" name="cartCnt" readonly="readonly" style="text-align:center" style="width:20px">';
+        console.log(cartList[i].cnt);
+        carthtml += '<input type="button" id="plus" value="+" onclick="cartCount(\'p\',this,' + i + ');">';
+        carthtml += '</td>';
+        carthtml += '<td><input type="button" class="btn btn-warning" id="delete" value="삭제" onclick="delete_cartmenu(' + i + '); "></td>';
+        carthtml += '</tbody></form></table><hr>'
 
     }
 
@@ -346,79 +355,89 @@ function show_cartList() {
 
     var ct = document.querySelector('.cartlist');
     ct.innerHTML = carthtml;
-    
+
+
+    showSum();
 }
+
 
 
 
 /*카트에 담아둔 음식 삭제*/
 function removeCart() {
-    var chk = confirm('모두 삭제하시겠습니까?');
 
-    if (chk) {
-        removeHtml = '';
-        var removecart = document.getElementById("addmenu_tbody");
-        removecart.innerHTML = removeHtml;
-        var removecart = document.getElementById("sum");
-        removecart.innerHTML = removeHtml;
-        
-        // 카트에 저장된 데이터 모두 삭제
-        cartList.splice(0,cartList.length);
-        
-        // 다시 카트 리스트 출력
-        show_cartList();
-        
-        console.log(cartList);
+    removeHtml = '';
+    var removecart = document.getElementById("addmenu_tbody");
+    removecart.innerHTML = removeHtml;
+    var removecart = document.getElementById("sum");
+    removecart.innerHTML = removeHtml;
 
-    }
+    // 카트에 저장된 데이터 모두 삭제
+    cartList.splice(0, cartList.length);
+
+    // 다시 카트 리스트 출력
+    show_cartList();
+
+    console.log(cartList);
+
 };
 
 
 /* 카트에서 원하는 메뉴 인덱스만 삭제*/
 function delete_cartmenu(index) {
 
-    var chk = confirm('선택하신 메뉴를 삭제하시겠습니까?');
+    cartList.splice(index, 1);
 
-    if (chk) {
-        cartList.splice(index, 1);
-        alert('삭제완료!');
-        
-        show_cartList();
-        
-        showSum();
-    }
+    show_cartList();
 
+    showSum();
 
 }
 
- /*가격의 총합계를 구하는 메서드*/
-function showSum(){ 
-    
+/*가격의 총합계를 구하는 메서드*/
+function showSum() {
+
     var totalSum = Number($('input[name="sum_money"]').val());
-    
+
     // 합계 초기화
     totalSum = 0;
-    
+
     // 메뉴의 가격합계
-    for(var i=0;i<cartList.length;i++){
-         totalSum += parseInt(String(cartList[i].price).replace(",","")); 
-         console.log(totalSum);
-        // 토핑의 가격합계
-          for (var j = 0; j < cartList[i].toppings.length; j++) {
-          totalSum += parseInt(String(cartList[i].toppings[j].sideprice).replace(",",""));
-       }
-    }
+    for (var i = 0; i < cartList.length; i++) {
+        console.log(cartList[i].cnt);
+        totalSum += parseInt(String(cartList[i].price).replace(",", "")) * (cartList[i].cnt);
         console.log(totalSum);
-    
+        // 토핑의 가격합계
+        for (var j = 0; j < cartList[i].toppings.length; j++) {
+            totalSum += parseInt(String(cartList[i].toppings[j].sideprice).replace(",", "")) * (cartList[i].cnt);
+        }
+    }
+    console.log(totalSum);
+
     $('input[name="sum_money"]').val(totalSum);
-       
+
     console.log(sum);
-        
+
+    var sumhtml = '';
+
+    sumhtml += '<p>';
+    sumhtml += totalSum + '원';
+    sumhtml += '</p>';
+
+    var div_sum = document.querySelector('.sum');
+    div_sum.innerHTML = sumhtml;
+
+    paySum = totalSum;
+
+
 }
 
 
-function cartCount(type,ths){
+
+
+function cartCount(type, ths, i) {
     var $input = $(ths).parents("td").find('input[name="cartCnt"]');
+    console.log($input);
     var tCount = Number($input.val());
     if (type == 'p') {
         $input.val(Number(tCount) + 1);
@@ -426,8 +445,109 @@ function cartCount(type,ths){
     } else {
         if (tCount > 1) $input.val(Number(tCount) - 1);
     }
+
+    cartList[i].cnt = $input.val();
+
+    show_cartList();
+
+    console.log(cartList[i].cnt);
+}
+
+
+// 결제창팝업
+
+function payClick() {
+    document.querySelector('#paystart').style.display = 'block';
+    document.querySelector('.payment').style.display = 'block';
 }
 
 
 
+// 결제수단 고르기
+function choosePay(index) {
 
+    document.querySelector('#paystart').style.display = 'none';
+
+
+    var payData = JSON.parse(payArr);
+    var payHtml = '';
+
+    console.log(payData[index]);
+
+    // 결제세부창 띄우기
+    document.querySelector('.payment').style.display = 'block';
+    payHtml += '<div><table class="ptab2">';
+    payHtml += '<tr><h2 class="title">결제</h2>';
+    payHtml += '<hr align="center" style="width:95">';
+    payHtml += '</tr>';
+    payHtml += '<tbody class="tab2"><tr>';
+    payHtml += '<td align="center"><img src="'
+    payHtml += payData[index].img;
+    payHtml += '" width="180" height="180"></td>';
+    payHtml += ' </tr><tr align="center"><td>';
+    payHtml += payData[index].name;
+    payHtml += '</td>';
+    payHtml += '</tr>';
+    payHtml += '<tr align="center">';
+    payHtml += '<td><img src="image/pay/load.gif" height="100" width="100"><td>';
+    payHtml += ' </tr></tbody>';
+    payHtml += '</table></div>';
+
+    var payChk = document.querySelector('.payment');
+    payChk.innerHTML = payHtml;
+
+
+
+
+    // 영수증 출력 : 카트리스트 배열 이용
+    setTimeout(function () {
+
+        var reHtml = '';
+
+        document.querySelector('#receipt').style.display = 'block';
+
+        reHtml += '<div><table class="ptab2">';
+        reHtml += '<tbody class="tab2">';
+        reHtml += '<h2 class="title">영수증</h2>';
+        reHtml += '<tr>두솥도시락 에이아이점</tr>';
+        reHtml += '<br>';
+        reHtml += '<tr>서울시 종로구 종로 69 YMCA 빌딩 7층 </tr>';
+        reHtml += '<br>';
+        reHtml += '<tr>02-722-1481</tr>';
+        reHtml += '<hr align="center" style="width:95%">';
+        for (var i = 0; i < cartList.length; i++) {
+            reHtml += '<td style="font-size:17px; font-weight: bolder">';
+            reHtml += '<p>';
+            reHtml += cartList[i].name;
+            reHtml += ' ';
+            reHtml += cartList[i].cnt;
+            reHtml += ' ';
+            reHtml += cartList[i].price;
+            reHtml += '</p>';
+            reHtml += '</td></tr>'
+
+            for (var j = 0; j < cartList[i].toppings.length; j++) {
+                reHtml += '<tr><td style="font-size:15px; font-weight: bolder">'
+                reHtml += '<p>';
+                reHtml += '└> ' + cartList[i].toppings[j].sidename;
+                reHtml += ' ';
+                reHtml += cartList[i].toppings[j].sideprice;
+                reHtml += '</p>';
+                reHtml += '</td></tr>';
+            }
+
+        }
+        reHtml += '<tr><td>===============================</td></tr>';
+        reHtml += '<td style="font-size:25px; font-weight: bolder; color:#cf1126">' +
+            'TOTAL : ' + paySum + '원' + '</td>';
+        reHtml += '</tr></tbody></table></div>';
+
+        console.log(reHtml);
+
+        var rec = document.querySelector('#receipt');
+        rec.innerHTML = reHtml;
+
+    }, 1000);
+
+
+}
