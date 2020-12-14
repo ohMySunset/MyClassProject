@@ -1,0 +1,142 @@
+
+header>h1{   
+    height:30px;
+
+}
+
+
+#list1{
+    width : 630px;
+    float:left;
+}
+
+content>#reg>h3{
+    margin-left: 10px;
+}
+
+
+#list1{
+    /*border : 1px solid black;*/
+    overflow: hidden;  
+}
+
+
+#reg>ul>li{
+    float:left;
+    list-style: none;
+    margin-left:-30px;
+    margin-right: 40px;  
+   
+}
+
+li>#li1>input[type="text"]{
+    width : 130px;
+    height : 25px;
+}
+
+li>#li2>input[type="password"]{
+    width : 130px;
+    height : 25px;
+}
+
+li>#li3>input[type="text"]{
+    width : 130px;
+    height : 25px;
+}
+
+li>#li4>input[type="submit"]{
+    width : 120px;
+    height : 35px;
+    
+    margin-left: 10px;
+    
+    background-color: black;
+    color : white;
+    border-color: aliceblue;
+
+}
+
+
+
+
+aside{
+    overflow: hidden;
+}
+
+
+#list2{
+    border : 1px solid gray;
+    border-radius: 20px;
+    
+    background-color: aliceblue;
+    
+    width:310px;
+    
+    margin-top: -10px;
+    
+    float:left;
+   
+}
+
+
+#edit>ul>li{
+    list-style: none; 
+    text-align: left;
+    margin-left: -20px;
+}
+
+#edit>h3{
+    text-align: center;
+}
+
+#edit>h3>input[type=button]{
+  float:right;
+  margin-right: 10px;
+  background-color: white
+      
+}
+
+
+#edit>ul>li>#userid{
+    width : 130px;
+    height : 25px; 
+    
+    margin-left : 20px;
+}
+
+#edit>ul>li>input[type="password"]{
+     width : 130px;
+    height : 25px;
+    
+    margin-left : 63px;
+    margin-top: 3px;
+}
+
+#edit>ul>li>#username{
+    width : 130px;
+    height : 25px;  
+    
+    margin-left : 95px;
+    margin-top: 3px;
+}
+
+#edit>ul>li>#edi{
+     width : 120px;
+     height : 35px;
+    
+     margin-left : 70px;
+     margin-top: 10px;
+    
+    background-color: black;
+    color : white;
+    border-color: aliceblue;
+        
+}
+
+#line{
+    margin-top: -20px;
+}
+
+
+
+

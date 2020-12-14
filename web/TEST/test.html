@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object_Test</title>
+    
+    <script>
+    
+        function Student(sname, k, e){
+            var name = sname;
+            var kor = k;
+            var eng = e;           
+         
+            this.getName = function(){
+                return name;
+            };
+            
+            this.getKor = function(){
+                return kor;
+            };
+            
+            this.getEng = function(){
+                return eng;
+            };
+            
+            this.setName = function(sname){
+                name = sname;
+            };
+            
+            this.setKor = function(k){
+                kor = k;
+            };
+            
+            this.setEng = function(e){
+                eng = e;
+            };
+        };
+     
+      Student.prototype.sum = function(){
+          return this.getKor+this.getEng;
+      };
+        
+      Student.prototype.avg = function(){
+          return this.sum()/3;
+      }    
+        
+      Student.prototype.toString = function(){
+          html = '<tr>';
+          html += '<td>'+this.getName+'</td>';
+          html += '<td>'+this.getKor+'</td>';
+          html += '<td>'+this.getEng+'</td>';
+          html += '<td>'+this.sum()+'</td>';
+          html += '<td>'+this.avg()+'</td>';
+          html += '</tr>';           
+      }
+      
+      var st1 = new Student('김태희',100,85);
+        
+      var std = [];
+        
+        std.push('전지현',100,90);
+        std.push('공유',70,80);
+        std.push('정우성',90,60);
+      
+      
+        var html = '<table border = 1>';
+        html += '<tr>';
+        html += '<th>이름</th>';
+        html += '<th>국어점수</th>';
+        html += '<th>영어점수</th>';
+        html += '<th>총점</th>';
+        html += '<th>평균</th>';
+        html += '</tr>';
+        
+        for(var i in std){  //위의 인덱스 값을 받아서 10번 반복           
+            html += std[i].toString();
+        }
+             
+        html +='</table>';
+        
+        window.onload = function(){
+            
+            document.body.innerHTML = html;
+        };
+        
+        
+    </script>
+    
+ 
+    
+</head>
+
+<body>
+    
+    
+</body>
+</html>
