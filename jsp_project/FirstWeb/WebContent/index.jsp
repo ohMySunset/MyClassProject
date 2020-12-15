@@ -13,6 +13,7 @@
                  <!--┌>서버 루트 기준으로 context를 불러옴 -->
     <li><a href="/FirstWeb/test/now.jsp">/FirstWeb/test/now.jsp(절대경로)</a></li>                     
     <li><a href="test/now.jsp">test/now.jsp(상대경로)</a></li>
+    <li><a href="test/msword.jsp">test/msword.jsp(상대경로)</a></li>
     </Ul>
 </body>
 </html>

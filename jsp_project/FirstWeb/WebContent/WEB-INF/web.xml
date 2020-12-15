@@ -15,7 +15,7 @@
   -->
   <servlet>
   <servlet-name>nowServlet</servlet-name>
-  <servlet-class>test.HellServlet</servlet-class>
+  <servlet-class>test.HelloServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
