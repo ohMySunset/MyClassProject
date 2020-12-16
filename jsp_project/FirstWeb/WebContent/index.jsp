@@ -8,12 +8,17 @@
 </head>
 <body>
 
-    <h1>INDEX</h1>
+    <h1>INDEX : <%= session.getAttribute("userName")%></h1>
     <Ul>
                  <!--┌>서버 루트 기준으로 context를 불러옴 -->
     <li><a href="/FirstWeb/test/now.jsp">/FirstWeb/test/now.jsp(절대경로)</a></li>                     
     <li><a href="test/now.jsp">test/now.jsp(상대경로)</a></li>
     <li><a href="test/msword.jsp">test/msword.jsp(상대경로)</a></li>
+    <li><a href="request/requestForm.jsp">request/requestForm.jsp</a></li>
+    <li><a href="response/selectPage.jsp">response/selectPage.jsp</a></li>
+    <li><a href="session/session.jsp">session/session.jsp</a></li>
+    <li><a href="attribute/applicationAttrSet.jsp">attribute/applicationAttrSet.jsp</a></li>
+    <li><a href="attribute/requestAttrSet.jsp">attribute/requestAttrSet.jsp</a></li>
     </Ul>
 </body>
 </html>

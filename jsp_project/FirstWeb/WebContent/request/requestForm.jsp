@@ -11,7 +11,8 @@
 	<h1>Request Form</h1>
 	<hr>
 
-	<form action="requestResult.jsp" action="get"> 
+	<!-- <form action="requestResult.jsp" action="get">  -->
+	<form action="result.jsp" action="get">
 		<table>
 			<tr>
 				<td>이름</td>
@@ -28,9 +29,9 @@
 			<tr>
 				<td>관심사항</td>
 				<td>
-					<!--  name이 같으면 여러개의 값을 받을 수 있음 --> <input type="checkbox"
-					name="interest" value="JAVA">JAVA<br> <input
-					type="checkbox" name="interest" value="HTML5">HTML5<br>
+					<!--  name이 같으면 여러개의 값을 받을 수 있음 --> 
+					<input type="checkbox"name="interest" value="JAVA">JAVA<br>
+					<input type="checkbox" name="interest" value="HTML5">HTML5<br>
 					<input type="checkbox" name="interest" value="CSS3">CSS3<br>
 					<input type="checkbox" name="interest" value="JAVASCRIPT">AVASCRIPT
 				</td>
