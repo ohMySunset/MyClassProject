@@ -1,7 +1,15 @@
 
+<%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+CookieBox cookiebox = new CookieBox(request);
 
+// 삼항 연산자를 사용하여 쿠키값에 uid값이 있는지 여부 확인
+String saveId = cookiebox.exist("uid")?cookiebox.getValue("uid"):"";
+String checked = cookiebox.exist("uid")? "checked" : "";
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -18,8 +26,8 @@
         <table>
             <tr>
                 <th><label for="userid">아이디</label></th>
-                <td>
-                    <input type="text" id="userid" name="userid">
+                <td>                                             <!-- 저장된 쿠키값을 value로 -->
+                    <input type="text" id="userid" name="userid" value="<%= saveId%>">
                 </td>
             </tr>
             <tr>
@@ -30,8 +38,8 @@
             </tr>
             <tr>
                 <th></th>
-                <td>
-                    <input type="checkbox" name="chk" value="on"> 아이디 저장
+                <td>                                            <!-- 쿠키값에 저장이 되어 있으면 checked 속성 적용 -->
+                    <input type="checkbox" name="chk" value="on" <%= checked %>> 아이디 저장
                 </td>
             </tr>
             <tr>

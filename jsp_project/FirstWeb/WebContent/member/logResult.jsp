@@ -14,10 +14,10 @@
   logform.setUserId(userId);  // 유저 아이디 저장
   logform.setPassword(pw);    // 유저 패스워드 저장
   
-  // logView로 객체 공유
+ 
   request.setAttribute("data", logform);
   
   
 %>
-
+ // logView로 객체 공유
 <jsp:forward page="logView.jsp"/>
