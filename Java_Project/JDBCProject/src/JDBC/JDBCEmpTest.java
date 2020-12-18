@@ -17,7 +17,7 @@ public class JDBCEmpTest {
 
 		try {
 
-			// 1. 드라이버 로드
+			// 1. 드라이버 load!
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			System.out.println("드라이버 로드 완료.");
