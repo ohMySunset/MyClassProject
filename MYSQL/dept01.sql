@@ -15,7 +15,7 @@ CREATE TABLE `open`.`emp` (
   `EMPNO` int(11) NOT NULL,
 
   `ENAME` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-dept
+
   `JOB` varchar(9) COLLATE utf8_bin DEFAULT NULL,
 
   `MGR` int(11) DEFAULT NULL,
