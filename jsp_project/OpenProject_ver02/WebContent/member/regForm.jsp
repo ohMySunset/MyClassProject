@@ -1,20 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 가입 폼</title>
-</head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
+<style>
 
+</style>
+</head>
 <body>
-    <h1>회원 가입</h1>
-    <hr>
+   
+   <%@ include file="/include/header.jsp" %>
+   
+   <%@ include file="/include/nav.jsp" %>
+    
+  <div class="contents">
+  <h2 class="contents_title">Sign Up</h2>
+  <div class="content">
     <form action="regMember.jsp" method="post">
         <table>
             <tr>
-                <th><label for="userid">아이디(email)</label></th>
+                <th><label for="userId">아이디(email)</label></th>
                 <td>
-                    <input type="email" id="userid" name="userid">
+                    <input type="email" id="userId" name="userId">
                 </td>
             </tr>
             <tr>
@@ -24,9 +34,9 @@
                 </td>
             </tr>
             <tr>
-                <th><label for="username">이름</label></th>
+                <th><label for="userName">이름</label></th>
                 <td>
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="userName" name="userName">
                 </td>
             </tr>
             <tr>
@@ -43,6 +53,11 @@
             </tr>
         </table>
     </form>
-    
+  </div>
+  </div>
+ 
+ <%@ include file="/include/footer.jsp" %>
+
+
 </body>
 </html>

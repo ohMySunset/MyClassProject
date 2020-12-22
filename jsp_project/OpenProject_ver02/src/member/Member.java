@@ -1,29 +1,29 @@
 package member;
 
-// 회원 정보를 저장하는 beans 클래스 정의
+//회원가입 정보를 담을 beans 클래스
 public class Member {
-    // 변수(속성)은 private처리
+
+	// 회원가입 시 받을 데이터의 변수
 	private String userId;
-	private String password;
+	private String pw;
 	private String userName;
 	private String userPhoto;
-		
 	
-	// 기본(default)생성자 필요
+	//기본 생성자
 	public Member() {
 		super();
 	}
 
-	public Member(String userId, String password, String userName, String userPhoto) {
+	public Member(String userId, String pw, String userName, String userPhoto) {
 		super();
 		this.userId = userId;
-		this.password = password;
+		this.pw = pw;
 		this.userName = userName;
 		this.userPhoto = userPhoto;
 	}
 	
 	
-	// setter & getter
+	// getter / setter
 	public String getUserId() {
 		return userId;
 	}
@@ -32,12 +32,12 @@ public class Member {
 		this.userId = userId;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPw() {
+		return pw;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 
 	public String getUserName() {
@@ -55,17 +55,27 @@ public class Member {
 	public void setUserPhoto(String userPhoto) {
 		this.userPhoto = userPhoto;
 	}
-
-	// Member -> LoginInfo 
+	
+	// Member(회원정보)-> LoginInfo(로그인정보)
 	public LoginInfo toLoginInfo() {
-		return new LoginInfo(this.userId,this.userName,this.userPhoto);
+		return new LoginInfo(this.userId, this.userName, this.userPhoto);
 	}
 	
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", password=" + password + ", userName=" + userName + ", userPhoto="
-				+ userPhoto + "]";
+		return "Member [userId=" + userId + ", pw=" + pw + ", userName=" + userName + ", userPhoto=" + userPhoto + "]";
 	}
+
+	
+
+    
+
+
+
+
+	
+	
+	
 	
 	
 }

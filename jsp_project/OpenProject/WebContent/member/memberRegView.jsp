@@ -1,8 +1,9 @@
+<%@page import="member.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
 <%
-int result = (Integer) request.getAttribute("result");
+  int result = (Integer) request.getAttribute("result");
 %>	
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ int result = (Integer) request.getAttribute("result");
 <meta charset="UTF-8">
 <title>Insert title here</title>
                       
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/default.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
 <style>
 
 </style>

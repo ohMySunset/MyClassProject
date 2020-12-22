@@ -1,7 +1,7 @@
 <%@page import="member.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/include/loginCheck.jsp" %>
+<%@ include file="/include/loginChk.jsp" %>
 	
 <!DOCTYPE html>
 <html>
@@ -24,9 +24,7 @@
  <h2 class="content_title">My page 1</h2>
  <hr>
  <div class="content">
-<%--  <%= session.getAttribute("loginInfo") %> --%>
- ${loginInfo}
- <br>
+  
  <% 
  LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
  
@@ -39,9 +37,15 @@
  > --%>
  <img alt="프로필 사진" 
  src="${pageContext.request.contextPath}/images/${loginInfo.memberPhoto}"
- height="100"
+ height="200"
  > <%
  }%>
+ 
+ <br>
+ 
+<%--  <%= session.getAttribute("loginInfo") %> --%>
+ ${loginInfo}
+
 </div>
 
 </div>

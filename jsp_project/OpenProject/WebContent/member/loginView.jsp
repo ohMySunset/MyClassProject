@@ -26,7 +26,8 @@
  <hr>
  <div class="content">
   로그인 되었습니다. <br>
-  <%= loginInfo %>
+ <%--  <%= loginInfo %> --%>
+ ${loginInfo}
  </div>
 </div>
 

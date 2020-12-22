@@ -1,4 +1,3 @@
-
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -27,7 +26,8 @@ String checked = cookiebox.exist("uid")? "checked" : "";
             <tr>
                 <th><label for="userid">아이디</label></th>
                 <td>                                             <!-- 저장된 쿠키값을 value로 -->
-                    <input type="text" id="userid" name="userid" value="<%= saveId%>">
+                    <%-- <input type="text" id="userid" name="userid" value="<%= saveId%>"> --%>
+                    <input type="text" id="userid" name="userid" value="${cookiebox.uid.value}">
                 </td>
             </tr>
             <tr>
