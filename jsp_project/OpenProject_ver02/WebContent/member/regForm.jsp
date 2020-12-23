@@ -20,7 +20,7 @@
   <h2 class="contents_title">Sign Up</h2>
   <div class="content">
     <form action="regMember.jsp" method="post">
-        <table>
+        <table class="tbody">
             <tr>
                 <th><label for="userId">아이디(email)</label></th>
                 <td>

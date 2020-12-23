@@ -35,5 +35,8 @@ pstmt.setInt(1, Integer.parseInt(deptno));
 pstmt.setString(2, name);
 pstmt.setString(3, loc);
 
+int resultCnt = pstmt.executeUpdate();
+request.setAttribute("result", resultCnt);
 // -> insert_view
 %>
+<jsp:forward page="insert_view.jsp"/>

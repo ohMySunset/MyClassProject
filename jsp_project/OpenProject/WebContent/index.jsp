@@ -1,17 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<!-- css파일을 url경로로 어플리케이션 속성에 저장한다 -->
+ <c:url value="/css/default.css" var="url_defaultCss" scope="application"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
                       
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/default.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css"> --%>
+<link rel="stylesheet" href="${url_defaultCss}">
 <style>
 
 </style>
 </head>
 <body>
+
+  
 
    <%@ include file ="/include/header.jsp" %>
 

@@ -29,7 +29,7 @@ CookieBox cookiebox = new CookieBox(request);
   <h2 class="contents_title">Sign In</h2>
   <div class="content">
    	<form action="login.jsp" method="post">
-				<table>
+				<table class="tbody">
 					<tr>
 						<th><label for="userid">아이디</label></th>
 						<td>
