@@ -33,7 +33,7 @@
  
  %>
  <img alt="프로필 사진" 
- src="<%= request.getContextPath()%>/images/<%= loginInfo.getMemberPhoto()%>"
+ src="<%= request.getContextPath()%>/upload/member/<%= loginInfo.getMemberPhoto()%>"
  height="100"
  > <%
  }%>
