@@ -69,6 +69,9 @@ public class MemberDao {
             		  rs.getString("memberphoto"));
            	
             }
+            
+            rs.close();
+    		pstmt.close();
 		
 		} catch (SQLException e) {			
 			e.printStackTrace();
