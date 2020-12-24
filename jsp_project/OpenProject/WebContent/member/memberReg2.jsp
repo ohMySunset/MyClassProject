@@ -71,7 +71,7 @@
 				  
 				  // split(".") .을 기준으로 자르고 배열 생성 : mini.jpg -> "mini","jpg"
 				  // 새로운 파일 이름 : 중복하는 파일의 이름이 있으면 덮어쓴다. -> nanoTime()으로 중복되지 않는 이름을 만들어 준다.  
-				  String newFileName = System.nanoTime() + "";//+ item.getName().split(".")[1];
+				  String newFileName = System.nanoTime() + "."+ item.getName().split("\\.")[1];
 				  
 				  // 파일 저장
 				  item.write(new File(saveFilePath, newFileName));
