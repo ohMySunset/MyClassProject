@@ -7,11 +7,12 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	// 모든 java API를 사용할 수 있다.
-Connection conn = null;
 
 //1.드라이버 로드 : 프로그램에서 한번만 실행 -> 실행할 때 한번만
 Class.forName("com.mysql.cj.jdbc.Driver");
+
+// 모든 java API를 사용할 수 있다.
+Connection conn = null;
 
 //2.DB연결 : Connection 객체를 얻어온다.
 String jdbcUrl = "jdbc:mysql://localhost:3306/open?serverTimezone=UTC";
