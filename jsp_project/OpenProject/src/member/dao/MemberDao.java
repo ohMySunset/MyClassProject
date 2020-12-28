@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import member.Member;
 
@@ -24,25 +26,26 @@ public class MemberDao {
 	// insert, select, update, delete
 	
 	// 데이터 입력
-	public int insertMember(Connection conn, Member member) {
+	public int insertMember(Connection conn, Member member) throws SQLException {
 		int resultCnt = 0;
 		
 		PreparedStatement pstmt = null;
 		//sql 실행
-		String sqInsert = "INSERT INTO member (memberid,password,membername) VALUES (?,?,?)";
+		String sqInsert = "INSERT INTO member (memberid,password,membername,memberphoto) VALUES (?,?,?,?)";
 		
-		try {
+		//try {
 			pstmt = conn.prepareStatement(sqInsert);
 			
 			pstmt.setString(1, member.getUserId() );
 			pstmt.setString(2, member.getPassword());
-			pstmt.setNString(3, member.getUserName());
+			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getUserPhoto());
 			
 			resultCnt = pstmt.executeUpdate(); //executeUpdate() : DML(CRUD)의 실행->int
-		} catch (SQLException e) {
+	//	} catch (SQLException e) {
 			
-			e.printStackTrace();
-		}
+	//		e.printStackTrace();
+	//	}
 		
 		return resultCnt;
 	}
@@ -61,11 +64,13 @@ public class MemberDao {
 		    ResultSet rs = pstmt.executeQuery();
 		    
 		    if(rs.next()) {
-		    	member = new Member(
-		    			rs.getString("memberid"),
-		    			rs.getString("password"),
-		    			rs.getString("membername"),
-		    			rs.getString("memberphoto"));
+//		    	member = new Member(
+//		    			rs.getString("memberid"),
+//		    			rs.getString("password"),
+//		    			rs.getString("membername"),
+//		    			rs.getString("memberphoto"),
+//		    			rs.getTimestamp("regdate"));
+		    	member = makeMember(rs);
 		    }
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -73,6 +78,49 @@ public class MemberDao {
 		return member;
 	}
 
-
+    // 전체 리스트를 반환하는 select
+	public List<Member> selectMember(Connection conn){
+		
+	   List<Member> list = new ArrayList<Member>();
+	   
+	   PreparedStatement pstmt = null;
+	   ResultSet rs = null;
+	   
+	   String sql = "select * from member";
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+//			list.add(new Member(
+//					rs.getString("memberid"),
+//					rs.getString("password"),
+//					rs.getString("membername"),
+//					rs.getString("memberphoto"),
+//					rs.getTimestamp("regdate")
+//					));
+			list.add(makeMember(rs));
+		}
+		
+		rs.close();
+		pstmt.close();	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	   
+	   return list;
+	}
+	
+	// 반복되는 코드 메서드 처리 
+	private Member makeMember(ResultSet rs) throws SQLException {
+		return new Member(
+				rs.getString("memberid"),
+				rs.getString("password"),
+				rs.getString("membername"),
+				rs.getString("memberphoto"),
+				rs.getTimestamp("regdate")
+				);
+	}
 }
 

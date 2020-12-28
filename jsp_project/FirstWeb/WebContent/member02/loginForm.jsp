@@ -1,7 +1,7 @@
-
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 CookieBox cookiebox = new CookieBox(request);
 
@@ -22,12 +22,13 @@ String checked = cookiebox.exist("uid")? "checked" : "";
 <body>
     <h1>회원 로그인 </h1>
     <hr>
-    <form action="login.jsp" method="post">
+    <form action="<c:url value="/member02/login.jsp"/>" method="post">
         <table>
             <tr>
                 <th><label for="userid">아이디</label></th>
                 <td>                                             <!-- 저장된 쿠키값을 value로 -->
-                    <input type="text" id="userid" name="userid" value="<%= saveId%>">
+                    <%-- <input type="text" id="userid" name="userid" value="<%= saveId%>"> --%>
+                    <input type="text" id="userid" name="userid" value="${cookiebox.uid.value}">
                 </td>
             </tr>
             <tr>

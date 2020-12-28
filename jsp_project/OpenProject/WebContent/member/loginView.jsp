@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
                       
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/default.css">
+<link rel="stylesheet" href="${url_defaultCss}">
 <style>
 
 </style>
@@ -26,7 +26,8 @@
  <hr>
  <div class="content">
   로그인 되었습니다. <br>
-  <%= loginInfo %>
+ <%--  <%= loginInfo %> --%>
+ ${loginInfo}
  </div>
 </div>
 

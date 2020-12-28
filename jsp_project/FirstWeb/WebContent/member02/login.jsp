@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	// 데이터 받기 : 아이디, 비밀번호
-String userId = request.getParameter("userId");
+String userId = request.getParameter("userid");
 String pw = request.getParameter("pw");
 String chk = request.getParameter("chk");
 
