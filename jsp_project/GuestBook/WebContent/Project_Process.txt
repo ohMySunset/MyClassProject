@@ -1,0 +1,23 @@
+1. 데이터베이스 선정-> 스키마 생성 -> 테이블 생성 -> SQL작성
+2. 프로젝트 생성 (Dinamic Web Project)
+3. 라이브러리 추가 (DB 드라이버, JSTL)
+4. 초기화 : Servlet -> DB 드라이버로드
+5. web.xml 서블릿 정의 
+6. 기능 클래스 정의 : Connection 제공, close 메소드 정의하는 클래스
+7. *입력처리
+    Model 클래스 : Message.java (beans 클래스로 DB의 스키마(테이블의 행)를 정의)
+    데이터 form -> 데이터를 받는 jsp -> Service 클래스 : WriteMessageService.java (빈즈 객체를 받아 커넥션 객체와 Dao객체를 생성하여 insert로 전달)
+    -> Dao에서 DB의 CRUD처리
+8. *메세지 리스트 처리
+   Model 클래스 :  MessageListView.java(리스트에 필요한 변수, 생성자, getter 정의)
+   -> Service 클래스 :  getMessageListService.java 페이지 번호를 받고 해당 페이지를 출력할 메서드
+   -> Dao에서 메서드를 호출하여 전체 메세지 수를 반환받고(페이지의 개수 정의), 
+       몇 개의 메세지를 노출할건지 정해서 select한 값을 list에 넣어준다. -> ListView생성자 통해 데이터 저장
+   -> list.jsp에서 현재 page값을 받아서 service,model 클래스의 객체를 생성하고 pageNumber값을 넣어준다. 
+   -> table로 값을 출력 -> 페이징 처리 (1~ ListWiew생성자에 저장된 pageTotalCount만큼 반복)
+   -> a태그 list.jsp?page="페이지 값"
+  
+
+
+
+**Service 기능의 클래스는 싱글톤 처리 -> 기능만 가지고 있기 때문에 매번 인스턴스 생성할 필요 없음
