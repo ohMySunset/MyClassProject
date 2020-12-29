@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import member.Member;
+import member.model.Member;
 
 public class MemberDao {
     // 메서드만 있는 클래스는 여러개의 객체를 생성할 필요가 없음!
@@ -121,6 +122,60 @@ public class MemberDao {
 				rs.getString("memberphoto"),
 				rs.getTimestamp("regdate")
 				);
+	}
+
+
+	public int selectMemberTotalCount(Connection conn) throws SQLException {
+	
+		int resultCnt = 0;
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT count(*) FROM MEMBER";
+		
+		try {			
+		  stmt = conn.createStatement();
+		  rs = stmt.executeQuery(sql);
+		
+		  if(rs.next()) {
+			  resultCnt = rs.getInt(1);
+		   }
+		  } finally {
+		    rs.close();
+		    stmt.close();
+		}
+		return resultCnt;
+	}
+
+	
+    // 페이지의 첫번째 행을 받아서 데이터를 리스트에 저장해주는 메서드
+	public List<Member> selectMember(Connection conn, int firstRow, int count) throws SQLException {
+		List<Member> memberList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM member order by memberid limit ?,?";
+		
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, firstRow);
+		pstmt.setInt(2, count);
+		
+		rs = pstmt.executeQuery();
+		
+		memberList = new ArrayList<Member>();
+		
+		while(rs.next()) {
+			memberList.add(makeMember(rs));
+		}
+		
+		}finally {
+			rs.close();
+			pstmt.close();
+		}
+		
+		return memberList;
 	}
 }
 
