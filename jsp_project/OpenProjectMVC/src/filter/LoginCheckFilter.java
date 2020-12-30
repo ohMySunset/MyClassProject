@@ -32,8 +32,8 @@ public class LoginCheckFilter implements Filter {
 		
 		if(session != null && session.getAttribute("loginInfo")!= null) {
 			chain.doFilter(request, response);
-		} else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/member/loginForm.jsp");
+		} else {			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/member/loginForm.do");
 		    dispatcher.forward(request, response);
 		}
 	}

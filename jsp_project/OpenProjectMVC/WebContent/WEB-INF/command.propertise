@@ -6,3 +6,6 @@
 /member/logout.do=mvc.command.LogoutCommand
 /member/memberRegForm.do=mvc.command.RegFormCommand
 /member/memberReg3.do=mvc.command.RegCommand
+/member/mypage/mypage1.do=mvc.command.MyPage1Command
+/member/mypage/mypage2.do=mvc.command.MyPage2Command
+/member/manager/list.do=mvc.command.MemberListCommand
