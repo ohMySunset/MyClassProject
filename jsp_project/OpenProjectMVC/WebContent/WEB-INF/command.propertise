@@ -3,3 +3,6 @@
 /index.do=mvc.command.IndexCommand
 /member/loginForm.do=mvc.command.LoginFormCommand
 /member/login.do=mvc.command.LoginCommand
+/member/logout.do=mvc.command.LogoutCommand
+/member/memberRegForm.do=mvc.command.RegFormCommand
+/member/memberReg3.do=mvc.command.RegCommand

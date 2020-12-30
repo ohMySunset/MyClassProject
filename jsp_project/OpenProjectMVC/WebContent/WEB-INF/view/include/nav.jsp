@@ -4,7 +4,7 @@
 	<nav>
 		<ul>      <!-- <c:url value="/" /> ==> /op --> 
 			<li><a href="<c:url value="/" />">HOME</a></li>	
-			<li><a href="<c:url value="/member/memberRegForm.jsp" />">회원가입</a></li>	
+			<li><a href="<c:url value="/member/memberRegForm.do" />">회원가입</a></li>	
 			<li>
 			
 			<%
@@ -16,7 +16,7 @@
 			<%
 			   } else {
 			%>	
-			<a href="<c:url value="/member/logout.jsp" />">LOGOUT</a>
+			<a href="<c:url value="/member/logout.do" />">LOGOUT</a>
 			<%
 			   }
 			%>
