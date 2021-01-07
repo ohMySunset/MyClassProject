@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<!-- JQuery SDK 로드 -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+
+   $(document).ready(function(){
+	   //alert('onload');
+	   
+	   $.ajax({
+		   
+		   url : 'data.xml',
+		   success : function(data){ // data : xml Document
+			   
+			   $(data).find('product').each(function(){ // each -> 3개의 product 각각
+				   // this -> product 객체 하나 
+				  var pname = $(this).find('name').text(); // <name>우유</name>태그 사이의 값을 가져옴
+				  var price = $(this).find('price').text();
+				  
+				  var html = '<h3>이름 : '+pname+' , 가격 : '+price+'</h3>';
+				  
+				  $('#menu').append(html);
+				  
+			   });
+		   }
+
+	   });
+	   
+	   });
+	   
+
+   
+   
+</script>
+
+<body>
+  <h1>가격표</h1>
+  <div id="menu"></div>
+</body>
+</html>
