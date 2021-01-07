@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 컨테이너가 읽을 설정파일 -->
+
+	<!-- MemberRegService를 Bean으로 등록 -->
+	<!-- <bean id="memberRegService" class="member.service.MemberRegService"/> -->
+
+	<!--2. 생성자를 이용한 인스턴스 주입 (컴파일 시에 오류 발생. 미리 오류를 파악할 수 있으므로 비교적 안전)-->
+	<bean id="memberRegService"
+		class="member.service.MemberRegService">
+		<!-- <constructor-arg ref="memberDao"/> 위쪽에 있는 memberDao를 주입 -->
+		<constructor-arg>
+			<ref bean="memberDao" /> <!-- 참조하기 위한 bean을 등록 -->
+		</constructor-arg>
+	</bean>
+	
+	<!-- 3. 프로퍼티 방식을 이용한 인스턴스 주입 (컴파일 시 오류가 나지 않음. 런타임에서 오류 발생하므로 위험)-->	
+	<!-- MemberInfoService Bean 등록 -->
+	<bean id="memberInfoService"
+	      class="member.service.MemberInfoService"
+    >
+	<!-- <property name="dao" ref="memberDao"/>
+	  name="dao":  setDao()메서드를 호출
+	  ref="memberDao" : setDao(new memberDao) memberDao 객체를 전달
+     -->
+     
+	<property name="dao">
+	  <bean class="member.dao.MemberDao"/> <!-- 식별자를 갖지 않는 빈 객체를 생성 -->
+	</property> 
+	
+	</bean>
+	
+	
+</beans>

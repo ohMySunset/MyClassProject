@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="memberInfoService"
+		class="member.service.MemberInfoService">
+		<!-- p 네임스페이스를 이용하기 -->
+		<!-- p:dao-ref="memberDao" -->
+        <!--  property를 이용하기(1)  -->
+		<!-- <property name="dao"> <ref bean="memberDao"/> </property> -->
+        <!--  property를 이용하기(2)  -->
+		<!-- <property name="dao" ref="memberDao"/> -->
+		<!--  property를 이용하기(3) : 식별자 없이 객체 전달-->
+		<property name="dao">
+		  <bean class="member.dao.memberDao"/>
+		</property>
+	</bean>
+
+
+</beans>
