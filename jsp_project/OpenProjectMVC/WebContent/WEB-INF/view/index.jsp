@@ -23,8 +23,6 @@
 </head>
 <body>
 
-  
-
    <%@ include file ="/WEB-INF/view/include/header.jsp" %>
 
    <%@ include file ="/WEB-INF/view/include/nav.jsp" %>
