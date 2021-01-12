@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogoutController {
 	
-	@RequestMapping("logout")
+	@RequestMapping("/member/logout")
 	public String getLogoutForm(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(false);

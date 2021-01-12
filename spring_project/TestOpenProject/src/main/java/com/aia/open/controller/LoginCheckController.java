@@ -4,12 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class RegController {
-	
-	@RequestMapping("/member/regForm")
-	public String getRegForm() {
-		
-		return "member/regForm";
-	}
+public class LoginCheckController {
 
+	
+	@RequestMapping("/member/loginChk")
+	public String loginChk() {
+		
+		return "include/loginCheck";
+	}
+	
 }

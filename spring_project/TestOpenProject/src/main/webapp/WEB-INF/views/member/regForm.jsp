@@ -23,20 +23,20 @@
 			<form action="regComplete">
 				<table>
 					<tr>
-						<th><label for="userId">아이디(email)</label></th>
-						<td><input type="email" id="userId" name="userId"></td>
+						<th><label for="memberid">아이디(email)</label></th>
+						<td><input type="email" id="memberid" name="memberid"></td>
 					</tr>
 					<tr>
-						<th><label for="userPw">비밀번호</label></th>
-						<td><input type="password" id="userPw" name="userPw"></td>
+						<th><label for="password">비밀번호</label></th>
+						<td><input type="password" id="password" name="password"></td>
 					</tr>
 					<tr>
-						<th><label for="userName">이름</label></th>
-						<td><input type="text" id="userName" name="userName"></td>
+						<th><label for="membername">이름</label></th>
+						<td><input type="text" id="membername" name="membername"></td>
 					</tr>
 					<tr>
-						<th><label for="userPhoto">사진</label></th>
-						<td><input type="file" id="userPhoto" name="userPhoto">
+						<th><label for="memberphoto">사진</label></th>
+						<td><input type="file" id="memberphoto" name="memberphoto">
 						</td>
 					</tr>
 					<tr>

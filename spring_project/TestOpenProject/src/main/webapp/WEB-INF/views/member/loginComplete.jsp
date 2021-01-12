@@ -11,15 +11,15 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-
+	
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-
+	
    <div class="contents">
    <h2 class="content_title">Login</h2>
    <hr>
    <div class="content">
 	<h3>로그인에 성공하였습니다</h3>
-	<h3>${loginInfo.userId}님 환영합니다!</h3>
+	<h3>${loginMember.memberid}님 환영합니다!</h3>
 	</div>
   </div>
 <%--<c:url value="/" var="home" />

@@ -16,28 +16,30 @@
 
 
 	<div class="contents">
-		<h2 class="content_title">Sign In</h2>
+		<h2 class="content_title">회원 정보</h2>
 		<hr>
 		<div class="content">
-			<form method="post">
-				<table>
-					<tr>
-						<td><label for="memberid">아이디(email)</label></td>
-						<td><input type="text" name="memberid" id="memberid" value="${cookie.uid.value}"></td>
-					</tr>
-					<tr>
-						<td><label for="userPw">비밀번호</label></td>
-						<td><input type="password" name="password" id="password"></td>
-					</tr>
-					<tr>
-						<td>아이디 저장<input type="checkbox" name="chk "value="on" ${cookie.uid ne null?'checked':''}></td>
-						<td class="submit"><input type="submit" value="로그인"></td>
-					</tr>
-				</table>
-			</form>
+			<table>
+				<tr>
+					<td>아이디(email)</td>
+					<td>${loginInfo.memberid}</td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td>${loginInfo.password}</td>
+				</tr>
+				<tr>
+					<td>사진</td>
+					<td><img alt="프로필" src="${loginInfo.memberphoto}"></td>
+				</tr>
+				<tr>
+				<td>가입일</td>
+				<td>${loginInfo.toDate}</td>
+				</tr>				
+			</table>
 		</div>
 	</div>
-	
+
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

@@ -2,34 +2,37 @@ package com.aia.open.domain;
 
 public class LoginInfo { // 로그인 정보를 받을 빈즈 객체
 	
-	private String userId;
-	private String userPw;
+	private String memberid;
+	private String password;
 	private String chk;
 	
-
+	
 	public String getChk() {
 		return chk;
 	}
 	public void setChk(String chk) {
 		this.chk = chk;
 	}
-	public String getUserId() {
-		return userId;
+	public String getMemberid() {
+		return memberid;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
-	public String getUserPw() {
-		return userPw;
+	public String getPassword() {
+		return password;
 	}
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Override
 	public String toString() {
-		return "LoginInfo [userId=" + userId + ", userPw=" + userPw + ", chk=" + chk + "]";
+		return "LoginInfo [memberid=" + memberid + ", password=" + password + ", chk=" + chk + "]";
 	}
 
+	
+
+	
 	
 	
 
