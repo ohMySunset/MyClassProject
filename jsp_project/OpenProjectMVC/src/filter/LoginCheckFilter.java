@@ -27,7 +27,7 @@ public class LoginCheckFilter implements Filter {
 		HttpSession session = httpRequest.getSession();		
 		
 		System.out.println("LoginCheckFilter 실행!");
-		
+	
 		boolean loginCheck = false;
 		
 		if(session != null && session.getAttribute("loginInfo")!= null) {

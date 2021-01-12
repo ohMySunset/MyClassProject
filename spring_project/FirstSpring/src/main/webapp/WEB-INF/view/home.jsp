@@ -39,6 +39,12 @@
   
   <c:url value="/upload/uploadForm" var="upload"/>
   <li><a href="${upload}">${upload}</a></li>
+  
+   <c:url value="/member/list" var="list"/>
+  <li><a href="${list}">${list}</a></li>
+  
+    <c:url value="/member/reg" var="reg"/>
+  <li><a href="${reg}">${reg}</a></li>
 
   </ul>
 </body>
