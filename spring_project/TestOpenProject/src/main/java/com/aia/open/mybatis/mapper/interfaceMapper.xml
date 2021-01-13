@@ -16,6 +16,12 @@
 	        resultType="com.aia.open.domain.Member">
 		select * from member where memberid = #{memberid} and password = #{password}
 	</select>
+	
+	<insert id="insertMember"
+	        parameterType="com.aia.open.dao.InterfaceDao">
+	INSERT INTO member (memberid,password,membername,memberphoto)
+		VALUES (#{memberid},#{password},#{membername},#{memberphoto})
+	</insert>
 
 
 </mapper>

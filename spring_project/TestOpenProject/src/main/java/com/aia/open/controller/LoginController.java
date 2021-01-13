@@ -27,11 +27,11 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String login(HttpServletRequest request,
 			            HttpServletResponse response,
-                        @ModelAttribute("LoginInfo") LoginInfo loginInfo,
+                        @ModelAttribute("loginInfo") LoginInfo loginInfo,
 			            Model model) {
 		System.out.println("요청 들어옴");
 	   
-	   model.addAttribute("loginMember", login.loginService(request, response, loginInfo));
+	   model.addAttribute("loginCheck", login.loginService(request, response, loginInfo));
 		
 		return "member/loginComplete";
 	}

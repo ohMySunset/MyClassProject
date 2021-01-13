@@ -51,7 +51,11 @@ public class Member {
 	}
 	
 	public Date getToDate() { // ${member.toDate}
-		return new Date(getRegdate().getTime());
+		return new Date(regdate.getTime());
+	}
+	
+	public LoginMember toLoginMember() {
+		return new LoginMember(memberid, membername, memberphoto);
 	}
 	
 	@Override

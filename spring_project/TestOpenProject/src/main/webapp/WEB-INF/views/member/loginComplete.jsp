@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="/css/default.css" var="url_defaultCss" scope="application" />
+<c:if test="${not loginCheck}">
+ <script>
+	alert("아이디 또는 패스워드가 틀립니다. 다시 로그인해주세요.")
+	history.go(-1);
+</script> 
+</c:if>
+
+<c:if test="${loginCheck}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,3 +37,4 @@
 
 </body>
 </html>
+</c:if>

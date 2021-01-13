@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${url_defaultCss}">
+<style>
+ img{
+   width : 100px;
+ }
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
@@ -19,23 +24,19 @@
 		<h2 class="content_title">회원 정보</h2>
 		<hr>
 		<div class="content">
-			<table>
+			<table border="1">
 				<tr>
 					<td>아이디(email)</td>
-					<td>${loginInfo.memberid}</td>
+					<td>${loginMember.memberid}</td>
 				</tr>
 				<tr>
-					<td>비밀번호</td>
-					<td>${loginInfo.password}</td>
+					<td>이름</td>
+					<td>${loginMember.membername}</td>
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td><img alt="프로필" src="${loginInfo.memberphoto}"></td>
-				</tr>
-				<tr>
-				<td>가입일</td>
-				<td>${loginInfo.toDate}</td>
-				</tr>				
+					<td><img alt="프로필" src="<c:url value="/fileupload/member/${loginMember.memberphoto}"/>"></td>
+				</tr>			
 			</table>
 		</div>
 	</div>

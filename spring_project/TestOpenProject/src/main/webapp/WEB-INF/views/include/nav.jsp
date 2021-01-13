@@ -8,17 +8,17 @@
 		<c:url value="/" var="home" />
 		<li><a href="${home}">Home</a></li>
 
-		<c:if test="${loginInfo!=null}">
+		<c:if test="${loginMember!=null}">
 			<c:url value="/member/logout" var="logout" />
 			<li><a href="${logout}">로그아웃</a></li>
 		</c:if>
-		<c:if test="${loginInfo==null}">
+		<c:if test="${loginMember==null}">
 			<c:url value="/member/login" var="login" />
 			<li><a href="${login}">로그인</a></li>
 		</c:if>
 
 
-		<c:url value="/member/regForm" var="reg" />
+		<c:url value="/member/reg" var="reg" />
 		<li><a href="${reg}">회원가입</a></li>
 
 		<c:url value="/member/mypage/mypage1" var="mypage1" />

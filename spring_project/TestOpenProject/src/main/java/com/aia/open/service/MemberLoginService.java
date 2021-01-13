@@ -20,34 +20,34 @@ public class MemberLoginService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public Member loginService(HttpServletRequest request, HttpServletResponse response, LoginInfo lf) {
-		// 쿠키 저장
-		if (lf.getChk() != null && lf.getChk().equals("on") && lf.getMemberid() != null
-				&& !lf.getMemberid().isEmpty()) {
-			System.out.println("쿠키 저장 완료!");
-			response.addCookie(new Cookie("uid", lf.getMemberid()));
-		}
-
+	public boolean loginService(HttpServletRequest request,
+			                   HttpServletResponse response,
+			                   LoginInfo lf) {
+	
 		boolean loginChk = false; // 로그인 되지 않은 상태
 
 		dao = template.getMapper(InterfaceDao.class);
-
+		
 		Member member = dao.selectLoginMember(lf.getMemberid(), lf.getPassword());
-		System.out.println(member);
-
+	
 		if (member != null) {
-
-			HttpSession session = request.getSession();			
-			session.setAttribute("loginInfo", member);
-            System.out.println(session);
-			System.out.println(lf);
-
-			loginChk = true;
+            // 세션에 저장
+			request.getSession().setAttribute("loginMember", member.toLoginMember());
+			loginChk = true; // 로그인 성공
+			System.out.println(member);
+			// 쿠키생성
+		   if(lf.getChk()!=null && lf.getChk().equals("on")) {
+			   Cookie cookie = new Cookie("uid", lf.getMemberid());
+			   cookie.setMaxAge(60*60*24*365);
+			   response.addCookie(cookie);
+		   } else {
+			   Cookie cookie = new Cookie("uid", lf.getMemberid());
+			   cookie.setMaxAge(0);
+			   response.addCookie(cookie);
+		   }
 		}
 
-		request.setAttribute("loginChk", loginChk);
-
-		return member;
+		return loginChk;
 	}
 
 }

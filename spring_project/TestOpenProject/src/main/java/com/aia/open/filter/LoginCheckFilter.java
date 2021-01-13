@@ -23,7 +23,7 @@ public class LoginCheckFilter implements Filter {
 		
 		System.out.println("로그인 체크 필터 실행됨");
 		
-		if(session != null && session.getAttribute("loginInfo")!=null) {
+		if(session != null && session.getAttribute("loginMember")!=null) {
 			chain.doFilter(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/member/loginChk");

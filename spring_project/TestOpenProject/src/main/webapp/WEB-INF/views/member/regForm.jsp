@@ -20,23 +20,23 @@
 		<h2 class="content_title">Sign up</h2>
 		<hr>
 		<div class="content">
-			<form action="regComplete">
+			<form method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
-						<th><label for="memberid">아이디(email)</label></th>
-						<td><input type="email" id="memberid" name="memberid"></td>
+						<th><label for="userid">아이디(email)</label></th>
+						<td><input type="email" id="userid" name="userid"></td>
 					</tr>
 					<tr>
-						<th><label for="password">비밀번호</label></th>
-						<td><input type="password" id="password" name="password"></td>
+						<th><label for="pw">비밀번호</label></th>
+						<td><input type="password" id="pw" name="pw"></td>
 					</tr>
 					<tr>
-						<th><label for="membername">이름</label></th>
-						<td><input type="text" id="membername" name="membername"></td>
+						<th><label for="username">이름</label></th>
+						<td><input type="text" id="username" name="username"></td>
 					</tr>
 					<tr>
-						<th><label for="memberphoto">사진</label></th>
-						<td><input type="file" id="memberphoto" name="memberphoto">
+						<th><label for="userPhoto">사진</label></th>
+						<td><input type="file" id="userPhoto" name="userPhoto">
 						</td>
 					</tr>
 					<tr>
