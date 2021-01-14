@@ -55,7 +55,7 @@ public class Member {
 	}
 	
 	public Date getToDate() {
-		return new Date(getRegdate().getTime());
+		return new Date(this.regdate.getTime());
 	}
 	
 	@Override
