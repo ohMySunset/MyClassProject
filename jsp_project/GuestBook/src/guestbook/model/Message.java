@@ -11,7 +11,7 @@ public class Message { // Message Beans
 	private String message;
 	private Timestamp writedate;
 	
-	
+	// getter / setter
 	public int getId() {
 		return id;
 	}

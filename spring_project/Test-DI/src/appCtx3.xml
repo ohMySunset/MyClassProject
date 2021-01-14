@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!--  prototype과 singletone 구분하기
+ -->
+	<!-- Bean객체 등록 -->
+	<bean id="memberDao" class="member.dao.MemberDao" />
+
+	<bean id="memberRegService"
+		class="member.service.MemberRegService"
+		scope="prototype">
+		<!-- 생성자를 이용하기(1) -->
+		<constructor-arg ref="memberDao" />
+        <!-- 생성자를 이용하기(2) -->
+		<!-- <constructor-arg>
+		 <ref bean="memberDao"/> 생성자를 통한 의존 객체 정의
+		  </constructor-arg> -->
+	</bean>
+
+	<bean id="memberInfoService"
+		class="member.service.MemberInfoService"
+		scope="singleton">
+		<!-- p 네임스페이스를 이용하기 -->
+		<!-- p:dao-ref="memberDao" -->
+        <!--  property를 이용하기(1)  -->
+		<!-- <property name="dao"> <ref bean="memberDao"/> </property> -->
+        <!--  property를 이용하기(2)  -->
+		<!-- <property name="dao" ref="memberDao"/> -->
+		<!--  property를 이용하기(3) : 식별자 없이 객체 전달-->
+		<property name="dao">
+		  <bean class="member.dao.MemberDao"/>
+		</property>
+
+
+	</bean>
+
+
+</beans>

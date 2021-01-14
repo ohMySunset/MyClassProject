@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- JQuery SDK 로드 -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+
+   $(document).ready(function(){
+	   //alert('onload');
+
+	  $.getJSON('data.json', function(data){  //서버의 응답이 JSON -> 자바스크립트 Object로 변환
+		  // (원본배열, 행 하나를 다뤄주는 함수)
+		  $.each(data, function(index, value){
+			  var html = '<h3>이름 : '+value.name+' , 가격 : '+value.price+' </h3>'; 
+			  $('#menu').append(html);
+			  
+		  });
+		  
+	  });
+	   
+	   
+	});
+	   
+
+   
+   
+</script> 
+</head>
+<body>
+  <h1>메뉴</h1>
+  <div id="menu"></div>
+</body>
+</html>

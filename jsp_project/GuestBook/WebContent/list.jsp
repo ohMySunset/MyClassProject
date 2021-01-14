@@ -124,7 +124,7 @@ request.setAttribute("listView", listView); // JSTL 사용하기 위해서 속�
 						</tr>
 						<tr>
 						<td></td>
-						<td><a href="#">삭제하기</a></td>
+						<td><a href="deleteConfirm.jsp?mid=${message.id}">삭제하기</a></td>
 						</tr>
 					</table>
 				</div>

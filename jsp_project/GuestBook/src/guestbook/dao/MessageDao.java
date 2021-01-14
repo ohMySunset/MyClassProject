@@ -97,7 +97,7 @@ public class MessageDao {
 		return list;
 	}
 
-	
+	// 반환할 메세지 객체의 반복되는 코드
 	private Message makeMessage(ResultSet rs) throws SQLException {
 		
 		Message message = new Message();
@@ -108,6 +108,56 @@ public class MessageDao {
 		message.setWirtedate(rs.getTimestamp(5));
 		
 		return message;
+	}
+
+	// 삭제할 메세지 데이터를 불러오는 메서드
+	public Message selectMessage(Connection conn, int mid) throws SQLException {
+	
+		Message message = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from guestbook_message where message_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // message_id는 pk속성이기 때문에 결과는 1개 (0 또는 1) -> 고로 반복 필요 없음
+				message = makeMessage(rs);
+			}
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return message;   // 메시지 객체를 반환하거나 null을 반환
+	}
+	
+	
+	// 선택한 메세지를 삭제하는 메서드
+	public int deleteMessage(Connection conn, int mid) throws SQLException {
+		
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql ="DELETE FROM guestbook_message WHERE message_id=?";
+		
+	    try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			resultCnt = pstmt.executeUpdate(); //결과 반환
+			
+	  } finally {
+		JdbcUtil.close(pstmt);
+	  }
+		
+		
+		return resultCnt;	
 	}
 
 	

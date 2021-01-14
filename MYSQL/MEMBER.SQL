@@ -1,4 +1,10 @@
-SELECT * FROM PROJECT.MEMBER;
-INSERT INTO `project`.`member`
-(`userid`,`password`,`username`)
-VALUES('KING','1111', 'king');
+SELECT * FROM open.MEMBER;
+
+SELECT count(*) FROM open.MEMBER;
+-- SELECT count(*) FROM MEMBER
+
+SELECT * FROM open.MEMBER order by memberid limit 0,3;
+
+
+
+

@@ -1,4 +1,5 @@
-<%@page import="member.Member"%>
+<%@page import="member.service.MemberListService"%>
+<%@page import="member.model.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="jdbc.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
@@ -7,14 +8,8 @@
     pageEncoding="UTF-8"%>
 <%
 
- MemberDao dao = MemberDao.getInstance();
- Connection conn = ConnectionProvider.getConnection();
- 
- List<Member> members = null;
+  MemberListService service = MemberListService.getInstance();
+  service.getMemberListView(request);
 
- members = dao.selectMember(conn);
- 
- request.setAttribute("memberList", members);
- 
 %>    
 <jsp:forward page="memberListView.jsp"/>

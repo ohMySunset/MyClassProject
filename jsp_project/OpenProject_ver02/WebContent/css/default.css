@@ -24,7 +24,7 @@
    width : 800px;
    margin : 0 auto;
  }
- 
+
  nav{
   padding-bottom : 30px;
  }
@@ -42,9 +42,9 @@
  
  nav>ul>li{
    float : left;
-   padding : 3px 20px;
+   padding : 3px 10px;
    
-   margin-left : 50px;
+   margin-left : 20px;
    margin-top : 5px;    
  }
  
@@ -54,7 +54,7 @@
   text-decoration: none;
  }
 
- 
+
  div.contents{
    clear : both;
    
@@ -63,8 +63,7 @@
    margin-top : 20px;
    margin-bottom : 20px;
    
-   padding :20px
-    
+   padding :20px   
  }
  
   div.contents>h2.content_title{
