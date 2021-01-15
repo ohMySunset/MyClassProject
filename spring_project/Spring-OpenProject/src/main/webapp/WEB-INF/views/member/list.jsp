@@ -83,7 +83,8 @@ td, th {
 							height=30px></td>
 						<td><fmt:formatDate value="${member.toDate}"
 								pattern="yyyy.MM.dd" /></td>
-                        <td>
+                        <td> 
+                        <a href="<c:url value="/member/edit?idx=${member.idx}"/>">수정 </a>                        
                         <a href="javascript:deleteMember(${member.idx});">삭제</a>
                         </td>
 					</tr>

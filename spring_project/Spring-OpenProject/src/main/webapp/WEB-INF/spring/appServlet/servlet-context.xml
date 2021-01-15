@@ -30,6 +30,15 @@
 	            p:defaultEncoding="utf-8"
 	            p:maxUploadSize="10000000"/> <!-- 최대 10매가로 지정(보통 5~10매가) -->
 
+
+    <!-- 인터셉터 등록 : Login 체크 -->
+   <interceptors>
+     <interceptor>
+      <mapping path="/mypage/**"/>
+      <beans:bean class="com.aia.op.member.interceptor.AuthCheckIntercepter"/>
+     </interceptor>
+    </interceptors>
+
 	<context:component-scan base-package="com.aia.op" />
 	  <!--└> @어노테이션을 bean으로 등록해주는 역할 -->
 	
