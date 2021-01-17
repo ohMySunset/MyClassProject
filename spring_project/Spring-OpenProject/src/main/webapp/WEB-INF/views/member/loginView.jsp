@@ -38,7 +38,7 @@
  <hr>
  <div class="content">
   로그인 되었습니다. <br>
- ${loginInfo}
+ ${loginInfo} <br>
  <img alt="회원사진" src="<c:url value="/fileupload/member/${loginInfo.memberphoto}"/>">"
  </div>
 </div>
