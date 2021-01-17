@@ -10,15 +10,26 @@ public interface MemberDao {
 	// public abstract
 	// 회원 등록을 위한 메서드
 	int insertMember(Member member);
+	
 	// 회원 로그인을 위한 메서드
 	Member selectLogin(String id, String pw);
+	
 	// 회원의 총 수를 구할 메서드
 	int selectTotalCount();
+	
 	// 회원 정보를 구하는 메서드 (페이지 번호에 맞는)
 	//List<Member> selectMemberList(int startRow, int cntPerPage);
 	List<Member> selectMemberList(Map<String, Object> param);
+	
 	// 검색한 회원의 수를 구하는 메서드
 	int selectSearchMemberCount(Map<String, Object> listMap);
+	
     // 회원 정보 삭제
 	int deleteMemberByIdx(int idx);
+	
+	// idx로 회원 정보 구하는 메서드
+	Member selectMemberByIdx(int idx);
+	
+    // 회원정보를 수정하는 메서
+	int updateMember(Member member);
 }
