@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/mypage")
-public class MemberMypageController {
+public class MemberMyPageController {
 	
 	@RequestMapping("/mypage1") // /op/mypage/mypage1
 	public String myPage1() {
