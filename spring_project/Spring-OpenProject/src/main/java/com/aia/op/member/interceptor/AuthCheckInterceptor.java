@@ -25,9 +25,12 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 	    
 	    response.sendRedirect(request.getContextPath()+"/member/login");
 		
-
 		return false;
 	}
+	
+	
+	
+	
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -49,7 +52,8 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 		// TODO Auto-generated method stub
 		super.afterConcurrentHandlingStarted(request, response, handler);
 	}
-	
+
+
 	
 
 }

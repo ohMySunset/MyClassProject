@@ -135,19 +135,6 @@
 	where idx=#{idx}
 	</update>
 
-	<select id="selectMemberByIdx"
-	        resultMap="memberListResult">
-      select * from member
-      where idx=#{no}
-	</select>
-	
-    <update id="updateMember"
-            parameterType="com.aia.op.member.domain.Member">
-    
-    update member set
-    membername=#{membername},password=#{password},memberphoto=#{memberphoto}
-    where idx=#{idx}
-    </update>
 
 
 

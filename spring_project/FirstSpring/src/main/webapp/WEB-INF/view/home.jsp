@@ -48,6 +48,10 @@
   
   <c:url value="/members/10" var="members"/>
   <li><a href="${members}">${members}</a></li>
+  
+  <c:url value="/mc/simple" var="simple"/>
+  <li><a href="${simple}">${simple}</a></li>
+  
 
   </ul>
 </body>
