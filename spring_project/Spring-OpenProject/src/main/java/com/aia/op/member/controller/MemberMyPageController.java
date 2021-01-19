@@ -18,14 +18,6 @@ public class MemberMyPageController {
 		return "member/mypage";
 	}
 	
-	@RequestMapping("/mypage3") // /op/mypage/mypage3
-	public String myPage3() {
-		
-		String str = "null";
-		str.charAt(1);
-		
-		return "member/mypage";
-	}
 	
 	@ExceptionHandler
 	public String handleNullPointerException(NullPointerException e) {

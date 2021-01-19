@@ -30,6 +30,7 @@
  <div class="content">
   My Page 입니다 <br>
  ${loginInfo}
+ 
  <img alt="회원사진" src="<c:url value="/fileupload/member/${loginInfo.memberphoto}"/>">"
  </div>
 </div>
