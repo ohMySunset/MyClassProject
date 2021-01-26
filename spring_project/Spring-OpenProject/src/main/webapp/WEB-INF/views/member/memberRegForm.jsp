@@ -5,63 +5,153 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="/WEB-INF/views/include/basicset.jsp"%>
 
-<%@ include file="/WEB-INF/views/include/basicset.jsp" %>
 
 <style>
-
+	.font_red{
+		color : red;
+	}
+	
+	.font_blue {
+		color : blue;
+	}
+	
+	#idCheckMsg {
+		display: none;
+	}
+	
+	#idCheckMsg.display_block {
+		display: block;
+	}
+	
+	#idcheck {
+		display: none;
+	}
 </style>
-
 </head>
 <body>
 
-   <%@ include file ="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-   <%@ include file ="/WEB-INF/views/include/nav.jsp" %>
+	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
-<div class="contents">
- <h2 class="content_title">회원 가입 폼</h2>
- <hr>
- <div class="content">
- <form method="post" enctype="multipart/form-data">
-        <table>
-            <tr>
-                <th><label for="userid">아이디(email)</label></th>
-                <td>
-                    <input type="email" id="userid" name="userid">
-                </td>
-            </tr>
-            <tr>
-                <th><label for="pw">비밀번호</label></th>
-                <td>
-                    <input type="password" id="pw" name="pw"> 
-                </td>
-            </tr>
-            <tr>
-                <th><label for="username">이름</label></th>
-                <td>
-                    <input type="text" id="username" name="username">
-                </td>
-            </tr>
-            <tr>
-                <th><label for="userPhoto">사진</label></th>
-                <td>
-                    <input type="file" id="userPhoto" name="userPhoto">
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <input type="submit" value="회원가입">
-                </td>
-            </tr>
-        </table>
-    </form>
- </div>
-</div>
+	<div class="contents">
+		<h2 class="content_title">회원 가입 폼</h2>
+		<hr>
+		<div class="content">
+			<form method="post" enctype="multipart/form-data" id="regForm">
+				<table>
+					<tr>
+						<th><label for="userid">아이디(email)</label></th>
+						<td>
+						<input type="email" id="userid" name="userid"><input type="checkbox" name="idcheck" id="idcheck">
+						<div id="idCheckMsg"></div>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="pw">비밀번호</label></th>
+						<td><input type="password" id="pw" name="pw"></td>
+					</tr>
+					<tr>
+						<th><label for="username">이름</label></th>
+						<td><input type="text" id="username" name="username">
+						</td>
+					</tr>
+					<tr>
+						<th><label for="userPhoto">사진</label></th>
+						<td><input type="file" id="userPhoto" name="userPhoto">
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="submit" value="회원가입"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
 
-<%@ include file ="/WEB-INF/views/include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
+<script>
+	$(document).ready(function(){
+		
+		$('#regForm').submit(function(){
+			
+			var chk = $('#idcheck').is(':checked');
+			
+			if(!chk){
+				alert('아이디 중복 여부가 체크되어야 합니다.');
+				return false;
+			}
+						
+		});
+		
+		$('#userid').focusout(function(){
+			
+			var userid =  $(this).val();
+			var msg = $('#idCheckMsg');
+			msg.addClass('display_block');
+			
+			var checkBox = $('#idcheck');
+			
+			checkBox.prop('checked', false);
+			
+			if(userid.length==0){
+				//alert('id는 필수 항목입니다.');
+				msg.html('id는 필수 항목입니다.');
+				msg.addClass('font_red');
+				
+				
+			} else {
+				
+				$.ajax({
+					url : 'idcheck',
+					data : {id:userid},
+					success : function(data){
+						if(data=='Y'){
+							//alert('사용가능한 아이디 입니다.');
+							msg.html('사용가능한 아이디 입니다.');
+							msg.removeClass('font_red');
+							msg.addClass('font_blue');
+							checkBox.prop('checked', true);
+							
+						} else {
+							//alert('사용불가능한 아이디 입니다.');
+							msg.html('사용불가능한 아이디 입니다.');
+							msg.removeClass('font_blue');
+							msg.addClass('font_red');
+						}
+					},
+					error : function(){
+						//alert('사용불가능한 아이디 입니다.');
+						msg.html('사용불가능한 아이디 입니다.');
+						msg.removeClass('font_blue');
+						msg.addClass('font_red');
+					}
+				});
+			}
+		});
+		
+		$('#userid').focusin(function(){
+			
+			$(this).val('');
+			
+			var msg = $('#idCheckMsg');
+			msg.removeClass('font_red');
+			msg.removeClass('font_blue');
+			msg.removeClass('display_block');
+			
+			checkBox.prop('checked', false);
+			
+		});
+		
+		
+	});
+</script>
 
 
 </body>
+
 </html>

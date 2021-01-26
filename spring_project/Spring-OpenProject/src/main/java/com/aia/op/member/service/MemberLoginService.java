@@ -35,22 +35,32 @@ public class MemberLoginService {
 		System.out.println(member);
 		
 		if(member != null) {
-			// 현재 세션의 속성에 LoginInfo 인스턴스를 저장
-			request.getSession().setAttribute("loginInfo", member.toLoginInfo());
-			loginCheck = true;
 			
-			// 2. uid의 쿠키처리
-			if(chk != null && chk.equals("on")) {
-				// 쿠키 생성
-				Cookie cookie = new Cookie("uid", id);
-				cookie.setMaxAge(60*60*24*365);
-				response.addCookie(cookie);
+			if(member.getVerify() == 'Y') {
+				
+				// 현재 세션의 속성에 LoginInfo 인스턴스를 저장
+				request.getSession().setAttribute("loginInfo", member.toLoginInfo());
+				loginCheck = true;
+				
+				// 2. uid의 쿠키처리
+				if(chk != null && chk.equals("on")) {
+					// 쿠키 생성
+					Cookie cookie = new Cookie("uid", id);
+					cookie.setMaxAge(60*60*24*365);
+					response.addCookie(cookie);
+				} else {
+					// 쿠키 소멸
+					Cookie cookie = new Cookie("uid", id);
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+				}
 			} else {
-				// 쿠키 소멸
-				Cookie cookie = new Cookie("uid", id);
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
+				loginCheck = true;
+				request.setAttribute("msg","미인증 이메일입니다. 인증 후 로그인 해주세요.");
+				
 			}
+			
+			
 		}		
 		
 		return loginCheck;

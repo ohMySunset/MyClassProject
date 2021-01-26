@@ -55,6 +55,19 @@
 		<c:url value="/message/listJson" var="listJson" />
 		<li><a href="${listJson}">${listJson}</a></li>
 
+		<c:url value="/rest/ver1/members/3" var="restMember" />
+		<li><a href="${restMember}">${restMember}</a></li>
+
+		<c:url value="/rest/ver1/members" var="restMembers" />
+		<li><a href="${restMembers}">${restMembers}</a></li>
+
+		<c:url value="/rest/ver1/members/map" var="restMemberMap" />
+		<li><a href="${restMemberMap}">${restMemberMap}</a></li>
+		
+			<c:url value="/mail/simplemail" var="simplemail" />
+		<li><a href="${simplemail}">${simplemail}</a></li>
+		
+
 	</ul>
 </body>
 </html>

@@ -32,4 +32,15 @@ public interface MemberDao {
 	
     // 회원정보를 수정하는 메서
 	int updateMember(Member member);
+	
+	// id 존재 유무 확인하는 메서드
+	int selectMemberByIdCount(String id);
+	
+	// idx, verify 조건으로 조회하는 메서드
+	int selectMemberByIdxVerify(int index);
+	
+	// 인증처리가 안되어있을  verify -> Y
+	int updateMemberVerify(int idx, String code);  // param이 여러개일 때 param1, param2 이런식으로 들어옴.
+	
 }
+

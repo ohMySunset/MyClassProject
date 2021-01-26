@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aia.firstspring.member.domain.Member;
 import com.aia.firstspring.member.service.MemberRegService;
+import com.aia.firstspring.util.Sha256;
 
 @Controller
 @RequestMapping("/member/reg")
@@ -24,6 +25,7 @@ public class MemberRegController {
 	public String memberReg(Member member, Model model) {
 		
 		System.out.println(member);
+		
 		int resultCnt = regService.insertMember(member);
 		
 		System.out.println(member);
