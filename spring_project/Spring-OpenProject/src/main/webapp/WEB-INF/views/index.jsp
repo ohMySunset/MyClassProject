@@ -29,18 +29,27 @@
 				<h1 class="h6 mb-0 text-white lh-1">Index</h1>
 			</div>
 		</div>
-		
-	 <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h3 class="border-bottom pb-2 mb-0">Recent Updates</h3>
-    <div class="d-flex text-muted pt-3">
-     Index
-    </div>
-   
-    </div>
+
+		<div class="my-3 p-3 bg-white rounded shadow-sm">
+			<h3 class="border-bottom pb-2 mb-0">Recent Updates</h3>
+			<div class="d-flex text-muted pt-3">Index</div>
+
+		</div>
 
 	</main>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
+	<script>
+		<c:if test="${type eq 'delete'}">
+
+		<c:if test="${reault eq 'ok'}">
+		alert("로그아웃되었습니다.");
+		</c:if>
+		<c:if test="${result ne 'ok'}">
+		alert("로그아웃이 정상 처리되지 않았습니")
+		</c:if>
+		</c:if>
+	</script>
 
 </body>
 </html>

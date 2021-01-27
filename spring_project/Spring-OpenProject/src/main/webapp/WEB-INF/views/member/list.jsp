@@ -54,17 +54,17 @@ td, th {
 			</div>
 		</div>
 
-		<div class="my-3 p-3 bg-white rounded shadow-sm">		
+		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<div class="d-flex text-muted pt-3">
-		<!-- <div class="searchBox"> -->
-					<form>
-						검색 타입 <select name="searchType">
-							<option value="id">아이디</option>
-							<option value="name">이름</option>
-							<option value="both">아이디+이름</option>
-						</select> 검색 키워드 <input type="text" name="keyword"> <input
-							type="submit" value="검색">
-					</form>
+				<!-- <div class="searchBox"> -->
+				<form>
+					검색 타입 <select name="searchType">
+						<option value="id">아이디</option>
+						<option value="name">이름</option>
+						<option value="both">아이디+이름</option>
+					</select> 검색 키워드 <input type="text" name="keyword"> <input
+						type="submit" value="검색">
+				</form>
 				<!-- </div> -->
 			</div>
 		</div>
@@ -99,19 +99,30 @@ td, th {
 						</tr>
 					</c:forEach>
 				</table>
-
-		
 			</div>
-			<div class="paging">
+
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
 					<c:if test="${listView.totalMemberCount>0}">
 						<c:forEach begin="1" end="${listView.totalPageCount}" var="num">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}">${num}</a>
+							</li>
+						</c:forEach>
+					</c:if>
+				</ul>
+			</nav>
+
+			<div class="paging">
+				<c:if test="${listView.totalMemberCount>0}">
+					<c:forEach begin="1" end="${listView.totalPageCount}" var="num">
 				[ <a
 							href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}"
 							class="${listView.pageNumber eq num ?'nowPage':''}">${num}</a> ] 
 				</c:forEach>
-					</c:if>
-				</div>
-			
+				</c:if>
+			</div>
+
 
 		</div>
 
