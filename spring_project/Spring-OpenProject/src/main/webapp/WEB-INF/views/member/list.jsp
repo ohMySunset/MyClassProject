@@ -89,8 +89,7 @@ td, th {
 							<td>${member.memberid}</td>
 							<td>${member.membername}</td>
 							<td><img alt="프로필 사진"
-								src="<c:url value="/fileupload/member/${member.memberphoto}"/>"
-								height=30px></td>
+								src="<c:url value="/fileupload/member/s_${member.memberphoto}"/>"></td>
 							<td><fmt:formatDate value="${member.toDate}"
 									pattern="yyyy.MM.dd" /></td>
 							<td><a

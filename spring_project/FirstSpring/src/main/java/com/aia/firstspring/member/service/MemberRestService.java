@@ -15,6 +15,7 @@ public class MemberRestService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	
 	public Member getMember(int idx) {
 		
 		dao = template.getMapper(MemberInterfaceDao.class);

@@ -1,6 +1,7 @@
 package com.aia.op.member.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aia.op.member.dao.MemberDao;
 import com.aia.op.member.domain.Member;
 import com.aia.op.member.domain.MemberRegRequest;
+
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Service
 public class MemberRegService {
@@ -25,6 +29,7 @@ public class MemberRegService {
 	private MailSenderService mailSenderService;
 
 	// 파일을 업로드, 데이터 베이스 저장
+	@Transactional
 	public int memberReg(MemberRegRequest regRequest, HttpServletRequest request) {
 		int result = 0;
 
@@ -45,6 +50,14 @@ public class MemberRegService {
 			// userPhoto -> 파일객체로 저장
 			try {
 				regRequest.getUserPhoto().transferTo(newFile);
+				
+				FileOutputStream thumbnail = new FileOutputStream(new File(saveDirPath, "s_"+ newFileName));
+				// 썸네일 저장 50X50
+				Thumbnailator.createThumbnail(regRequest.getUserPhoto().getInputStream(), thumbnail, 50, 50);
+				
+				
+				thumbnail.close();
+				
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -59,10 +72,19 @@ public class MemberRegService {
 		if(newFileName != null) {
 		member.setMemberphoto(newFileName);
 		}
-		// 파일 저장
-		try {
+		
+		
+		// 파일 저장		
+		//try {
 			// 데이터 베이스 입력
 			dao = template.getMapper(MemberDao.class);
+			
+			// member_count테이블 > membercount컬럼 : membercount+1(update)
+			dao.memberCountUpdate();
+			
+			//int num1 = 10/0;
+		
+			//회원 DB에 insert			
 			result = dao.insertMember(member);
 			
 			
@@ -70,14 +92,14 @@ public class MemberRegService {
 			int mailSendCnt = mailSenderService.send(member);
 			System.out.println("메일 발송  처리 횟수 : "+ mailSendCnt);
 
-		} catch (Exception e) { // DB관련 Exception
-			e.printStackTrace();
+	//	} catch (Exception e) { // DB관련 Exception
+	//		e.printStackTrace();
 
 			// 만약 DB오류가 났는데 현재 파일이 저장이 되버린다면? -> 삭제
 			if (newFile!=null && newFile.exists()) {
 				newFile.delete();
 			}
-		}
+	//	}
 
 		return result;
 	}

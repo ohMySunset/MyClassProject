@@ -24,6 +24,12 @@
 		<result column="memberphoto" property="memberphoto" />
 		<result column="regdate" property="regdate" />
 	</resultMap>
+	
+	<!-- REST 전체 회원 정보를 구하기 -->
+	<select id="selectAllMemberList"
+	        resultMap="memberListResult">
+	select * from member
+	</select>
 
 	<!-- 회원가입 -->
 	<!-- 인증을 위해 code 컬럼추가 -->
@@ -43,6 +49,11 @@
 		(#{memberid},#{password},#{membername},#{memberphoto},#{code})
 		</if>		
 	</insert>
+	
+	<!--  member_count update -->
+	<update id="memberCountUpdate">
+	update member_count set membercount = membercount+1 
+	</update>
 
 	<!-- 로그인 -->
 	<select id="selectLogin" resultMap="memberResult">

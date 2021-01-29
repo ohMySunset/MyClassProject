@@ -44,6 +44,7 @@
 		</if>		
 	</insert>
 
+
 	<!-- 로그인 -->
 	<select id="selectLogin" resultMap="memberResult">
 		select * from member where

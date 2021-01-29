@@ -11,6 +11,9 @@ public interface MemberDao {
 	// 회원 등록을 위한 메서드
 	int insertMember(Member member);
 	
+	// 전체 회원의 수
+	int memberCountUpdate();
+	
 	// 회원 로그인을 위한 메서드
 	Member selectLogin(String id, String pw);
 	
@@ -21,6 +24,9 @@ public interface MemberDao {
 	//List<Member> selectMemberList(int startRow, int cntPerPage);
 	List<Member> selectMemberList(Map<String, Object> param);
 	
+	//2021.1.28 : REST API -> GET
+	List<Member> selectAllMemberList();
+		
 	// 검색한 회원의 수를 구하는 메서드
 	int selectSearchMemberCount(Map<String, Object> listMap);
 	
