@@ -46,7 +46,7 @@
 		alert("로그아웃되었습니다.");
 		</c:if>
 		<c:if test="${result ne 'ok'}">
-		alert("로그아웃이 정상 처리되지 않았습니")
+		alert("로그아웃이 정상 처리되지 않았습니다.")
 		</c:if>
 		</c:if>
 	</script>
