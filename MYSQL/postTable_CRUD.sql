@@ -5,4 +5,4 @@ SELECT * FROM `withearth`.donapost p left join `withearth`.postfile f on p.dona_
 SELECT * FROM withearth.donapost;
 
 select * from `withearth`.donapost p inner join `withearth`.postfile f on p.dona_idx=f.dona_idx
-where file_idx = (select min(file_idx) from `withearth`.postfile f) limit 0,5
+where file_idx in (select min(file_idx) from `withearth`.postfile f group by dona_idx) limit 0,4

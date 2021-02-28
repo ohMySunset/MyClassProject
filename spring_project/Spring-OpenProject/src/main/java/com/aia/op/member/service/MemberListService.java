@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.ws.ServiceMode;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.aia.op.member.dao.MemberDao;
 import com.aia.op.member.domain.Member;
@@ -15,7 +16,7 @@ import com.aia.op.member.domain.SearchParam;
 
 import lombok.extern.log4j.Log4j;
 
-@Service
+@ServiceMode
 @Log4j
 public class MemberListService {
 
